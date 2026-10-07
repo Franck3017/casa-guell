@@ -1,0 +1,273 @@
+{
+  "metadata": {
+    "restaurante": "Casa Güell",
+    "ubicacion_general": "Sant Martí, Barcelona",
+    "lema_principal": "Tradició catalana, sense maquillatge",
+    "etiquetas_marquee": [
+      "PRODUCTE DE MERCAT",
+      "XUP-XUP REAL",
+      "SANT MARTÍ",
+      "MEMÒRIA CATALANA",
+      "SENSE DRECERES"
+    ],
+    "web_consumo_responsable": "www.disfrutadeunconsumoresponsable.com"
+  },
+  "filosofia": {
+    "titulo": "Trenta anys tornant a l'essència",
+    "pilares": [
+      {
+        "numero": "01",
+        "titulo": "L'origen",
+        "descripcion": "Jordi va començar fa trenta anys en cuines on el temps era l'ingredient més car. Avui torna a aquella lentitud, sense pretensions ni dreceres."
+      },
+      {
+        "numero": "02",
+        "titulo": "El mercat",
+        "descripcion": "Cada matí, abans que obri la cuina, el mercat decideix la carta del dia. El producte mana; nosaltres només l'acompanyem."
+      },
+      {
+        "numero": "03",
+        "titulo": "El foc lent",
+        "descripcion": "Guisats que couen hores, fons que reposen dies. La tècnica moderna serveix la memòria, no la substitueix."
+      }
+    ],
+    "cta_chef": {
+      "mensaje": "Vine a provar la cuina de l'àvia. Que no t'ho expliquin.",
+      "firma": "Jordi — Chef Executiu"
+    }
+  },
+  "carta_web": {
+    "titulo": "Les nostres obres d'art \"La Carta\"",
+    "subtitulo": "Cada plat, amb amor i passió tal com surt de la nostra cuina.",
+    "categorias": [
+      "Per Picar",
+      "Guisats i Fons",
+      "Peix i Carns",
+      "Les Bogeries del Jordi",
+      "Postres Casolans",
+      "Carta de Vins"
+    ],
+    "platos_destacados": [
+      { "nombre": "Ostra Guillardeau", "descripcion": "Unitat, servida al natural.", "alergenos": ["Mol·lusc"], "precio": "5,50 €" },
+      { "nombre": "Gilda", "descripcion": "Anxova, oliva i guindilla en vinagre.", "alergenos": ["Peix", "Sulfits"], "precio": "3,80 €" },
+      { "nombre": "Paleta de Pernil Ibèric", "descripcion": "Tallada a mà, greix daurat.", "alergenos": ["Gluten"], "precio": "16,50 €" },
+      { "nombre": "Amanida Russa", "descripcion": "Recepta d'àvia, maionesa casolana.", "alergenos": ["Peix", "Ou", "Lactis", "Sulfits"], "precio": "9,90 €" },
+      { "nombre": "Torrezno de Sòria", "descripcion": "Pell cruixent, carn sucosa.", "alergenos": ["Gluten"], "precio": "12,50 €" },
+      { "nombre": "Trilogia d'Anxoves", "descripcion": "Tres elaboracions del Cantàbric.", "alergenos": ["Peix", "Gluten"], "precio": "14,90 €" },
+      { "nombre": "Graellada de Verdures amb Romesco", "descripcion": "Verdura de temporada, brasa i romesco casolà.", "alergenos": ["Sulfits", "Fruits secs"], "precio": "14,50 €" },
+      { "nombre": "Xips d'Albergínia", "descripcion": "Talls fins, fregits al moment.", "alergenos": ["Gluten"], "precio": "12,00 €" },
+      { "nombre": "Croqueta de Formatge Idiazábal Fumat", "descripcion": "Amb vel ibèric, unitat.", "alergenos": ["Ou", "Lactis", "Gluten"], "precio": "4,90 €" },
+      { "nombre": "Croqueta d'Escudella i Romesco", "descripcion": "Recepta de xup-xup, unitat.", "alergenos": ["Ou", "Lactis", "Gluten", "Sulfits", "Fruits secs"], "precio": "4,90 €" },
+      { "nombre": "Truita de Camarón", "descripcion": "La típica i mítica d'Andalusia, fina i cruixent.", "alergenos": ["Gluten", "Peix", "Sulfits", "Ou", "Lactis"], "precio": "4,90 €" },
+      { "nombre": "Patates Braves \"Casa Güell\"", "descripcion": "Salsa brava de la casa, punt de picant.", "alergenos": ["Ou", "Sulfits"], "precio": "8,50 €" },
+      { "nombre": "Terrina Cruixent d'Orella", "descripcion": "Textura cruixent, sabor de casqueria.", "alergenos": ["Sulfits"], "precio": "14,50 €" },
+      { "nombre": "Gambeta de Vidre amb Ratlladura de Llima", "descripcion": "Massa fina i cruixent, toc cítric.", "alergenos": ["Gluten", "Peix", "Mol·lusc"], "precio": "15,90 €" }
+    ]
+  },
+  "carta_impresa": {
+    "comida": {
+      "la_barra": [
+        { "nombre": "OLIVAS", "precio": "12.00 €" },
+        { "nombre": "ANCHOAS FILETE (UNIDAD)", "precio": "12.00 €", "alergenos_codigo": "P.S." },
+        { "nombre": "GILDA", "precio": "5.80 €", "alergenos_codigo": "P.S." },
+        { "nombre": "BOQUERONES (RACIÓN)", "precio": "6.50 €", "alergenos_codigo": "P.S." },
+        { "nombre": "CECINA ANGUS", "precio": "12.00 €", "alergenos_codigo": "L.S.G." },
+        { "nombre": "PALETILLA JAMÓN IBÉRICO DE GUIELLO", "precio": "17.50 €" },
+        { "nombre": "ENSALADILLA RUSA", "precio": "9.50 €", "alergenos_codigo": "P.M.S.S." },
+        { "nombre": "TORRENZO DE SORIA", "precio": "12.50 €" }
+      ],
+      "para_empezar": [
+        { "nombre": "TARTAR DE ATÚN CON YEMA CURADA", "precio": "12.00 €", "alergenos_codigo": "P.P.M." },
+        { "nombre": "ENSALADA DE TOMATE, CEBOLLA Y VENTRESCA", "precio": "18.50 €", "alergenos_codigo": "P.G." },
+        { "nombre": "PARRILLADA DE VERDURAS CON SALSA ROMESCO", "precio": "14.50 €", "alergenos_codigo": "S.F." },
+        { "nombre": "CHIPS DE BERENJENAS CON LIMA Y MIEL", "precio": "12.00 €", "alergenos_codigo": "G.L." },
+        { "nombre": "CALAMAR CON ROSIÏROLS Y HUEVO FRITO", "precio": "17.50 €", "alergenos_codigo": "NUT" }
+      ],
+      "para_compartir": [
+        { "nombre": "CROQUETAS IDIAZAZAL AHUMADO Y VELO IBÉRICO", "precio": "3.80 €", "alergenos_codigo": "H.L.G." },
+        { "nombre": "CROQUETAS PUCHERO Y SALSA ROMESCO", "precio": "3.80 €", "alergenos_codigo": "H.L.O." },
+        { "nombre": "CROQUETAS LA DEL CHEF \"JORDI\"", "precio": "4.80 €", "alergenos_codigo": "H.L.O." },
+        { "nombre": "BOMBA DE BACALAO", "precio": "3.50 €", "alergenos_codigo": "H.L.O.P" },
+        { "nombre": "TORTILLA DE CAMARÓN", "precio": "3.70 €", "alergenos_codigo": "G.P.S.N" },
+        { "nombre": "BRAVAS \"CASA GÜELL\"", "precio": "5.70 €", "alergenos_codigo": "R.S.S" },
+        { "nombre": "TARRINA CRUJIENTE DE OREJA", "precio": "17.50 €", "alergenos_codigo": "L.L" },
+        { "nombre": "HUEVOS FRITOS CON PAPADA IBÉRICA", "precio": "14.50 €", "alergenos_codigo": "H.S.G" },
+        { "nombre": "HUEVOS FRITOS CON CHANQUETES Y PIMIENTOS CONFITADOS", "precio": "14.50 €", "alergenos_codigo": "H.G.P" },
+        { "nombre": "GAMBITA CRISTAL CON RALLADURA DE LIMA", "precio": "16.50 €", "alergenos_codigo": "G.P.M" }
+      ],
+      "para_rematar": [
+        { "nombre": "MAR Y MONTAÑA (BUTIFARRA DE CAN ROVIRA CON SEPIONETS)", "precio": "19.80 €", "alergenos_codigo": "F.G.M.P" },
+        { "nombre": "HUEVOS CON MOLLEJAS Y SEPIONES", "precio": "15.50 €", "alergenos_codigo": "H.P.S." },
+        { "nombre": "GARRANZOS CON PAVÍAS DE BACALAO Y VELO IBERICO", "precio": "13.50 €", "alergenos_codigo": "P.S." },
+        { "nombre": "CANELONES DE L'AVIA", "precio": "13.50 €", "alergenos_codigo": "G.S.L." },
+        { "nombre": "CAP I POTA", "precio": "17.50 €", "alergenos_codigo": "P.S." },
+        { "nombre": "ALBÓNDIGAS CON SEPIA", "precio": "15.50 €", "alergenos_codigo": "F.S.G.M." },
+        { "nombre": "FRICANDÓ CON MOIXERONS", "precio": "12.50 €", "alergenos_codigo": "F.S.G." },
+        { "nombre": "DADOS DE SOLOMILLO CON FOIE Y SETAS DE TEMPORADA", "precio": "19.50 €" },
+        { "nombre": "TXULETA DE 1kg. DE VACA MADURA PARA 2 PERSONAS", "precio": "57.50 €" }
+      ],
+      "postres": [
+        { "nombre": "FLAN CREMOSO CON NATA", "precio": "6.90 €", "alergenos_codigo": "M.L." },
+        { "nombre": "BUIXO DE GIRONA CON HELADO DE ALMENDRA Y BERGAMOTA", "precio": "7.90 €", "alergenos_codigo": "G.L.F." },
+        { "nombre": "COULANT DE PISTACHO CON HELADO CREMOSO DE PISTACHO", "precio": "7.50 €", "alergenos_codigo": "G.L.F." },
+        { "nombre": "TORRIJA CON HELADO DE AOVE Y NARANJA CONFITADA", "precio": "7.90 €", "alergenos_codigo": "G.L.F." }
+      ]
+    },
+    "bebidas": {
+      "cocteles": [
+        { "nombre": "Patrón Paloma", "precio": "13.00 €", "ingredientes": "Patrón Reposado, Refresco de Pomelo" },
+        { "nombre": "Patrón Margarita", "precio": "13.00 €", "ingredientes": "Patrón Silver, Triple Seca, Zumo de lima, Sirope simple" },
+        { "nombre": "Espresso Martini", "precio": "13.00 €", "ingredientes": "Grey Goose, Licor de Café, Sirope Simple" },
+        { "nombre": "Bacardí Mojito", "precio": "13.00 €", "ingredientes": "Bacardí Carta Blanca, Zumo de lima, Sirope de azúcar, Hojas de hierbabuena, Soda" },
+        { "nombre": "Martini Negroni", "precio": "13.00 €", "ingredientes": "Martini Rosso, Martini Bitter, Bombay Sapphire" }
+      ],
+      "spritz": [
+        { "nombre": "St-Germain Hugo Spritz", "precio": "8.00 €", "ingredientes": "St-Germain, Cava, Soda, Menta, lima" },
+        { "nombre": "Martini Bianco Spritz", "precio": "7.00 €", "ingredientes": "Martini Bianco, Cava, Soda" },
+        { "nombre": "Aperol", "precio": "8.00 €", "ingredientes": "Aperol, Cava, Soda" }
+      ],
+      "apertivo": [
+        { "nombre": "Martini Rosso", "precio": "3.50 €" },
+        { "nombre": "Martini Bianco", "precio": "3.50 €" },
+        { "nombre": "Martini Rubino", "precio": "4.50 €" },
+        { "nombre": "Perucchi Barril", "precio": "3.50 €" },
+        { "nombre": "Perucchi Edicion Especial", "precio": "4.50 €" },
+        { "nombre": "Perucchi Gran Reserva", "precio": "4.00 €" },
+        { "nombre": "Campari", "precio": "4.50 €" },
+        { "nombre": "Sangria", "precio": "5.50 €" },
+        { "nombre": "Tinto Verano", "precio": "5.50 €" }
+      ],
+      "cervezas": [
+        { "nombre": "Salve 33cl", "precio": "3.20 €" },
+        { "nombre": "Salve copa 42cl", "precio": "3.80 €" },
+        { "nombre": "Clara Salve", "precio": "3.20 €" },
+        { "nombre": "Clara Salve Copa 42cl", "precio": "3.40 €" },
+        { "nombre": "Salve 0.0 Tostada Bot", "precio": "2.75 €" },
+        { "nombre": "Munich 33cl", "precio": "3.40 €" },
+        { "nombre": "Munich Copa 42cl", "precio": "3.90 €" },
+        { "nombre": "Alhambra Botellin", "precio": "2.75 €" },
+        { "nombre": "San Miguel Sin Gluten", "precio": "3.20 €" }
+      ],
+      "soft_drinks": [
+        { "nombre": "Coca-Cola / Zero", "precio": "2.60 €" },
+        { "nombre": "Fanta Naranja/Limon", "precio": "2.60 €" },
+        { "nombre": "Aquarius", "precio": "2.60 €" },
+        { "nombre": "Nestea", "precio": "2.60 €" },
+        { "nombre": "Zumo de Piña", "precio": "2.50 €" },
+        { "nombre": "Agua KMO", "precio": "2.40 €" },
+        { "nombre": "Agua Con Gas", "precio": "2.70 €" },
+        { "nombre": "Bitter Kas", "precio": "2.60 €" },
+        { "nombre": "Tonica", "precio": "2.70 €" }
+      ]
+    },
+    "espirituosos": {
+      "gin": [
+        { "nombre": "Bombay Sapphire", "precio": "10.00 €" },
+        { "nombre": "Seagram's", "precio": "10.00 €" },
+        { "nombre": "Tanqueray", "precio": "10.00 €" },
+        { "nombre": "G´Vine Nouaison", "precio": "12.00 €" },
+        { "nombre": "Bulldog Gin", "precio": "12.00 €" },
+        { "nombre": "Martin Miller's", "precio": "12.00 €" },
+        { "nombre": "Gin Mare", "precio": "12.00 €" },
+        { "nombre": "Hendrick's", "precio": "12.00 €" }
+      ],
+      "ron": [
+        { "nombre": "Bacardí Carta Blanca", "precio": "10.00 €" },
+        { "nombre": "Santa Teresa Gran Reserva", "precio": "10.00 €" },
+        { "nombre": "Santa Teresa 1796", "precio": "12.00 €" },
+        { "nombre": "Brugal", "precio": "10.00 €" },
+        { "nombre": "Havana Club 7", "precio": "12.00 €" },
+        { "nombre": "Zacapa 23", "precio": "14.00 €" }
+      ],
+      "whisky": [
+        { "nombre": "Dewar's White Label", "precio": "10.00 €" },
+        { "nombre": "J&B", "precio": "10.00 €" },
+        { "nombre": "Ballantine's", "precio": "10.00 €" },
+        { "nombre": "Jack Daniel's", "precio": "12.00 €" }
+      ],
+      "tequila": [
+        { "nombre": "Patrón Silver", "precio": "6.50 €" },
+        { "nombre": "Patrón XO Café", "precio": "6.50 €" },
+        { "nombre": "Patrón Reposado", "precio": "8.00 €" },
+        { "nombre": "Tequila Jose Cuervo", "precio": "6.00 €" }
+      ],
+      "vodka": [
+        { "nombre": "Grey Goose", "precio": "12.00 €" },
+        { "nombre": "Absolut", "precio": "10.00 €" }
+      ],
+      "copas_premium": [
+        { "nombre": "Dewar's 12", "precio_chupito": "6.00 €", "precio_copa": "12.00 €" },
+        { "nombre": "Cardhu 12", "precio_chupito": "6.50 €", "precio_copa": "15.00 €" },
+        { "nombre": "Tomatin", "precio_chupito": "6.50 €", "precio_copa": "15.00 €" },
+        { "nombre": "Macallan 12", "precio_chupito": "8.00 €", "precio_copa": "16.00 €" },
+        { "nombre": "Glenrothes 12", "precio_chupito": "8.00 €", "precio_copa": "16.00 €" },
+        { "nombre": "Hibiki Japanese Armoni", "precio_chupito": "10.00 €", "precio_copa": "18.00 €" },
+        { "nombre": "Pacharán Baines Etiq. Oro", "precio_chupito": "6.50 €", "precio_copa": "12.00 €" }
+      ],
+      "digestivos": {
+        "digestivo": {
+          "precio": null,
+          "items": ["Pacharan", "Limoncello", "Frangelico", "Licor Mango"]
+        },
+        "chupito": {
+          "precio": "3.50 €",
+          "items": ["Jagermeister", "Orujo Blanco", "Orujo de Hierbas", "Licor Anís Del Mono"]
+        },
+        "copa": {
+          "precio": "6.50 €",
+          "items": ["Licor De Cafe", "Crema Orujo", "Grapa", "Licor Marie Brizard", "Ratafía", "Baileys", "Chupito 0.0"]
+        }
+      }
+    }
+  },
+  "alergenos_leyenda": {
+    "G": "GLUTEN",
+    "H": "HUEVO",
+    "L": "LÁCTEO",
+    "P": "PESCADO",
+    "S": "SULFITOS",
+    "F": "FRUTOS SECOS",
+    "M": "MOLUSCO",
+    "NZ": "MOSTAZA"
+  },
+  "mercat": {
+    "titulo": "El mercat mana",
+    "descripcion": "Cada matí baixem a la llotja i triem el millor peix i marisc del dia. No hi ha carta fixa de mercat: pregunta pel producte del dia, perquè canvia cada jornada segons el que ofereix el mar.",
+    "accion": "Pregunta pel producte del dia"
+  },
+  "ubicacion": {
+    "titulo": "Sant Martí ens espera",
+    "direccion": "Carrer de Castella, 1, Sant Martí, Barcelona",
+    "horario": {
+      "md": "13:00 — 00:00",
+      "dg": "13:00 — 18:00",
+      "ll": null
+    },
+    "contacto": {
+      "telefono": "936 43 43 84",
+      "redes_sociales": ["Instagram", "TikTok"]
+    }
+  },
+  "colores": {
+    "primarios": {
+      "blanco_puro": "#FFFFFF",
+      "negro_profundo": "#0B0B0C",
+      "negro_grafito": "#111215",
+      "gris_carbon": "#171717"
+    },
+    "fondos": {
+      "beige_claro_principal": "#FAF8F5",
+      "crema_antiguo": "#E5E2DC",
+      "gris_perla": "#F5F5F5",
+      "blanco_roto": "#FEF2F2"
+    },
+    "acentos": {
+      "azul_enlace": "#1D4ED8",
+      "rojo_alerta": "#EF4444",
+      "rojo_oscuro": "#DC2626",
+      "rojo_suave": "#FCA5A5",
+      "gris_medio": "#9CA3AF",
+      "gris_bordes": "#E5E7EB"
+    }
+  }
+}

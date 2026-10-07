@@ -1,0 +1,87 @@
+/* Registro de tokens como colores interpolables */
+@property --cg-cream   { syntax: '<color>'; inherits: true; initial-value: #FAF8F5; }
+@property --cg-ink     { syntax: '<color>'; inherits: true; initial-value: #111215; }
+@property --cg-carbon  { syntax: '<color>'; inherits: true; initial-value: #171717; }
+@property --cg-linen   { syntax: '<color>'; inherits: true; initial-value: #E5E2DC; }
+@property --cg-stone   { syntax: '<color>'; inherits: true; initial-value: #737373; }
+@property --cg-brand   { syntax: '<color>'; inherits: true; initial-value: #1D4ED8; }
+@property --cg-surface { syntax: '<color>'; inherits: true; initial-value: #FEFDFB; }
+
+@theme inline {
+  --color-cream: var(--cg-cream);
+  --color-ink: var(--cg-ink);
+  --color-carbon: var(--cg-carbon);
+  --color-linen: var(--cg-linen);
+  --color-stone: var(--cg-stone);
+  --color-brand: var(--cg-brand);
+  --color-surface: var(--cg-surface);
+
+  --font-display: "Playfair Display Variable", "Playfair Display", "Iowan Old Style", Baskerville, Georgia, serif;
+  --font-body: "Inter Variable", "Inter", "Avenir Next", "Segoe UI", sans-serif;
+  --font-mono2: "Space Mono", "SFMono-Regular", Consolas, monospace;
+
+  /* A small, shared reading scale keeps controls and copy legible across locales. */
+  --text-xs: 0.8125rem;
+  --text-xs--line-height: 1.45;
+  --text-sm: 0.9375rem;
+  --text-sm--line-height: 1.55;
+  --text-base: 1rem;
+  --text-base--line-height: 1.65;
+}
+
+/* LIGHT — papel de día */
+:root {
+  color-scheme: light;
+  --cg-cream: #FAF8F5;
+  --cg-ink: #111215;
+  --cg-carbon: #171717;
+  --cg-linen: #E5E2DC;
+  --cg-stone: #737373;
+  --cg-brand: #1D4ED8;
+  --cg-surface: #FEFDFB;          /* tarjetas elevadas sobre el crema */
+  --cg-elev: 0 8px 30px rgb(17 18 21 / 0.12);
+  --cg-img: none;
+  --cg-dur: 450ms;
+
+  /* Curvas de movimiento compartidas */
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);   /* entradas y respuesta de UI */
+  --ease-wipe: cubic-bezier(0.35, 0, 0.15, 1);  /* onda circular del cambio de tema */
+
+  /* Interpolación de tokens: el dark mode "se funde", no salta */
+  transition:
+    --cg-cream var(--cg-dur) ease, --cg-ink var(--cg-dur) ease,
+    --cg-carbon var(--cg-dur) ease, --cg-linen var(--cg-dur) ease,
+    --cg-stone var(--cg-dur) ease, --cg-brand var(--cg-dur) ease,
+    --cg-surface var(--cg-dur) ease;
+}
+
+/* DARK — papel de noche, refinado con superficie elevada */
+.dark {
+  color-scheme: dark;
+  --cg-cream: #0B0B0C;
+  --cg-ink: #F5F3EE;
+  --cg-carbon: #E5E2DC;
+  --cg-linen: #161618;            /* secciones alternas */
+  --cg-stone: #909090;
+  --cg-brand: #5B9BE0;            /* azul del logo impreso (AA sobre oscuro) */
+  --cg-surface: #151517;          /* tarjetas elevadas por luminancia, no por sombra */
+  --cg-elev: 0 8px 30px rgb(0 0 0 / 0.55);
+  --cg-img: brightness(0.92) saturate(0.95) contrast(1.03);
+}
+
+/* Durante el wipe de View Transitions desactivamos la interpolación
+   para que el nuevo estado entre "ya terminado" dentro del círculo */
+html[data-vt] { --cg-dur: 0ms; }
+
+@media (prefers-reduced-motion: reduce) {
+  :root { --cg-dur: 0ms; }
+}
+
+/* View Transitions: old estático debajo, new revelado por el wipe */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+::view-transition-old(root) { z-index: 1; }
+::view-transition-new(root) { z-index: 2; }

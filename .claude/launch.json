@@ -1,0 +1,16 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "casa-guell",
+      "url": "http://localhost:5173",
+      "port": 5173
+    },
+    {
+      "name": "casa-guell-build",
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": ["preview", "--port", "4173", "--strictPort"],
+      "port": 4173
+    }
+  ]
+}

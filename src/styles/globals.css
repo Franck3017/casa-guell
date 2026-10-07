@@ -1,0 +1,266 @@
+@import "tailwindcss";
+@import "./theme.css";
+
+/* dark: de Tailwind pasa a depender de la clase .dark (no de prefers-color-scheme) */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* scrollbar-gutter reserva siempre el hueco de la barra de scroll: al bloquear el scroll (menú, modal de
+   reserva) la barra desaparece pero el ancho de la página no cambia, así que nada da un salto lateral. */
+html { overflow-x: clip; scroll-behavior: smooth; scroll-padding-top: 6.5rem; scrollbar-gutter: stable; }
+
+/* Capa táctil: sin destello gris al tocar, sin inflado de texto en horizontal. */
+html {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* Los controles responden al tacto sin esperar al doble toque y no seleccionan su etiqueta
+   al mantener pulsado. El contenido (texto de la carta, direcciones) sigue seleccionable. */
+button, [role='button'], [role='radio'] {
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+}
+a { touch-action: manipulation; }
+
+/* Retroalimentación al pulsar: al quitar el destello del navegador, el control responde por :active.
+   Funciona con ratón y con tacto; la transición solo existe si no se pide reducir movimiento. */
+.press:active { transform: scale(0.97); }
+@media (prefers-reduced-motion: no-preference) {
+  .press {
+    transition: transform 140ms var(--ease-out), background-color 200ms ease,
+      color 200ms ease, border-color 200ms ease, opacity 200ms ease;
+  }
+}
+
+@layer base {
+  html { font-feature-settings: 'kern' 1; text-rendering: optimizeLegibility; }
+
+  body {
+    font-size: 1rem;
+    line-height: 1.65;
+    letter-spacing: -0.012em;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    line-height: 1.06;
+    letter-spacing: -0.025em;
+    text-wrap: balance;
+  }
+
+  p { text-wrap: pretty; }
+}
+
+body {
+  background: var(--cg-cream);
+  color: var(--cg-ink);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+.font-mono2 { font-variant-numeric: tabular-nums; }
+
+::selection { background: var(--cg-brand); color: var(--cg-cream); }
+
+/* Focus visible conmutable y consistente */
+:focus-visible { outline: 2px solid var(--cg-brand); outline-offset: 3px; }
+
+/* Scrollbar nativa + custom conmutables */
+html { scrollbar-color: color-mix(in srgb, var(--cg-ink) 25%, transparent) var(--cg-cream); }
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: var(--cg-cream); }
+::-webkit-scrollbar-thumb { background: color-mix(in srgb, var(--cg-ink) 25%, transparent); border-radius: 8px; }
+
+.leader {
+  flex: 1; margin: 0 0.6rem;
+  border-bottom: 1px dotted color-mix(in srgb, var(--cg-ink) 35%, transparent);
+  transform: translateY(-4px);
+}
+
+.elev { box-shadow: var(--cg-elev); }
+
+/*
+  Papel de bandeja: el papel impreso en azul con "Casa Güell" sobre el que se sirven los
+  platos (se ve en la foto del producto estrella). Se reutiliza como textura de marca.
+  El texto va en distintos giros, como en el papel real. Color propio por tema.
+*/
+:root {
+  --cg-print: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='440' height='300'%3E%3Cg font-family='Inter,Arial,sans-serif' font-weight='700' font-size='25' fill='%231D4ED8' fill-opacity='.17'%3E%3Ctext transform='translate(40 80) rotate(-12)'%3ECasa G%26%23252%3Bell%3C/text%3E%3Ctext transform='translate(270 150) rotate(168)'%3ECasa G%26%23252%3Bell%3C/text%3E%3Ctext transform='translate(60 255) rotate(8)'%3ECasa G%26%23252%3Bell%3C/text%3E%3Ctext transform='translate(330 270) rotate(-80)'%3ECasa G%26%23252%3Bell%3C/text%3E%3C/g%3E%3C/svg%3E");
+  /* El mismo papel visto sobre el azul de la marca: la tinta pasa a ser el color del papel */
+  --cg-print-on-brand: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='440' height='300'%3E%3Cg font-family='Inter,Arial,sans-serif' font-weight='700' font-size='25' fill='%23FAF8F5' fill-opacity='.11'%3E%3Ctext transform='translate(40 80) rotate(-12)'%3ECasa G%26%23252%3Bell%3C/text%3E%3Ctext transform='translate(270 150) rotate(168)'%3ECasa G%26%23252%3Bell%3C/text%3E%3Ctext transform='translate(60 255) rotate(8)'%3ECasa G%26%23252%3Bell%3C/text%3E%3Ctext transform='translate(330 270) rotate(-80)'%3ECasa G%26%23252%3Bell%3C/text%3E%3C/g%3E%3C/svg%3E");
+}
+.dark {
+  --cg-print: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='440' height='300'%3E%3Cg font-family='Inter,Arial,sans-serif' font-weight='700' font-size='25' fill='%235B9BE0' fill-opacity='.2'%3E%3Ctext transform='translate(40 80) rotate(-12)'%3ECasa G%26%23252%3Bell%3C/text%3E%3Ctext transform='translate(270 150) rotate(168)'%3ECasa G%26%23252%3Bell%3C/text%3E%3Ctext transform='translate(60 255) rotate(8)'%3ECasa G%26%23252%3Bell%3C/text%3E%3Ctext transform='translate(330 270) rotate(-80)'%3ECasa G%26%23252%3Bell%3C/text%3E%3C/g%3E%3C/svg%3E");
+  --cg-print-on-brand: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='440' height='300'%3E%3Cg font-family='Inter,Arial,sans-serif' font-weight='700' font-size='25' fill='%230B0B0C' fill-opacity='.1'%3E%3Ctext transform='translate(40 80) rotate(-12)'%3ECasa G%26%23252%3Bell%3C/text%3E%3Ctext transform='translate(270 150) rotate(168)'%3ECasa G%26%23252%3Bell%3C/text%3E%3Ctext transform='translate(60 255) rotate(8)'%3ECasa G%26%23252%3Bell%3C/text%3E%3Ctext transform='translate(330 270) rotate(-80)'%3ECasa G%26%23252%3Bell%3C/text%3E%3C/g%3E%3C/svg%3E");
+}
+.paper-print {
+  background-image: var(--cg-print);
+  background-size: 340px 232px;
+}
+.paper-print-on-brand {
+  background-image: var(--cg-print-on-brand);
+  background-size: 340px 232px;
+}
+
+/* Grano de papel: capa fija, sin eventos, nunca sobre contenedores con scroll. */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 55;
+  pointer-events: none;
+  opacity: 0.05;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1.2 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.dark body::before {
+  opacity: 0.06;
+  mix-blend-mode: screen;
+  filter: invert(1);
+}
+
+main img { filter: var(--cg-img); transition: filter 0.4s ease; }
+
+.reveal { opacity: 0; transform: translateY(12px); transition: opacity 450ms var(--ease-out), transform 450ms var(--ease-out); }
+.reveal.is-visible { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { transition: none; opacity: 1; transform: none; }
+}
+
+
+/* Entrada del modal de reserva (solo entrada: el componente se desmonta al cerrar). */
+.modal-overlay { transition: opacity 200ms var(--ease-out); }
+.modal-panel { transition: opacity 200ms var(--ease-out), transform 200ms var(--ease-out); }
+
+/* Estado de éxito de los formularios: el mensaje sustituye al formulario sin saltar. */
+.state-in { transition: opacity 200ms var(--ease-out), transform 200ms var(--ease-out); }
+
+@starting-style {
+  .modal-overlay { opacity: 0; }
+  .modal-panel { opacity: 0; transform: scale(0.96); }
+  .state-in { opacity: 0; transform: translateY(8px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  @starting-style {
+    .modal-panel, .state-in { transform: none; }
+  }
+}
+
+/*
+  ── Hero: dos capas de movimiento, cada una en su propio envoltorio para que no se pisen ──
+  1. Entrada dibujada: la orquesta GSAP en HeroSection.tsx (una pluma traza el marco del papel y del
+     retrato, sombrea a lápiz y rodea el plato; debajo aparece la foto). Aquí no hay CSS de entrada.
+  2. Deriva con el scroll (.hero-drift-*): al salir el hero, cada capa se mueve a distinta velocidad.
+     Va con animation-timeline (sin JS, fuera del hilo principal); donde no exista, no hay deriva.
+  Con prefers-reduced-motion no hay dibujo ni deriva: todo se ve colocado desde el inicio.
+*/
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .hero { view-timeline: --hero block; }
+    .hero-drift-paper, .hero-drift-portrait, .hero-drift-copy, .hero-drift-wordmark {
+      animation-timing-function: linear;
+      animation-fill-mode: both;
+      animation-timeline: --hero;
+      animation-range: exit 0% exit 100%;
+    }
+    .hero-drift-paper { animation-name: hero-drift-paper; }
+    .hero-drift-portrait { animation-name: hero-drift-portrait; }
+    .hero-drift-copy { animation-name: hero-drift-copy; }
+    .hero-drift-wordmark { animation-name: hero-drift-wordmark; }
+  }
+}
+@keyframes hero-drift-paper { to { translate: 0 10%; rotate: 5deg; } }
+@keyframes hero-drift-portrait { to { translate: 0 16%; } }
+/* El texto solo se desplaza: no se atenúa, porque el botón de reservar sigue en pantalla */
+/* El rótulo de fondo se desliza de lado: es la capa más lejana y la que menos sube */
+@keyframes hero-drift-wordmark { to { translate: -6% 18%; } }
+@keyframes hero-drift-copy { to { translate: 0 -14%; } }
+
+/*
+  Atribución del mapa (texto legal obligatorio de CARTO y OpenStreetMap). MapLibre la pinta como una franja
+  blanca también en el tema oscuro; aquí usa los tokens. El prefijo `html` sube la especificidad: la hoja de
+  MapLibre se carga después (con el mapa) y empataría.
+*/
+html .maplibregl-ctrl.maplibregl-ctrl-attrib,
+html .maplibregl-ctrl.maplibregl-ctrl-attrib.maplibregl-compact {
+  background: color-mix(in srgb, var(--cg-surface) 92%, transparent);
+  color: var(--cg-ink);
+}
+html .maplibregl-ctrl.maplibregl-ctrl-attrib a { color: var(--cg-ink); }
+html .maplibregl-ctrl.maplibregl-ctrl-attrib a:hover { color: var(--cg-brand); }
+html.dark .maplibregl-ctrl-attrib-button { filter: invert(1); }
+
+/*
+  Borde rasgado: las franjas tintadas (mercado, cierre) no se separan con una regla recta sino con el
+  canto de un papel arrancado, el mismo gesto manual que la brocha del hero. Es un mosaico de 1200px
+  usado como máscara, así que el dibujo no se deforma con el ancho y el color sale de los tokens.
+  ::before muerde la franja con el color de la página; ::after dibuja el canto con un hilo de tinta.
+*/
+:root {
+  --torn-fill: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='20'%3E%3Cpath d='M0 9L6.4 9L11.3 8.9L17.1 9.4L24.9 9.1L28.3 9.8L35.5 8.5L41.4 8.4L50.8 4.4L61.6 4.7L65.5 5.8L75.8 6.6L82.9 8.3L94.7 5.8L103.2 3.2L112.3 4.6L119.9 4.9L124.7 9.4L132.5 10.4L135.6 10.4L139 11.9L147.1 11.4L151.5 12.1L162 11.3L172.7 9.9L180.7 10.5L185.5 8.5L190.4 11.4L197.3 10.5L203.1 7.7L207.4 12.9L212.1 12.3L218.2 14.2L221.5 15.8L231.9 15.6L243.9 17.2L248.1 14.9L252.2 14.7L258.7 12.3L267.4 13.3L275.1 13.3L283.2 14.7L292.5 16L296.7 13.8L302.6 14.1L308.5 15.1L319.5 16.9L327.9 15L338.2 16.5L346.7 14L353.8 17.2L364 14.9L372.7 13.3L383.5 15.9L387.4 16.7L395.6 14.8L404 19.1L412.5 15.2L421.9 12.7L433.2 14.1L444.7 15L448.5 16.8L456.4 15.1L462.1 15.8L469.4 18.1L478.5 15L484.3 14.6L489.8 11.4L500.7 15.3L509.3 13.5L513.1 16.4L516.2 14.7L525.9 16.8L532.1 15.5L541.5 13L546 15.2L552 13.7L559 14.9L568.4 15.6L579.1 14.7L590.6 19.6L594.9 17.7L603.5 13L610.2 13L616.4 13.3L626.2 14.9L635.4 16.4L640.1 14.7L643.3 13.3L654.2 16.4L660.1 15.5L664.7 15.3L672.7 14.5L676.2 16L681.9 12.7L689.3 18.1L694.9 14.6L706.7 13.7L710.5 13.3L719.8 10.3L731 9.5L738.2 9.8L747.7 10.6L758 8.9L763.4 8.9L771.9 9.8L780.7 7.4L788.2 9.1L792.2 9.2L798.7 10.4L804.1 10.7L811.1 5.5L821.8 7.9L829.4 11.5L834.3 6.2L838.5 10.9L847.2 11.3L854 9.8L857 9.8L864.1 11.2L873.2 9.5L877.1 9.5L886.2 8.3L889.6 9.8L896.7 11.7L908.1 10.4L914.7 7.7L922.4 8L930.5 6.4L941.3 4.9L944.7 6.5L948.1 4.5L959.5 4.5L966.9 5.1L978 2.6L982.3 2.7L987.5 3.9L996.1 3.6L1005.6 3.3L1011.5 0.1L1018.4 2.8L1027.1 2.5L1038.8 1.7L1047.4 8.3L1052.9 2.6L1062.4 4.1L1072.9 2.3L1084.3 3L1094.8 3.7L1104.3 3.6L1108.5 3.9L1117.3 4.3L1127.8 3L1134.9 4.5L1140.9 2.4L1146.7 2.9L1153.1 5.2L1165 5.6L1174.9 6.8L1181.4 7.6L1193 8.6L1200 9V-2H0Z'/%3E%3C/svg%3E");
+  --torn-line: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='20'%3E%3Cpath d='M0 9L6.4 9L11.3 8.9L17.1 9.4L24.9 9.1L28.3 9.8L35.5 8.5L41.4 8.4L50.8 4.4L61.6 4.7L65.5 5.8L75.8 6.6L82.9 8.3L94.7 5.8L103.2 3.2L112.3 4.6L119.9 4.9L124.7 9.4L132.5 10.4L135.6 10.4L139 11.9L147.1 11.4L151.5 12.1L162 11.3L172.7 9.9L180.7 10.5L185.5 8.5L190.4 11.4L197.3 10.5L203.1 7.7L207.4 12.9L212.1 12.3L218.2 14.2L221.5 15.8L231.9 15.6L243.9 17.2L248.1 14.9L252.2 14.7L258.7 12.3L267.4 13.3L275.1 13.3L283.2 14.7L292.5 16L296.7 13.8L302.6 14.1L308.5 15.1L319.5 16.9L327.9 15L338.2 16.5L346.7 14L353.8 17.2L364 14.9L372.7 13.3L383.5 15.9L387.4 16.7L395.6 14.8L404 19.1L412.5 15.2L421.9 12.7L433.2 14.1L444.7 15L448.5 16.8L456.4 15.1L462.1 15.8L469.4 18.1L478.5 15L484.3 14.6L489.8 11.4L500.7 15.3L509.3 13.5L513.1 16.4L516.2 14.7L525.9 16.8L532.1 15.5L541.5 13L546 15.2L552 13.7L559 14.9L568.4 15.6L579.1 14.7L590.6 19.6L594.9 17.7L603.5 13L610.2 13L616.4 13.3L626.2 14.9L635.4 16.4L640.1 14.7L643.3 13.3L654.2 16.4L660.1 15.5L664.7 15.3L672.7 14.5L676.2 16L681.9 12.7L689.3 18.1L694.9 14.6L706.7 13.7L710.5 13.3L719.8 10.3L731 9.5L738.2 9.8L747.7 10.6L758 8.9L763.4 8.9L771.9 9.8L780.7 7.4L788.2 9.1L792.2 9.2L798.7 10.4L804.1 10.7L811.1 5.5L821.8 7.9L829.4 11.5L834.3 6.2L838.5 10.9L847.2 11.3L854 9.8L857 9.8L864.1 11.2L873.2 9.5L877.1 9.5L886.2 8.3L889.6 9.8L896.7 11.7L908.1 10.4L914.7 7.7L922.4 8L930.5 6.4L941.3 4.9L944.7 6.5L948.1 4.5L959.5 4.5L966.9 5.1L978 2.6L982.3 2.7L987.5 3.9L996.1 3.6L1005.6 3.3L1011.5 0.1L1018.4 2.8L1027.1 2.5L1038.8 1.7L1047.4 8.3L1052.9 2.6L1062.4 4.1L1072.9 2.3L1084.3 3L1094.8 3.7L1104.3 3.6L1108.5 3.9L1117.3 4.3L1127.8 3L1134.9 4.5L1140.9 2.4L1146.7 2.9L1153.1 5.2L1165 5.6L1174.9 6.8L1181.4 7.6L1193 8.6L1200 9' fill='none' stroke='%23000'/%3E%3C/svg%3E");
+}
+.torn-edge {
+  position: absolute;
+  inset-inline: 0;
+  top: 0;
+  height: 20px;
+  pointer-events: none;
+}
+.torn-edge--bottom { top: auto; bottom: 0; scale: -1 -1; }
+.torn-edge::before, .torn-edge::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  mask-repeat: repeat-x;
+  mask-size: 1200px 20px;
+}
+.torn-edge::before { background: var(--cg-cream); mask-image: var(--torn-fill); }
+.torn-edge::after {
+  background: color-mix(in srgb, var(--cg-ink) 16%, transparent);
+  mask-image: var(--torn-line);
+}
+
+/* Cinta cinética: las palabras alternas van solo en contorno, como tipo de imprenta sin entintar. */
+.marquee-outline {
+  color: transparent;
+  -webkit-text-stroke: 1px color-mix(in srgb, var(--cg-ink) 55%, transparent);
+}
+
+/*
+  Estado previo a la entrada dibujada del hero. La clase la pone un script de index.html antes de pintar y
+  la retira la animación al arrancar (o un temporizador, si el JS no carga). Sin ella, el HTML prerenderizado
+  enseñaría el hero completo un instante y luego lo vería desaparecer para animarse.
+  Sin JS, o con movimiento reducido, la clase no existe y todo se ve desde el principio.
+*/
+html.entrance-pending [data-hero-fill],
+html.entrance-pending [data-hero-wordmark],
+html.entrance-pending [data-sketch="underline"] { opacity: 0; }
+html.entrance-pending [data-hero-caption] { visibility: hidden; }
+html.entrance-pending [data-hero-accent] { clip-path: inset(-12% 100% -12% -6%); }
+
+/*
+  Lista desplegable de los <select> (hora y comensales de la reserva). El campo es transparente, y con un
+  fondo transparente el navegador pinta la lista con su color por defecto: en tema oscuro podía salir
+  texto claro sobre fondo claro. Se fijan fondo y texto con los tokens del tema.
+*/
+select option, select optgroup {
+  background-color: var(--cg-surface);
+  color: var(--cg-ink);
+}
+
+/*
+  Tique del pie ("la cuenta"): el borde inferior va cortado en dientes de sierra, como el papel de una caja
+  registradora. Es una máscara, así que funciona sobre cualquier fondo y con cualquier color de papel.
+*/
+.receipt {
+  --tooth: 7px;
+  mask: conic-gradient(from -45deg at bottom, transparent, black 1deg 89deg, transparent 90deg) 50% / calc(2 * var(--tooth)) 100%;
+}

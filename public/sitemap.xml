@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://www.casaguellbcn.com/ca</loc>
+    <xhtml:link rel="alternate" hreflang="ca" href="https://www.casaguellbcn.com/ca"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.casaguellbcn.com/es"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.casaguellbcn.com/en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.casaguellbcn.com/ca"/>
+  </url>
+  <url>
+    <loc>https://www.casaguellbcn.com/es</loc>
+    <xhtml:link rel="alternate" hreflang="ca" href="https://www.casaguellbcn.com/ca"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.casaguellbcn.com/es"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.casaguellbcn.com/en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.casaguellbcn.com/ca"/>
+  </url>
+  <url>
+    <loc>https://www.casaguellbcn.com/en</loc>
+    <xhtml:link rel="alternate" hreflang="ca" href="https://www.casaguellbcn.com/ca"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.casaguellbcn.com/es"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.casaguellbcn.com/en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.casaguellbcn.com/ca"/>
+  </url>
+</urlset>

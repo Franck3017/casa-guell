@@ -1,0 +1,6 @@
+export { Nav } from './Nav'
+export { Footer } from './Footer'
+export { ThemeToggle } from './ThemeToggle'
+export { BackToTop } from './BackToTop'
+export { ReserveModal } from './ReserveModal'
+export { SearchDishes } from './SearchDishes'

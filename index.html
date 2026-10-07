@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#FAF8F5" />
+    <title>Casa Güell · Restaurant de cuina catalana a Barcelona</title>
+    <meta name="description" content="Restaurant de cuina catalana a Sant Martí, Barcelona. Producte de mercat i guisats a foc lent. Consulta la carta i reserva taula de dimecres a diumenge." />
+    <meta property="og:site_name" content="Casa Güell" />
+    <meta property="og:type" content="website" />
+    <!-- Valores por defecto para quien no ejecuta JS (WhatsApp, Facebook o X al previsualizar un enlace).
+         Con JS, Seo.tsx los sustituye por los del idioma de la página. -->
+    <meta property="og:title" content="Casa Güell · Restaurant de cuina catalana a Barcelona" />
+    <meta property="og:description" content="Restaurant de cuina catalana a Sant Martí, Barcelona. Producte de mercat i guisats a foc lent. Consulta la carta i reserva taula de dimecres a diumenge." />
+    <meta property="og:image" content="https://www.casaguellbcn.com/assets/img/og-casa-guell.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="alternate" hreflang="ca" href="https://www.casaguellbcn.com/ca" />
+    <link rel="alternate" hreflang="es" href="https://www.casaguellbcn.com/es" />
+    <link rel="alternate" hreflang="en" href="https://www.casaguellbcn.com/en" />
+    <link rel="alternate" hreflang="x-default" href="https://www.casaguellbcn.com/ca" />
+    <meta name="twitter:card" content="summary_large_image" />
+<script>
+  (function () {
+    // Título e idioma según la URL antes de que cargue React: evita que /es y /en
+    // enseñen un instante el título en catalán. Mantener en sync con meta.title de i18n/locales.
+    try {
+      var titles = {
+        ca: "Casa Güell · Restaurant de cuina catalana a Barcelona",
+        es: "Casa Güell · Restaurante de cocina catalana en Barcelona",
+        en: "Casa Güell · Catalan restaurant in Barcelona"
+      };
+      var lang = location.pathname.split("/")[1];
+      if (titles[lang]) {
+        document.title = titles[lang];
+        document.documentElement.lang = lang;
+      }
+    } catch (_) {}
+    try {
+      var t = localStorage.getItem("cg-theme"); // MISMA clave que STORAGE_KEY en theme.tsx
+      var dark =
+        t === "dark" ||
+        (t !== "light" && matchMedia("(prefers-color-scheme: dark)").matches);
+      document.documentElement.classList.toggle("dark", dark);
+      document
+        .querySelector('meta[name="theme-color"]')
+        .setAttribute("content", dark ? "#0B0B0C" : "#FAF8F5");
+    } catch (_) {}
+    // Entrada dibujada del hero: el HTML ya trae el contenido pintado, así que las piezas que se van a
+    // animar se ocultan desde el primer instante (CSS en globals.css) y no parpadean. La animación retira
+    // la clase al arrancar; si el JS no llegara a cargar, se retira sola y todo queda visible.
+    try {
+      if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        var root = document.documentElement;
+        root.classList.add("entrance-pending");
+        setTimeout(function () { root.classList.remove("entrance-pending"); }, 4000);
+      }
+    } catch (_) {}
+  })();
+</script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

@@ -1,0 +1,28 @@
+{
+  "srcDir": "src",
+  "outDir": "src/bones",
+  "components": [
+    {
+      "name": "restaurant-map",
+      "path": "src/features/location/RestaurantMap.tsx",
+      "component": "RestaurantMap",
+      "breakpoints": { "mobile": 375, "desktop": 1440 }
+    },
+    {
+      "name": "menu-browser",
+      "path": "src/features/menu/MenuBrowser.tsx",
+      "component": "MenuBrowser",
+      "breakpoints": { "mobile": 375, "desktop": 1440 }
+    },
+    {
+      "name": "color-swatches",
+      "path": "src/features/branding/ColorSwatches.tsx",
+      "component": "ColorSwatches",
+      "breakpoints": { "mobile": 375, "desktop": 1440 }
+    }
+  ],
+  "devServer": {
+    "url": "http://localhost:5173",
+    "readyTimeout": 30000
+  }
+}

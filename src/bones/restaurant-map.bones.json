@@ -1,0 +1,25 @@
+{
+  "breakpoints": {
+    "375": {
+      "name": "restaurant-map",
+      "viewportWidth": 312,
+      "width": 312,
+      "height": 0,
+      "bones": []
+    },
+    "768": {
+      "name": "restaurant-map",
+      "viewportWidth": 705,
+      "width": 705,
+      "height": 0,
+      "bones": []
+    },
+    "1280": {
+      "name": "restaurant-map",
+      "viewportWidth": 1104,
+      "width": 1104,
+      "height": 0,
+      "bones": []
+    }
+  }
+}

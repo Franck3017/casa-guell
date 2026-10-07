@@ -1,0 +1,378 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-06T18:11:47.356Z",
+  "title": "Design System: Casa Güell",
+  "extensions": {
+    "colorMeta": {
+      "cream": {
+        "role": "neutral",
+        "displayName": "Papel crema",
+        "canonical": "#FAF8F5",
+        "tonalRamp": [
+          "#33291a",
+          "#55442b",
+          "#775f3c",
+          "#997a4d",
+          "#bba077",
+          "#d4c3aa",
+          "#e5dbcc",
+          "#f6f3ee"
+        ]
+      },
+      "surface": {
+        "role": "neutral",
+        "displayName": "Superficie de mesa",
+        "canonical": "#FEFDFB",
+        "tonalRamp": [
+          "#3d2e0f",
+          "#664d19",
+          "#8f6b24",
+          "#b88a2e",
+          "#d6ad5c",
+          "#e6cc99",
+          "#f0e0c2",
+          "#faf5eb"
+        ]
+      },
+      "linen": {
+        "role": "neutral",
+        "displayName": "Lino",
+        "canonical": "#E5E2DC",
+        "tonalRamp": [
+          "#2c2821",
+          "#494336",
+          "#665e4c",
+          "#847862",
+          "#a89e8a",
+          "#c9c2b6",
+          "#dedbd3",
+          "#f4f3f0"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Tinta",
+        "canonical": "#111215",
+        "tonalRamp": [
+          "#22242a",
+          "#393c46",
+          "#505563",
+          "#676d7f",
+          "#8e94a4",
+          "#b9bcc6",
+          "#d5d7dd",
+          "#f1f2f4"
+        ]
+      },
+      "carbon": {
+        "role": "neutral",
+        "displayName": "Carbón",
+        "canonical": "#171717",
+        "tonalRamp": [
+          "#262626",
+          "#404040",
+          "#595959",
+          "#737373",
+          "#999999",
+          "#bfbfbf",
+          "#d9d9d9",
+          "#f2f2f2"
+        ]
+      },
+      "stone": {
+        "role": "neutral",
+        "displayName": "Piedra",
+        "canonical": "#737373",
+        "tonalRamp": [
+          "#262626",
+          "#404040",
+          "#595959",
+          "#737373",
+          "#999999",
+          "#bfbfbf",
+          "#d9d9d9",
+          "#f2f2f2"
+        ]
+      },
+      "brand": {
+        "role": "primary",
+        "displayName": "Azul de la loza catalana",
+        "canonical": "#1D4ED8",
+        "tonalRamp": [
+          "#091843",
+          "#0f2970",
+          "#15399d",
+          "#1b49ca",
+          "#4b74e7",
+          "#8fa8f0",
+          "#bccbf6",
+          "#e9eefc"
+        ]
+      },
+      "night-cream": {
+        "role": "neutral",
+        "displayName": "Papel de noche",
+        "canonical": "#0B0B0C",
+        "tonalRamp": [
+          "#252528",
+          "#3d3d43",
+          "#55555d",
+          "#6e6e78",
+          "#95959d",
+          "#bcbcc2",
+          "#d7d7da",
+          "#f2f2f3"
+        ]
+      },
+      "night-linen": {
+        "role": "neutral",
+        "displayName": "Lino de noche",
+        "canonical": "#161618",
+        "tonalRamp": [
+          "#252528",
+          "#3d3d43",
+          "#55555d",
+          "#6e6e78",
+          "#95959d",
+          "#bcbcc2",
+          "#d7d7da",
+          "#f2f2f3"
+        ]
+      },
+      "night-surface": {
+        "role": "neutral",
+        "displayName": "Superficie de noche",
+        "canonical": "#151517",
+        "tonalRamp": [
+          "#252528",
+          "#3d3d43",
+          "#55555d",
+          "#6e6e78",
+          "#94949e",
+          "#bcbcc2",
+          "#d7d7da",
+          "#f2f2f3"
+        ]
+      },
+      "night-ink": {
+        "role": "neutral",
+        "displayName": "Tinta de noche",
+        "canonical": "#F5F3EE",
+        "tonalRamp": [
+          "#302a1c",
+          "#50472f",
+          "#706342",
+          "#917f55",
+          "#b3a47f",
+          "#d0c6af",
+          "#e3ddcf",
+          "#f6f4ef"
+        ]
+      },
+      "night-carbon": {
+        "role": "neutral",
+        "displayName": "Carbón de noche",
+        "canonical": "#E5E2DC",
+        "tonalRamp": [
+          "#2c2821",
+          "#494336",
+          "#665e4c",
+          "#847862",
+          "#a89e8a",
+          "#c9c2b6",
+          "#dedbd3",
+          "#f4f3f0"
+        ]
+      },
+      "night-stone": {
+        "role": "neutral",
+        "displayName": "Piedra de noche",
+        "canonical": "#909090",
+        "tonalRamp": [
+          "#262626",
+          "#404040",
+          "#595959",
+          "#737373",
+          "#999999",
+          "#bfbfbf",
+          "#d9d9d9",
+          "#f2f2f2"
+        ]
+      },
+      "night-brand": {
+        "role": "primary",
+        "displayName": "Azul de loza de noche",
+        "canonical": "#5B9BE0",
+        "tonalRamp": [
+          "#0c2540",
+          "#143e6b",
+          "#1c5796",
+          "#2470c1",
+          "#5396df",
+          "#94beeb",
+          "#bfd8f3",
+          "#eaf2fb"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Titular del hero."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Títulos de sección."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Títulos de modal y bloque."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Texto corrido y controles."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Precios, categorías, alérgenos y etiquetas."
+      }
+    },
+    "shadows": [
+      {
+        "name": "elev-floating",
+        "value": "0 8px 30px rgb(17 18 21 / 0.12)",
+        "purpose": "Modal, popovers y botones flotantes (noche: rgb(0 0 0 / 0.55))."
+      },
+      {
+        "name": "dish-preview",
+        "value": "0 16px 40px rgb(17 18 21 / 0.25)",
+        "purpose": "Miniatura de plato que sigue al cursor."
+      }
+    ],
+    "motion": [
+      {
+        "name": "theme-fade",
+        "value": "450ms ease",
+        "purpose": "Interpolación de tokens entre tema claro y oscuro."
+      },
+      {
+        "name": "reveal",
+        "value": "700ms cubic-bezier(0.22, 1, 0.36, 1)",
+        "purpose": "Aparición de bloques al hacer scroll."
+      },
+      {
+        "name": "state-transition",
+        "value": "200ms ease",
+        "purpose": "Hover y foco de botones y enlaces."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "md",
+        "value": "768px"
+      },
+      {
+        "name": "lg",
+        "value": "1024px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Botón primario",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Acción principal: reservar mesa.",
+      "html": "<button class=\"ds-btn\">Reservar mesa</button>",
+      "css": ".ds-btn{display:inline-flex;align-items:center;min-height:48px;padding:0 24px;border:0;border-radius:9999px;background:#111215;color:#FAF8F5;font:600 14px Inter,sans-serif;cursor:pointer;transition:background 200ms}.ds-btn:hover{background:#1D4ED8}.ds-btn:focus-visible{outline:2px solid #1D4ED8;outline-offset:4px}"
+    },
+    {
+      "name": "Enlace de navegación",
+      "kind": "nav",
+      "refersTo": "nav-link",
+      "description": "Enlace de sección en píldora; el activo lleva fondo tintado.",
+      "html": "<a class=\"ds-nav\" aria-current=\"location\" href=\"#\">Carta</a> <a class=\"ds-nav\" href=\"#\">Mercat</a>",
+      "css": ".ds-nav{display:inline-flex;align-items:center;min-height:40px;padding:0 14px;border-radius:9999px;font:500 13px Inter,sans-serif;color:rgba(17,18,21,.6);text-decoration:none;transition:background 200ms,color 200ms}.ds-nav:hover{background:rgba(17,18,21,.05);color:#111215}.ds-nav[aria-current]{background:rgba(17,18,21,.06);color:#111215}"
+    },
+    {
+      "name": "Categoría de carta",
+      "kind": "chip",
+      "refersTo": "menu-category",
+      "description": "Filtro de categoría en mono mayúsculas con subrayado en la activa.",
+      "html": "<span class=\"ds-cat on\">Carta</span> <span class=\"ds-cat\">Bebidas</span>",
+      "css": ".ds-cat{font:400 11px \"Space Mono\",monospace;letter-spacing:.2em;text-transform:uppercase;color:rgba(17,18,21,.45);padding-bottom:12px;border-bottom:1px solid rgba(17,18,21,.15);margin-right:20px}.ds-cat.on{color:#111215;border-bottom-color:#111215}"
+    },
+    {
+      "name": "Fila de carta",
+      "kind": "custom",
+      "refersTo": "menu-category",
+      "description": "Nombre, puntos guía y precio en mono con alérgenos debajo.",
+      "html": "<div class=\"ds-row\"><div class=\"ds-line\"><span class=\"ds-name\">Mar y montaña</span><span class=\"ds-lead\"></span><span class=\"ds-price\">19,80 €</span></div><p class=\"ds-all\">F · G · M · P</p></div>",
+      "css": ".ds-row{padding:12px 0;width:320px}.ds-line{display:flex;align-items:baseline}.ds-name{font:500 15px Inter,sans-serif;color:#111215}.ds-lead{flex:1;margin:0 .6rem;border-bottom:1px dotted rgba(17,18,21,.35);transform:translateY(-4px)}.ds-price{font:400 14px \"Space Mono\",monospace;color:#111215}.ds-all{margin:2px 0 0;font:400 10px \"Space Mono\",monospace;letter-spacing:.1em;text-transform:uppercase;color:rgba(17,18,21,.4)}"
+    },
+    {
+      "name": "Campo de formulario",
+      "kind": "input",
+      "refersTo": "input-field",
+      "description": "Campo rectangular con etiqueta mono; el foco tiñe el borde de azul.",
+      "html": "<label class=\"ds-f\"><span>Fecha</span><input type=\"text\" value=\"12/10/2026\"></label>",
+      "css": ".ds-f{display:block;width:240px}.ds-f span{font:400 10px \"Space Mono\",monospace;letter-spacing:.1em;text-transform:uppercase;color:rgba(17,18,21,.45)}.ds-f input{display:block;width:100%;box-sizing:border-box;margin-top:4px;padding:8px 12px;border:1px solid rgba(17,18,21,.15);background:transparent;color:#111215;font:400 14px Inter,sans-serif;outline:none}.ds-f input:focus{border-color:#1D4ED8}"
+    },
+    {
+      "name": "Modal de reserva",
+      "kind": "card",
+      "refersTo": "reserve-modal",
+      "description": "Única superficie elevada de lectura: borde fino, sombra flotante, esquinas rectas.",
+      "html": "<div class=\"ds-m\"><h3>Reservar mesa</h3><p>Elige fecha, hora y comensales.</p></div>",
+      "css": ".ds-m{width:300px;box-sizing:border-box;padding:32px;background:#FEFDFB;border:1px solid rgba(17,18,21,.1);box-shadow:0 8px 30px rgba(17,18,21,.12)}.ds-m h3{margin:0;font:400 24px \"Playfair Display\",Georgia,serif;letter-spacing:-.025em;color:#111215}.ds-m p{margin:8px 0 0;font:400 14px Inter,sans-serif;color:rgba(17,18,21,.6)}"
+    }
+  ],
+  "narrative": {
+    "northStar": "La carta de papel",
+    "overview": "Casa Güell se lee como una carta impresa en una mesa de Sant Martí: papel crema de día, papel carbón de noche, tinta casi negra y un único azul de loza que aparece solo donde algo se puede tocar o merece atención. La voz tipográfica es editorial, una serif de contraste para titulares con Inter para leer y Space Mono para los pequeños rótulos de imprenta (precios, categorías, alérgenos). El plato fotografiado es siempre lo más vivo de la pantalla; la interfaz se queda en papel.\n\nLa densidad es cómoda y de ritmo lento: secciones con mucho aire vertical, líneas de texto cortas, listas de carta a dos columnas con puntos guía entre nombre y precio. El tema oscuro no es una inversión mecánica sino la misma carta de noche: el cambio se funde por interpolación de tokens, no salta.",
+    "keyCharacteristics": [
+      "Papel cálido en dos versiones, con alternancia sutil de franjas lino entre secciones.",
+      "Un solo acento, el azul de marca, reservado a hover, foco, selección y detalles clave.",
+      "Serif editorial para titulares; mono pequeño en mayúsculas para datos de carta.",
+      "Plano y tonal: la profundidad la dan las capas de papel, no las sombras.",
+      "Botones en píldora; campos, tarjetas y modales de esquinas rectas."
+    ],
+    "rules": [
+      {
+        "name": "The One Blue Rule",
+        "body": "El azul de marca nunca es relleno de superficie grande; solo toca lo interactivo, el foco y un puñado de detalles de identidad por pantalla.",
+        "section": "colors"
+      },
+      {
+        "name": "The Paper Pair Rule",
+        "body": "Cada token de color existe en versión de día y de noche; un color nuevo se define siempre en ambos temas.",
+        "section": "colors"
+      },
+      {
+        "name": "The Printed Label Rule",
+        "body": "Precios, categorías y datos de alérgenos van siempre en Space Mono; el resto de la interfaz nunca usa mono.",
+        "section": "typography"
+      },
+      {
+        "name": "The Flat-By-Default Rule",
+        "body": "En reposo las superficies no llevan sombra; solo lo que flota sobre el contenido la recibe.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "**Do** usar el azul de marca solo en interacción, foco, selección y detalles de identidad.",
+      "**Do** definir cada color nuevo en versión de día y de noche.",
+      "**Do** poner precios, categorías y alérgenos en Space Mono mayúsculas con tracking amplio.",
+      "**Do** usar píldora para lo pulsable y esquinas rectas para campos, tarjetas y modal.",
+      "**Do** distinguir capas con papel (crema, superficie, lino) y filetes de tinta al 10–15%.",
+      "**Do** respetar `prefers-reduced-motion`: toda animación decorativa debe poder apagarse."
+    ],
+    "donts": [
+      "**Don't** rellenar secciones grandes con el azul de marca.",
+      "**Don't** añadir sombras a tarjetas en reposo; la sombra es solo para lo flotante.",
+      "**Don't** usar la serif display por debajo de títulos de bloque ni el mono para texto corrido.",
+      "**Don't** cambiar el nombre Casa Güell, la paleta existente ni la voz centrada en el producto (compromisos de marca de PRODUCT.md).",
+      "**Don't** introducir un segundo acento de color."
+    ]
+  }
+}

@@ -18,6 +18,30 @@
         ],
         "createdAt": "2026-10-06T20:17:15.389Z",
         "reason": "Agent: selector dev-only (no llega a produccion) con cromo gris neutro a proposito para no parecerse al diseño bajo prueba"
+      },
+      {
+        "rule": "design-system-font",
+        "value": "playfair display variable",
+        "createdAt": "2026-10-08T23:11:30.514Z",
+        "reason": "Agent: es la misma Playfair Display de DESIGN.md en su versión variable, que es el nombre con el que la web la carga (src/styles/theme.css, @fontsource-variable/playfair-display)"
+      },
+      {
+        "rule": "low-contrast",
+        "value": "*",
+        "files": [
+          "videos/casa-guell-promo/compositions/frames/03-reserva.html"
+        ],
+        "createdAt": "2026-10-08T23:16:29.110Z",
+        "reason": "Agent: falso positivo; el fondo azul va en una capa hermana (lo exige HyperFrames) y el detector no la ve. La auditoría de contraste sobre el fotograma renderizado (hyperframes check) da 21/21 en WCAG AA"
+      },
+      {
+        "rule": "clipped-overflow-container",
+        "value": "*",
+        "files": [
+          "videos/casa-guell-promo/compositions/frames/03-reserva.html"
+        ],
+        "createdAt": "2026-10-08T23:16:29.257Z",
+        "reason": "Agent: recorte intencionado de un fotograma de vídeo (textura sobredimensionada y máscaras de texto); no hay menús ni tooltips que deban salir"
       }
     ]
   }

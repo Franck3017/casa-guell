@@ -1,0 +1,272 @@
+{
+  "typography": [
+    {
+      "role": "display",
+      "fontFamily": "Playfair Display Variable",
+      "fontSize": "94.4px",
+      "fontWeight": "400",
+      "lineHeight": "96.288px",
+      "letterSpacing": "-3.776px",
+      "color": "#F5F3EE",
+      "sampleText": "Tradición catalana, sin maquillaje"
+    },
+    {
+      "role": "heading",
+      "fontFamily": "Playfair Display Variable",
+      "fontSize": "92px",
+      "fontWeight": "400",
+      "lineHeight": "93.84px",
+      "letterSpacing": "-3.68px",
+      "color": "#0B0B0C",
+      "sampleText": "Reserva tu mesa"
+    },
+    {
+      "role": "heading-2",
+      "fontFamily": "Playfair Display Variable",
+      "fontSize": "68px",
+      "fontWeight": "400",
+      "lineHeight": "67.32px",
+      "letterSpacing": "-2.38px",
+      "color": "#F5F3EE",
+      "sampleText": "Treinta años volviendo a la esencia"
+    },
+    {
+      "role": "heading-3",
+      "fontFamily": "Playfair Display Variable",
+      "fontSize": "36px",
+      "fontWeight": "400",
+      "lineHeight": "38.16px",
+      "letterSpacing": "-0.9px",
+      "color": "#F5F3EE",
+      "sampleText": "El origen"
+    },
+    {
+      "role": "heading-3",
+      "fontFamily": "Playfair Display Variable",
+      "fontSize": "32px",
+      "fontWeight": "400",
+      "lineHeight": "35.2px",
+      "letterSpacing": "-0.8px",
+      "color": "#F5F3EE",
+      "sampleText": "Recibe el producto del día en tu mail"
+    },
+    {
+      "role": "body",
+      "fontFamily": "Playfair Display Variable",
+      "fontSize": "28px",
+      "fontWeight": "400",
+      "lineHeight": "30.24px",
+      "letterSpacing": "-0.84px",
+      "color": "#F5F3EE",
+      "sampleText": "Brioche tostado con tobico"
+    },
+    {
+      "role": "link",
+      "fontFamily": "Inter Variable",
+      "fontSize": "13px",
+      "fontWeight": "500",
+      "lineHeight": "18.85px",
+      "letterSpacing": "-0.192px",
+      "color": "#F5F3EE",
+      "sampleText": "Filosofía"
+    }
+  ],
+  "spacing": {
+    "observed": [
+      4,
+      8,
+      12,
+      16,
+      24,
+      32,
+      40,
+      56,
+      64,
+      114
+    ],
+    "baseUnit": 8
+  },
+  "radius": [
+    "4px",
+    "3.35544e+07px"
+  ],
+  "shadows": [
+    {
+      "value": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(17, 18, 21, 0.03) 0px 1px 0px 0px",
+      "count": 1
+    },
+    {
+      "value": "rgba(0, 0, 0, 0.55) 0px 8px 30px 0px",
+      "count": 1
+    },
+    {
+      "value": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.1) 0px 1px 2px -1px",
+      "count": 1
+    }
+  ],
+  "buttons": [
+    {
+      "label": "ES",
+      "background": "transparent",
+      "backgroundImage": "",
+      "backdropFilter": "",
+      "color": "oklab(0.9643 0.000209212 0.00699568 / 0.7)",
+      "padding": "0px 8px",
+      "borderRadius": "3.35544e+07px",
+      "border": "0px solid oklab(0.9643 0.000209212 0.00699568 / 0.7)",
+      "boxShadow": "none",
+      "fontSize": "13px",
+      "fontWeight": "400",
+      "height": "44px"
+    },
+    {
+      "label": "button",
+      "background": "#F5F3EE",
+      "backgroundImage": "",
+      "backdropFilter": "",
+      "color": "#0B0B0C",
+      "padding": "0px",
+      "borderRadius": "3.35544e+07px",
+      "border": "0px solid rgb(11, 11, 12)",
+      "boxShadow": "none",
+      "fontSize": "16px",
+      "fontWeight": "400",
+      "height": "36px"
+    },
+    {
+      "label": "button",
+      "background": "oklab(0.1966 0.00110441 -0.00380906 / 0.9)",
+      "backgroundImage": "",
+      "backdropFilter": "",
+      "color": "#F5F3EE",
+      "padding": "0px",
+      "borderRadius": "3.35544e+07px",
+      "border": "1px solid oklab(0.9643 0.000209212 0.00699568 / 0.15)",
+      "boxShadow": "none",
+      "fontSize": "16px",
+      "fontWeight": "400",
+      "height": "44px"
+    },
+    {
+      "label": "Cocina",
+      "background": "transparent",
+      "backgroundImage": "",
+      "backdropFilter": "",
+      "color": "#F5F3EE",
+      "padding": "0px",
+      "borderRadius": "0px",
+      "border": "",
+      "boxShadow": "none",
+      "fontSize": "11px",
+      "fontWeight": "400",
+      "height": "44px"
+    },
+    {
+      "label": "La Barra",
+      "background": "transparent",
+      "backgroundImage": "",
+      "backdropFilter": "",
+      "color": "#F5F3EE",
+      "padding": "0px",
+      "borderRadius": "0px",
+      "border": "0px solid rgb(245, 243, 238)",
+      "boxShadow": "none",
+      "fontSize": "16px",
+      "fontWeight": "400",
+      "height": "44px"
+    },
+    {
+      "label": "button",
+      "background": "transparent",
+      "backgroundImage": "",
+      "backdropFilter": "",
+      "color": "#F5F3EE",
+      "padding": "0px",
+      "borderRadius": "6px 6px 0px 0px",
+      "border": "",
+      "boxShadow": "none",
+      "fontSize": "12px",
+      "fontWeight": "400",
+      "height": "32px"
+    }
+  ],
+  "cards": [],
+  "nav": {
+    "label": "navigation",
+    "background": "oklab(0.150034 0.000596076 -0.00203293 / 0.95)",
+    "backgroundImage": "",
+    "backdropFilter": "",
+    "color": "#F5F3EE",
+    "padding": "0px",
+    "borderRadius": "0px",
+    "border": "",
+    "boxShadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(17, 18, 21, 0.03) 0px 1px 0px 0px",
+    "fontSize": "16px",
+    "fontWeight": "400",
+    "height": "70.5938px"
+  },
+  "chips": [
+    {
+      "label": "La Barra",
+      "background": "#F5F3EE",
+      "color": "#0B0B0C",
+      "padding": "0px 12px",
+      "borderRadius": "3.35544e+07px",
+      "border": "0px solid rgb(11, 11, 12)",
+      "boxShadow": "none",
+      "fontSize": "13px",
+      "fontWeight": "400",
+      "height": "32px"
+    }
+  ],
+  "statCells": [],
+  "tabs": [
+    {
+      "label": "Cocina",
+      "background": "transparent",
+      "color": "#F5F3EE",
+      "padding": "0px",
+      "borderRadius": "0px",
+      "border": "",
+      "boxShadow": "none",
+      "fontSize": "11px",
+      "fontWeight": "400",
+      "height": "44px"
+    },
+    {
+      "label": "Bebidas",
+      "background": "transparent",
+      "color": "oklab(0.9643 0.000209212 0.00699568 / 0.65)",
+      "padding": "0px",
+      "borderRadius": "0px",
+      "border": "",
+      "boxShadow": "none",
+      "fontSize": "11px",
+      "fontWeight": "400",
+      "height": "44px"
+    },
+    {
+      "label": "La Barra",
+      "background": "transparent",
+      "color": "#F5F3EE",
+      "padding": "0px",
+      "borderRadius": "0px",
+      "border": "0px solid rgb(245, 243, 238)",
+      "boxShadow": "none",
+      "fontSize": "16px",
+      "fontWeight": "400",
+      "height": "44px"
+    }
+  ],
+  "backgrounds": [],
+  "glass": [
+    {
+      "backdropFilter": "blur(4px)",
+      "background": "rgba(0, 0, 0, 0)",
+      "border": "0px solid rgb(245, 243, 238)",
+      "borderRadius": "0px",
+      "boxShadow": "",
+      "area": 1143000
+    }
+  ]
+}

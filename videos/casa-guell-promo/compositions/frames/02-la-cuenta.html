@@ -1,0 +1,142 @@
+<template>
+  <style>
+    @font-face { font-family: "Playfair Display Variable"; font-style: normal; font-weight: 400 900; src: url("assets/fonts/captured-playfair-display-latin-wght-normal-BOwq7MWX.woff2") format("woff2-variations"); }
+    @font-face { font-family: "Space Mono"; font-style: normal; font-weight: 400; src: url("assets/fonts/captured-space-mono-latin-400-normal-Rg4St2Dn.woff2") format("woff2"); }
+
+    #root { position: absolute; inset: 0; width: 1920px; height: 1080px; overflow: hidden; color: #111215; }
+
+    .f02-ground { position: absolute; inset: 0; background: #FAF8F5; }
+    .f02-stage { position: absolute; inset: 0; }
+
+    /* El tique. La sombra va en el envoltorio: la máscara dentada recortaría una box-shadow. */
+    .f02-ticket-wrap { position: absolute; left: 110px; top: 58px; width: 770px; filter: drop-shadow(0 14px 26px rgb(17 18 21 / 0.16)); }
+    .f02-ticket {
+      padding: 46px 46px 64px;
+      background: #FEFDFB;
+      font-family: "Space Mono", monospace;
+      -webkit-mask: conic-gradient(from -45deg at bottom, transparent, #000 1deg 89deg, transparent 90deg) 50% / 22px 100%;
+      mask: conic-gradient(from -45deg at bottom, transparent, #000 1deg 89deg, transparent 90deg) 50% / 22px 100%;
+    }
+    .f02-head { display: flex; flex-direction: column; align-items: center; gap: 14px; padding-bottom: 30px; border-bottom: 2px dashed rgb(17 18 21 / 0.3); }
+    .f02-logo { display: flex; align-items: flex-end; font-size: 74px; line-height: 1; }
+    .f02-logo-word { display: block; height: 1em; }
+    .f02-logo-casa { aspect-ratio: 557 / 205; background: #1D4ED8; -webkit-mask: url("assets/logo-casa.webp") center / 100% 100% no-repeat; mask: url("assets/logo-casa.webp") center / 100% 100% no-repeat; }
+    .f02-logo-guell { aspect-ratio: 548 / 205; background: #111215; -webkit-mask: url("assets/logo-guell.webp") center / 100% 100% no-repeat; mask: url("assets/logo-guell.webp") center / 100% 100% no-repeat; }
+    .f02-place { margin: 0; font-size: 21px; letter-spacing: 0.2em; text-transform: uppercase; color: rgb(17 18 21 / 0.7); }
+
+    .f02-rows { margin: 0; padding: 26px 0 0; }
+    .f02-row { position: relative; display: flex; align-items: baseline; height: 124px; font-size: 30px; letter-spacing: 0.01em; text-transform: uppercase; white-space: nowrap; }
+    .f02-row dt, .f02-row dd { margin: 0; flex: none; }
+    .f02-leader { flex: 1; min-width: 28px; margin: 0 14px; border-bottom: 2px dotted rgb(17 18 21 / 0.4); transform: translateY(-6px); }
+    .f02-strike { position: absolute; left: 0; bottom: 62px; width: 100%; height: 16px; overflow: visible; }
+
+    .f02-headline { position: absolute; left: 1040px; top: 70px; width: 800px; height: 118px; overflow: hidden; }
+    .f02-h { position: absolute; left: 0; top: 0; margin: 0; font-family: "Playfair Display Variable", serif; font-weight: 400; font-size: 92px; line-height: 1.12; letter-spacing: -0.035em; white-space: nowrap; }
+
+    .f02-photos { position: absolute; left: 1040px; top: 216px; width: 536px; height: 670px; }
+    .f02-photo { position: absolute; inset: 0; overflow: hidden; background: #E5E2DC; }
+    .f02-photo img { display: block; width: 100%; height: 100%; object-fit: cover; }
+    .f02-img-a { object-position: 50% 58%; }
+    .f02-img-b { object-position: 40% 55%; }
+    .f02-img-c { object-position: 50% 30%; }
+    .f02-chalk { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; filter: drop-shadow(0 0 2px rgb(0 0 0 / 0.5)); }
+  </style>
+
+  <div data-hf-id="hf-yx9d" id="root" data-composition-id="02-la-cuenta" data-width="1920" data-height="1080" data-duration="13.5">
+    <div data-hf-id="hf-8lmj" id="f02-ground" class="f02-ground clip" data-start="0" data-duration="13.5" data-track-index="0"></div>
+
+    <div data-hf-id="hf-eefk" id="f02-stage" class="f02-stage clip" data-start="0" data-duration="13.5" data-track-index="1">
+      <div data-hf-id="hf-91t6" class="f02-ticket-wrap">
+        <div data-hf-id="hf-rs61" class="f02-ticket">
+          <div data-hf-id="hf-92qj" class="f02-head">
+            <div data-hf-id="hf-vl5f" class="f02-logo" role="img" aria-label="Casa Güell">
+              <span data-hf-id="hf-04in" class="f02-logo-word f02-logo-casa"></span>
+              <span data-hf-id="hf-100c" class="f02-logo-word f02-logo-guell"></span>
+            </div>
+            <p data-hf-id="hf-gdhu" class="f02-place">Sant Martí · Barcelona</p>
+          </div>
+
+          <dl data-hf-id="hf-nio7" class="f02-rows">
+            <div data-hf-id="hf-2r56" class="f02-row f02-row-1"><dt data-hf-id="hf-1vlx">Producto de mercado</dt><span data-hf-id="hf-zucf" class="f02-leader"></span><dd data-hf-id="hf-clej">Cada mañana</dd></div>
+            <div data-hf-id="hf-yt15" class="f02-row f02-row-2"><dt data-hf-id="hf-rn32">Xup-xup real</dt><span data-hf-id="hf-sgdb" class="f02-leader"></span><dd data-hf-id="hf-dat8">A fuego lento</dd></div>
+            <div data-hf-id="hf-y1dc" class="f02-row f02-row-3"><dt data-hf-id="hf-anmm">Memoria catalana</dt><span data-hf-id="hf-s22a" class="f02-leader"></span><dd data-hf-id="hf-t5uq">30 años</dd></div>
+            <div data-hf-id="hf-u39b" class="f02-row f02-row-4"><dt data-hf-id="hf-esn9">Atajos</dt><span data-hf-id="hf-rnr9" class="f02-leader"></span><dd data-hf-id="hf-tyzj">0</dd>
+              <svg data-hf-id="hf-5vfo" class="f02-strike" viewBox="0 0 300 14" preserveAspectRatio="none" aria-hidden="true">
+                <path data-hf-id="hf-0so9" class="f02-pen" d="M2 8 C 60 3, 120 11, 190 6 S 270 4, 298 7" fill="none" stroke="#1D4ED8" stroke-width="1.6" stroke-linecap="round" pathLength="1" stroke-dasharray="1" />
+              </svg>
+            </div>
+          </dl>
+        </div>
+      </div>
+
+      <div data-hf-id="hf-79k1" class="f02-headline">
+        <h2 data-hf-id="hf-uxxx" class="f02-h f02-h-a" data-layout-allow-overlap="" data-layout-allow-overflow="" data-layout-allow-occlusion="">El mercado manda</h2>
+        <h2 data-hf-id="hf-azp4" class="f02-h f02-h-b" data-layout-allow-overlap="" data-layout-allow-overflow="" data-layout-allow-occlusion="">El fuego lento</h2>
+        <h2 data-hf-id="hf-s47n" class="f02-h f02-h-c" data-layout-allow-overlap="" data-layout-allow-overflow="" data-layout-allow-occlusion="">Treinta años</h2>
+      </div>
+
+      <div data-hf-id="hf-zi7q" class="f02-photos">
+        <div data-hf-id="hf-j526" class="f02-photo f02-photo-a">
+          <img data-hf-id="hf-42i3" class="f02-img f02-img-a" src="assets/mercat2.webp" alt="El chef mira con sorpresa una caja azul llena de cigalas frescas">
+        </div>
+        <svg data-hf-id="hf-mrfw" class="f02-chalk" viewBox="0 0 400 500" preserveAspectRatio="none" aria-hidden="true">
+          <path data-hf-id="hf-my94" class="f02-loop" d="M48.1 245.4Q31.4 286.4 35.5 308.7Q39.5 330.9 53.7 349.4Q67.9 367.8 91.3 378.9Q114.7 389.9 142.4 392.8Q170.0 395.6 197.1 387.7Q224.2 379.7 246.3 364.4Q268.5 349.1 279.4 326.8Q290.4 304.4 289.5 282.6Q288.5 260.8 276.1 240.4Q263.6 220.1 240.6 206.2Q217.5 192.3 188.8 189.0Q160.1 185.6 130.8 190.6Q101.4 195.5 78.6 211.1Q55.8 226.7 40.7 247.5Q25.7 268.4 24.8 315.8" fill="none" stroke="#FAF8F5" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" pathLength="1" stroke-dasharray="1" />
+        </svg>
+        <div data-hf-id="hf-f6y5" class="f02-photo f02-photo-b">
+          <img data-hf-id="hf-08la" class="f02-img f02-img-b" src="assets/una-cigala-fresca-sostenida-en-la-mano-s.webp" alt="Una cigala fresca sostenida en la mano sobre un plato">
+        </div>
+        <div data-hf-id="hf-c7ok" class="f02-photo f02-photo-c">
+          <img data-hf-id="hf-8mln" class="f02-img f02-img-c" src="assets/el-chef-con-un-plato-de-bolets-de-tempor.webp" alt="El chef en la sala con un plato de setas de temporada">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      const HIDDEN = "inset(-12% 100% -12% 0%)";
+      const PRINTED = "inset(-12% -1% -12% 0%)";
+      const COVERED = "inset(100% 0% 0% 0%)";
+      const SHOWN = "inset(0% 0% 0% 0%)";
+
+      // Una línea del tique se imprime a golpes de cabezal, de izquierda a derecha
+      const print = (row, at, duration) => tl.fromTo(row, { clipPath: HIDDEN }, { clipPath: PRINTED, duration: duration, ease: "steps(16)" }, at);
+      // Una foto se descubre de abajo arriba mientras la imagen se asienta
+      const reveal = (photo, at) => {
+        tl.fromTo(photo, { clipPath: COVERED }, { clipPath: SHOWN, duration: 1.1, ease: "power4.inOut" }, at);
+        tl.fromTo(photo + " img", { scale: 1.16 }, { scale: 1, duration: 1.6, ease: "power3.out" }, at);
+      };
+
+      // Escena 1 · el tique baja desde arriba y queda fijado; ya no vuelve a moverse
+      tl.fromTo(".f02-ticket-wrap", { y: -1040, rotation: -1.4 }, { y: 0, rotation: -1.4, duration: 1.15, ease: "power3.out" }, 0);
+
+      // Escena 2 · producto de mercado
+      print(".f02-row-1", 1.2, 0.9);
+      reveal(".f02-photo-a", 1.3);
+      tl.fromTo(".f02-h-a", { yPercent: 112, opacity: 0 }, { yPercent: 0, opacity: 1, duration: 0.9, ease: "power4.out" }, 1.55);
+      tl.fromTo(".f02-loop", { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.75, ease: "power2.inOut" }, 2.55);
+
+      // Escena 3 · xup-xup real
+      print(".f02-row-2", 4.2, 0.8);
+      reveal(".f02-photo-b", 4.3);
+      tl.to(".f02-h-a", { yPercent: -112, duration: 0.55, ease: "power3.in" }, 4.3);
+      tl.to(".f02-h-a", { opacity: 0, duration: 0.01 }, 4.86);
+      tl.fromTo(".f02-h-b", { yPercent: 112, opacity: 0 }, { yPercent: 0, opacity: 1, duration: 0.9, ease: "power4.out" }, 4.7);
+
+      // Escena 4 · memoria catalana
+      print(".f02-row-3", 7.4, 0.8);
+      reveal(".f02-photo-c", 7.5);
+      tl.to(".f02-h-b", { yPercent: -112, duration: 0.55, ease: "power3.in" }, 7.5);
+      tl.to(".f02-h-b", { opacity: 0, duration: 0.01 }, 8.06);
+      tl.fromTo(".f02-h-c", { yPercent: 112, opacity: 0 }, { yPercent: 0, opacity: 1, duration: 0.9, ease: "power4.out" }, 7.9);
+
+      // Escena 5 · la línea que remata, subrayada a pluma; después, lectura quieta
+      print(".f02-row-4", 10.4, 0.6);
+      tl.fromTo(".f02-pen", { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.65, ease: "power2.out" }, 11.1);
+
+      window.__timelines["02-la-cuenta"] = tl;
+    })();
+  </script>
+</template>

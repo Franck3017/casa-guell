@@ -86,3 +86,14 @@ src/plugins/impeccable-live.client.ts
 .claude/skills/remotion-to-hyperframes/
 .claude/skills/slideshow/
 .claude/skills/talking-head-recut/
+
+# Vídeos de HyperFrames: va al repositorio el proyecto, no lo que se genera a partir de él.
+# El MP4 se rehace con `npm run render` dentro del proyecto; las capturas del sitio, con
+# `npx hyperframes capture <url>`; las miniaturas las recrea la vista previa de Studio. Los paquetes
+# de fotograma son un volcado intermedio que lleva rutas absolutas del equipo donde se generó.
+videos/*/renders/
+videos/*/snapshots/
+videos/*/capture/screenshots/
+videos/*/.thumbnails/
+videos/*/.hyperframes/preview/
+videos/*/.hyperframes/frame-packets/

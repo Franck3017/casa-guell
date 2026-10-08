@@ -1,0 +1,300 @@
+{
+  "files": [
+    {
+      "file": "inter-cyrillic-ext-wght-normal-BOeWTOD4.woff2",
+      "family": "Inter",
+      "rawFamily": "Inter",
+      "subfamily": "Regular",
+      "postscript": "Inter-Regular",
+      "weight": 400,
+      "style": "normal",
+      "variationAxes": [
+        "wght"
+      ],
+      "identified": true,
+      "isIcon": false
+    },
+    {
+      "file": "inter-cyrillic-wght-normal-DqGufNeO.woff2",
+      "family": "Inter",
+      "rawFamily": "Inter",
+      "subfamily": "Regular",
+      "postscript": "Inter-Regular",
+      "weight": 400,
+      "style": "normal",
+      "variationAxes": [
+        "wght"
+      ],
+      "identified": true,
+      "isIcon": false
+    },
+    {
+      "file": "inter-greek-ext-wght-normal-DlzME5K_.woff2",
+      "family": "Inter",
+      "rawFamily": "Inter",
+      "subfamily": "Regular",
+      "postscript": "Inter-Regular",
+      "weight": 400,
+      "style": "normal",
+      "variationAxes": [
+        "wght"
+      ],
+      "identified": true,
+      "isIcon": false
+    },
+    {
+      "file": "inter-greek-wght-normal-CkhJZR-_.woff2",
+      "family": "Inter",
+      "rawFamily": "Inter",
+      "subfamily": "Regular",
+      "postscript": "Inter-Regular",
+      "weight": 400,
+      "style": "normal",
+      "variationAxes": [
+        "wght"
+      ],
+      "identified": true,
+      "isIcon": false
+    },
+    {
+      "file": "inter-latin-ext-wght-normal-DO1Apj_S.woff2",
+      "family": "Inter",
+      "rawFamily": "Inter",
+      "subfamily": "Regular",
+      "postscript": "Inter-Regular",
+      "weight": 400,
+      "style": "normal",
+      "variationAxes": [
+        "wght"
+      ],
+      "identified": true,
+      "isIcon": false
+    },
+    {
+      "file": "inter-latin-wght-normal-Dx4kXJAl.woff2",
+      "family": "Inter",
+      "rawFamily": "Inter",
+      "subfamily": "Regular",
+      "postscript": "Inter-Regular",
+      "weight": 400,
+      "style": "normal",
+      "variationAxes": [
+        "wght"
+      ],
+      "identified": true,
+      "isIcon": false
+    },
+    {
+      "file": "playfair-display-cyrillic-wght-normal-5WvUvBgz.woff2",
+      "family": "Playfair Display",
+      "rawFamily": "Playfair Display",
+      "subfamily": "Regular",
+      "postscript": "PlayfairDisplay-Regular",
+      "weight": 400,
+      "style": "normal",
+      "variationAxes": [
+        "wght"
+      ],
+      "identified": true,
+      "isIcon": false
+    },
+    {
+      "file": "playfair-display-latin-ext-wght-italic-ze_cPdSg.woff2",
+      "family": "Playfair Display",
+      "rawFamily": "Playfair Display",
+      "subfamily": "Italic",
+      "postscript": "PlayfairDisplay-Italic",
+      "weight": 400,
+      "style": "italic",
+      "variationAxes": [
+        "wght"
+      ],
+      "identified": true,
+      "isIcon": false
+    },
+    {
+      "file": "playfair-display-latin-ext-wght-normal-CT1r92Rl.woff2",
+      "family": "Playfair Display",
+      "rawFamily": "Playfair Display",
+      "subfamily": "Regular",
+      "postscript": "PlayfairDisplay-Regular",
+      "weight": 400,
+      "style": "normal",
+      "variationAxes": [
+        "wght"
+      ],
+      "identified": true,
+      "isIcon": false
+    },
+    {
+      "file": "playfair-display-latin-wght-italic-DmbndNpe.woff2",
+      "family": "Playfair Display",
+      "rawFamily": "Playfair Display",
+      "subfamily": "Italic",
+      "postscript": "PlayfairDisplay-Italic",
+      "weight": 400,
+      "style": "italic",
+      "variationAxes": [
+        "wght"
+      ],
+      "identified": true,
+      "isIcon": false
+    },
+    {
+      "file": "playfair-display-latin-wght-normal-BOwq7MWX.woff2",
+      "family": "Playfair Display",
+      "rawFamily": "Playfair Display",
+      "subfamily": "Regular",
+      "postscript": "PlayfairDisplay-Regular",
+      "weight": 400,
+      "style": "normal",
+      "variationAxes": [
+        "wght"
+      ],
+      "identified": true,
+      "isIcon": false
+    },
+    {
+      "file": "playfair-display-vietnamese-wght-normal-Cabi7G8-.woff2",
+      "family": "Playfair Display",
+      "rawFamily": "Playfair Display",
+      "subfamily": "Regular",
+      "postscript": "PlayfairDisplay-Regular",
+      "weight": 400,
+      "style": "normal",
+      "variationAxes": [
+        "wght"
+      ],
+      "identified": true,
+      "isIcon": false
+    },
+    {
+      "file": "space-mono-latin-400-normal-Rg4St2Dn.woff2",
+      "family": "Space Mono",
+      "rawFamily": "Space Mono",
+      "subfamily": "Regular",
+      "postscript": "SpaceMono-Regular",
+      "weight": 400,
+      "style": "normal",
+      "variationAxes": [],
+      "identified": true,
+      "isIcon": false
+    },
+    {
+      "file": "space-mono-latin-400-normal-_3DlpgIW.woff",
+      "family": "Space Mono",
+      "rawFamily": "Space Mono",
+      "subfamily": "Regular",
+      "postscript": "SpaceMono-Regular",
+      "weight": 400,
+      "style": "normal",
+      "variationAxes": [],
+      "identified": true,
+      "isIcon": false
+    },
+    {
+      "file": "space-mono-latin-ext-400-normal-D4cJI_B-.woff",
+      "family": "Space Mono",
+      "rawFamily": "Space Mono",
+      "subfamily": "Regular",
+      "postscript": "SpaceMono-Regular",
+      "weight": 400,
+      "style": "normal",
+      "variationAxes": [],
+      "identified": true,
+      "isIcon": false
+    },
+    {
+      "file": "space-mono-latin-ext-400-normal-DTLbW2xa.woff2",
+      "family": "Space Mono",
+      "rawFamily": "Space Mono",
+      "subfamily": "Regular",
+      "postscript": "SpaceMono-Regular",
+      "weight": 400,
+      "style": "normal",
+      "variationAxes": [],
+      "identified": true,
+      "isIcon": false
+    },
+    {
+      "file": "space-mono-latin-ext-700-normal-B2s3bDs2.woff2",
+      "family": "Space Mono",
+      "rawFamily": "Space Mono",
+      "subfamily": "Bold",
+      "postscript": "SpaceMono-Bold",
+      "weight": 700,
+      "style": "normal",
+      "variationAxes": [],
+      "identified": true,
+      "isIcon": false
+    },
+    {
+      "file": "space-mono-latin-ext-700-normal-B_E7P90g.woff",
+      "family": "Space Mono",
+      "rawFamily": "Space Mono",
+      "subfamily": "Bold",
+      "postscript": "SpaceMono-Bold",
+      "weight": 700,
+      "style": "normal",
+      "variationAxes": [],
+      "identified": true,
+      "isIcon": false
+    }
+  ],
+  "families": [
+    {
+      "family": "Inter",
+      "weights": [
+        400
+      ],
+      "variable": true,
+      "fileCount": 6,
+      "files": [
+        "inter-cyrillic-ext-wght-normal-BOeWTOD4.woff2",
+        "inter-cyrillic-wght-normal-DqGufNeO.woff2",
+        "inter-greek-ext-wght-normal-DlzME5K_.woff2",
+        "inter-greek-wght-normal-CkhJZR-_.woff2",
+        "inter-latin-ext-wght-normal-DO1Apj_S.woff2",
+        "inter-latin-wght-normal-Dx4kXJAl.woff2"
+      ]
+    },
+    {
+      "family": "Playfair Display",
+      "weights": [
+        400
+      ],
+      "variable": true,
+      "fileCount": 6,
+      "files": [
+        "playfair-display-cyrillic-wght-normal-5WvUvBgz.woff2",
+        "playfair-display-latin-ext-wght-italic-ze_cPdSg.woff2",
+        "playfair-display-latin-ext-wght-normal-CT1r92Rl.woff2",
+        "playfair-display-latin-wght-italic-DmbndNpe.woff2",
+        "playfair-display-latin-wght-normal-BOwq7MWX.woff2",
+        "playfair-display-vietnamese-wght-normal-Cabi7G8-.woff2"
+      ]
+    },
+    {
+      "family": "Space Mono",
+      "weights": [
+        400,
+        700
+      ],
+      "variable": false,
+      "fileCount": 6,
+      "files": [
+        "space-mono-latin-400-normal-Rg4St2Dn.woff2",
+        "space-mono-latin-400-normal-_3DlpgIW.woff",
+        "space-mono-latin-ext-400-normal-D4cJI_B-.woff",
+        "space-mono-latin-ext-400-normal-DTLbW2xa.woff2",
+        "space-mono-latin-ext-700-normal-B2s3bDs2.woff2",
+        "space-mono-latin-ext-700-normal-B_E7P90g.woff"
+      ]
+    }
+  ],
+  "unidentified": [],
+  "meta": {
+    "generatedAt": "2026-10-08T23:04:43.705Z",
+    "tool": "fontkit"
+  }
+}

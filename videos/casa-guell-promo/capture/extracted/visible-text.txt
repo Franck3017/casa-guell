@@ -1,0 +1,450 @@
+[a] Saltar al contenido
+[a] Filosofía
+[a] Ubicación
+[span] Reservar mesa
+[h1] Tradición catalana,
+[em] sin maquillaje
+[p] Producto de mercado, xup-xup real y memoria catalana. La cocina de la abuela, sin atajos.
+[button] Reservar mesa
+[a] La carta
+[p] Producto estrella
+[p] Brioche tostado con tobico
+[p] Disponible esta semana.
+[p] Producto estrella
+[p] Brioche tostado con tobico
+[p] Disponible esta semana.
+[span] Treinta
+[span] años
+[span] volviendo
+[span] esencia
+[span] Ven
+[span] probar
+[span] cocina
+[span] abuela.
+[span] Que
+[span] cuenten.
+[p] Jordi, Chef Ejecutivo
+[h3] El origen
+[p] Jordi empezó hace treinta años en cocinas donde el tiempo era el ingrediente más caro. Hoy vuelve a aquella lentitud, sin pretensiones ni atajos.
+[h3] El mercado
+[p] Cada mañana, antes de que abra la cocina, el mercado decide la carta del día. El producto manda; nosotros solo lo acompañamos.
+[h3] El fuego lento
+[p] Guisados que cuecen horas, fondos que reposan días. La técnica moderna sirve a la memoria, no la sustituye.
+[li] Producto de mercado
+[li] Xup-xup real
+[li] Memoria catalana
+[li] Fuego lento
+[li] Sin atajos
+[span] Producto
+[span] mercado
+[span] Memoria
+[span] catalana
+[span] Fuego
+[span] lento
+[span] Fuego
+[span] lento
+[span] Sin
+[span] atajos
+[span] Nuestras
+[span] obras
+[span] arte
+[p] Cada plato, con amor y pasión tal como sale de nuestra cocina.
+[button] Cocina
+[button] Bebidas
+[button] Espirituosos
+[span] La Barra
+[span] Para Empezar
+[span] Para Compartir
+[span] Para Rematar
+[span] Postres
+[span] Olivas
+[span] 12,00 €
+[span] Anchoas Filete (Unidad)
+[span] 12,00 €
+[span] Gilda
+[span] 5,80 €
+[span] Boquerones (Ración)
+[span] 6,50 €
+[span] Cecina Angus
+[span] 12,00 €
+[span] Paletilla Jamón Ibérico de Guiello
+[span] 17,50 €
+[span] Ensaladilla Rusa
+[span] 9,50 €
+[span] Torrenzo de Soria
+[span] 12,50 €
+[p] Sección
+[p] La Barra
+[p] referencias
+[span] Tartar de Atún con Yema Curada
+[span] 12,00 €
+[span] Ensalada de Tomate, Cebolla y Ventresca
+[span] 18,50 €
+[span] Parrillada de Verduras con Salsa Romesco
+[span] 14,50 €
+[span] Chips de Berenjenas con Lima y Miel
+[span] 12,00 €
+[span] Calamar con Rosiïrols y Huevo Frito
+[span] 17,50 €
+[p] NUT
+[p] Sección
+[p] Para Empezar
+[p] referencias
+[span] Croquetas Idiazazal Ahumado y Velo Ibérico
+[span] 3,80 €
+[span] Croquetas Puchero y Salsa Romesco
+[span] 3,80 €
+[span] Croquetas la del Chef "jordi"
+[span] 4,80 €
+[span] Bomba de Bacalao
+[span] 3,50 €
+[span] Tortilla de Camarón
+[span] 3,70 €
+[span] Bravas "casa Güell"
+[span] 5,70 €
+[span] Tarrina Crujiente de Oreja
+[span] 17,50 €
+[span] Huevos Fritos con Papada Ibérica
+[span] 14,50 €
+[span] Huevos Fritos con Chanquetes y Pimientos Confitados
+[span] 14,50 €
+[span] Gambita Cristal con Ralladura de Lima
+[span] 16,50 €
+[p] Sección
+[p] Para Compartir
+[p] referencias
+[span] Mar y Montaña (Butifarra de Can Rovira con Sepionets)
+[span] 19,80 €
+[span] Huevos con Mollejas y Sepiones
+[span] 15,50 €
+[span] Garranzos con Pavías de Bacalao y Velo Iberico
+[span] 13,50 €
+[span] Canelones de l'Avia
+[span] 13,50 €
+[span] Cap i Pota
+[span] 17,50 €
+[span] Albóndigas con Sepia
+[span] 15,50 €
+[span] Fricandó con Moixerons
+[span] 12,50 €
+[span] Dados de Solomillo con Foie y Setas de Temporada
+[span] 19,50 €
+[span] TXULETA DE 1kg. DE VACA MADURA PARA 2 PERSONAS
+[span] 57,50 €
+[p] Sección
+[p] Para Rematar
+[p] referencias
+[span] Flan Cremoso con Nata
+[span] 6,90 €
+[span] Buixo de Girona con Helado de Almendra y Bergamota
+[span] 7,90 €
+[span] Coulant de Pistacho con Helado Cremoso de Pistacho
+[span] 7,50 €
+[span] Torrija con Helado de AOVE y Naranja Confitada
+[span] 7,90 €
+[p] Sección
+[p] Postres
+[p] referencias
+[span] Cócteles
+[span] Spritz
+[span] Aperitivo
+[span] Cervezas
+[span] Refrescos
+[span] Patrón Paloma
+[span] 13,00 €
+[p] Patrón Reposado, Refresco de Pomelo
+[span] Patrón Margarita
+[span] 13,00 €
+[p] Patrón Silver, Triple Seca, Zumo de lima, Sirope simple
+[span] Espresso Martini
+[span] 13,00 €
+[p] Grey Goose, Licor de Café, Sirope Simple
+[span] Bacardí Mojito
+[span] 13,00 €
+[p] Bacardí Carta Blanca, Zumo de lima, Sirope de azúcar, Hojas de hierbabuena, Soda
+[span] Martini Negroni
+[span] 13,00 €
+[p] Martini Rosso, Martini Bitter, Bombay Sapphire
+[p] Sección
+[p] Cócteles
+[p] referencias
+[span] St-Germain Hugo Spritz
+[span] 8,00 €
+[p] St-Germain, Cava, Soda, Menta, lima
+[span] Martini Bianco Spritz
+[span] 7,00 €
+[p] Martini Bianco, Cava, Soda
+[span] Aperol
+[span] 8,00 €
+[p] Aperol, Cava, Soda
+[p] Sección
+[p] Spritz
+[p] referencias
+[span] Martini Rosso
+[span] 3,50 €
+[span] Martini Bianco
+[span] 3,50 €
+[span] Martini Rubino
+[span] 4,50 €
+[span] Perucchi Barril
+[span] 3,50 €
+[span] Perucchi Edicion Especial
+[span] 4,50 €
+[span] Perucchi Gran Reserva
+[span] 4,00 €
+[span] Campari
+[span] 4,50 €
+[span] Sangria
+[span] 5,50 €
+[span] Tinto Verano
+[span] 5,50 €
+[p] Sección
+[p] Aperitivo
+[p] referencias
+[span] Salve 33cl
+[span] 3,20 €
+[span] Salve copa 42cl
+[span] 3,80 €
+[span] Clara Salve
+[span] 3,20 €
+[span] Clara Salve Copa 42cl
+[span] 3,40 €
+[span] Salve 0.0 Tostada Bot
+[span] 2,75 €
+[span] Munich 33cl
+[span] 3,40 €
+[span] Munich Copa 42cl
+[span] 3,90 €
+[span] Alhambra Botellin
+[span] 2,75 €
+[span] San Miguel Sin Gluten
+[span] 3,20 €
+[p] Sección
+[p] Cervezas
+[p] referencias
+[span] Coca-Cola / Zero
+[span] 2,60 €
+[span] Fanta Naranja/Limon
+[span] 2,60 €
+[span] Aquarius
+[span] 2,60 €
+[span] Nestea
+[span] 2,60 €
+[span] Zumo de Piña
+[span] 2,50 €
+[span] Agua KMO
+[span] 2,40 €
+[span] Agua Con Gas
+[span] 2,70 €
+[span] Bitter Kas
+[span] 2,60 €
+[span] Tonica
+[span] 2,70 €
+[p] Sección
+[p] Refrescos
+[p] referencias
+[span] Gin
+[span] Ron
+[span] Whisky
+[span] Tequila
+[span] Vodka
+[span] Copas Premium
+[span] Chupitos 3,50 €
+[span] Copas 6,50 €
+[span] Digestivo
+[span] Bombay Sapphire
+[span] 10,00 €
+[span] Seagram's
+[span] 10,00 €
+[span] Tanqueray
+[span] 10,00 €
+[span] G´Vine Nouaison
+[span] 12,00 €
+[span] Bulldog Gin
+[span] 12,00 €
+[span] Martin Miller's
+[span] 12,00 €
+[span] Gin Mare
+[span] 12,00 €
+[span] Hendrick's
+[span] 12,00 €
+[p] Sección
+[p] Gin
+[p] referencias
+[span] Bacardí Carta Blanca
+[span] 10,00 €
+[span] Santa Teresa Gran Reserva
+[span] 10,00 €
+[span] Santa Teresa 1796
+[span] 12,00 €
+[span] Brugal
+[span] 10,00 €
+[span] Havana Club 7
+[span] 12,00 €
+[span] Zacapa 23
+[span] 14,00 €
+[p] Sección
+[p] Ron
+[p] referencias
+[span] Dewar's White Label
+[span] 10,00 €
+[span] J&B
+[span] 10,00 €
+[span] Ballantine's
+[span] 10,00 €
+[span] Jack Daniel's
+[span] 12,00 €
+[p] Sección
+[p] Whisky
+[p] referencias
+[span] Patrón Silver
+[span] 6,50 €
+[span] Patrón XO Café
+[span] 6,50 €
+[span] Patrón Reposado
+[span] 8,00 €
+[span] Tequila Jose Cuervo
+[span] 6,00 €
+[p] Sección
+[p] Tequila
+[p] referencias
+[span] Grey Goose
+[span] 12,00 €
+[span] Absolut
+[span] 10,00 €
+[p] Sección
+[p] Vodka
+[p] referencias
+[span] Dewar's 12
+[p] Chupito
+[p] 6,00 €
+[p] Copa
+[p] 12,00 €
+[span] Cardhu 12
+[p] Chupito
+[p] 6,50 €
+[p] Copa
+[p] 15,00 €
+[span] Tomatin
+[p] Chupito
+[p] 6,50 €
+[p] Copa
+[p] 15,00 €
+[span] Macallan 12
+[p] Chupito
+[p] 8,00 €
+[p] Copa
+[p] 16,00 €
+[span] Glenrothes 12
+[p] Chupito
+[p] 8,00 €
+[p] Copa
+[p] 16,00 €
+[span] Hibiki Japanese Armoni
+[p] Chupito
+[p] 10,00 €
+[p] Copa
+[p] 18,00 €
+[span] Pacharán Baines Etiq. Oro
+[p] Chupito
+[p] 6,50 €
+[p] Copa
+[p] 12,00 €
+[p] Sección
+[p] Copas Premium
+[p] referencias
+[span] Jagermeister
+[span] 3,50 €
+[span] Orujo Blanco
+[span] 3,50 €
+[span] Orujo de Hierbas
+[span] 3,50 €
+[span] Licor Anís Del Mono
+[span] 3,50 €
+[p] Sección
+[p] Chupitos 3,50 €
+[p] referencias
+[span] Licor De Cafe
+[span] 6,50 €
+[span] Crema Orujo
+[span] 6,50 €
+[span] Grapa
+[span] 6,50 €
+[span] Licor Marie Brizard
+[span] 6,50 €
+[span] Ratafía
+[span] 6,50 €
+[span] Baileys
+[span] 6,50 €
+[span] Chupito 0.0
+[span] 6,50 €
+[p] Sección
+[p] Copas 6,50 €
+[p] referencias
+[span] Pacharan
+[span] Limoncello
+[span] Frangelico
+[span] Licor Mango
+[p] Sección
+[p] Digestivo
+[p] referencias
+[p] Leyenda de alérgenos
+[li] Gluten
+[li] Crustáceos
+[li] Huevo
+[li] Pescado
+[li] Lácteos
+[li] Soja
+[li] Frutos de cáscara
+[li] Apio
+[li] Mostaza
+[li] Sésamo
+[li] Sulfitos
+[li] Moluscos
+[li] Altramuces
+[span] mercado
+[span] manda
+[p] Cada mañana bajamos a la lonja y elegimos el mejor pescado y marisco del día. No hay carta fija de mercado: pregunta por el producto del día, porque cambia cada jornada según lo que ofrece el mar.
+[span] Pregunta por el producto del día
+[span] 936 43 43 84
+[span] Lonja de Barcelona
+[span] compra diaria
+[h3] Recibe el producto del día en tu mail
+[p] Cada mañana, cuando el mercado decide, te enviamos qué cocinaremos hoy. Sin ruido: un plato, un mail.
+[label] Correo electrónico
+[button] Suscribirme
+[p] Cero spam. Date de baja cuando quieras con un clic.
+[span] Sant
+[span] Martí
+[span] nos
+[span] espera
+[address] Carrer de Castella, 1, Sant Martí, Barcelona
+[li] Metro L4 Poblenou (5 min)
+[li] Tranvía T4 (3 min)
+[li] Aparcamiento público (200 m)
+[a] Abrir en Google Maps
+[div] Usa ⌘ + la rueda para acercar el mapa
+[a] CARTO
+[div] , ©
+[a] OpenStreetMap
+[div] contributors
+[button] Reservar mesa
+[p] O llámanos al
+[a] 936 43 43 84
+[a] Filosofía
+[a] Ubicación
+[p] Sant Martí · Barcelona
+[address] Carrer de Castella, 1, Sant Martí, Barcelona
+[dt] Miércoles a Sábado
+[dd] 13:00 - 00:00
+[dd] 13:00 - 18:00
+[dt] Lunes y Martes
+[dt] Teléfono
+[a] 936 43 43 84
+[dt] Instagram
+[a] @casaguell_bcn
+[a] @casaguell_bcn
+[a] Dónde estamos
+[p] Casa Güell ·
+[p] Todos los derechos reservados
+[button] Volver arriba

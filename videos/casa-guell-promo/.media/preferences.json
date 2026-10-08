@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "preferences": {
+    "destination": {
+      "value": "website",
+      "confirmed_in": [
+        "casa-guell-promo"
+      ],
+      "updated_at": "2026-10-08T23:03:21.139Z"
+    },
+    "aspect": {
+      "value": "1920x1080",
+      "confirmed_in": [
+        "casa-guell-promo"
+      ],
+      "updated_at": "2026-10-08T23:03:21.296Z"
+    },
+    "language": {
+      "value": "es",
+      "confirmed_in": [
+        "casa-guell-promo"
+      ],
+      "updated_at": "2026-10-08T23:03:21.450Z"
+    }
+  },
+  "sightings": {}
+}

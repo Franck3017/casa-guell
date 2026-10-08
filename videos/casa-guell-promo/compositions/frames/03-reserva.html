@@ -1,0 +1,114 @@
+<template>
+  <style>
+    @font-face { font-family: "Playfair Display Variable"; font-style: normal; font-weight: 400 900; src: url("assets/fonts/captured-playfair-display-latin-wght-normal-BOwq7MWX.woff2") format("woff2-variations"); }
+    @font-face { font-family: "Space Mono"; font-style: normal; font-weight: 400; src: url("assets/fonts/captured-space-mono-latin-400-normal-Rg4St2Dn.woff2") format("woff2"); }
+
+    #root { position: absolute; inset: 0; width: 1920px; height: 1080px; overflow: hidden; color: #FAF8F5; }
+
+    /* Fondo: el azul de la casa con el papel de bandeja impreso, muy tenue, que se desliza despacio */
+    .f03-ground { position: absolute; inset: 0; overflow: hidden; background: #1D4ED8; }
+    .f03-print {
+      position: absolute; left: -240px; top: -240px; width: 2400px; height: 1560px;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='440' height='300'%3E%3Cg font-family='Arial,sans-serif' font-weight='700' font-size='25' fill='%23FAF8F5' fill-opacity='.1'%3E%3Ctext transform='translate(40 80) rotate(-12)'%3ECasa G%26%23252%3Bell%3C/text%3E%3Ctext transform='translate(270 150) rotate(168)'%3ECasa G%26%23252%3Bell%3C/text%3E%3Ctext transform='translate(60 255) rotate(8)'%3ECasa G%26%23252%3Bell%3C/text%3E%3Ctext transform='translate(330 270) rotate(-80)'%3ECasa G%26%23252%3Bell%3C/text%3E%3C/g%3E%3C/svg%3E");
+      background-size: 440px 300px;
+    }
+    .f03-stage { position: absolute; inset: 0; }
+
+    .f03-copy { position: absolute; left: 130px; top: 150px; width: 980px; }
+    .f03-title { margin: 0; font-family: "Playfair Display Variable", serif; font-weight: 400; font-size: 178px; line-height: 1.0; letter-spacing: -0.04em; }
+    .f03-line { display: block; }
+    .f03-mask { display: inline-block; overflow: hidden; vertical-align: bottom; padding-bottom: 0.14em; margin-bottom: -0.14em; }
+    .f03-word { display: inline-block; }
+
+    .f03-call { position: absolute; left: 130px; top: 580px; width: 760px; }
+    .f03-call-label { margin: 0; font-family: "Space Mono", monospace; font-size: 22px; letter-spacing: 0.2em; text-transform: uppercase; color: rgb(250 248 245 / 0.86); white-space: nowrap; }
+    .f03-phone { margin: 14px 0 0; font-family: "Playfair Display Variable", serif; font-weight: 400; font-size: 118px; line-height: 1.05; letter-spacing: -0.03em; white-space: nowrap; }
+    .f03-rule { display: block; width: 100%; height: 4px; margin-top: 22px; background: #FAF8F5; }
+
+    .f03-ticket-wrap { position: absolute; left: 1130px; top: 178px; width: 660px; filter: drop-shadow(0 16px 30px rgb(11 11 12 / 0.28)); }
+    .f03-ticket {
+      padding: 42px 42px 60px;
+      background: #FEFDFB;
+      color: #111215;
+      font-family: "Space Mono", monospace;
+      -webkit-mask: conic-gradient(from -45deg at bottom, transparent, #000 1deg 89deg, transparent 90deg) 50% / 20px 100%;
+      mask: conic-gradient(from -45deg at bottom, transparent, #000 1deg 89deg, transparent 90deg) 50% / 20px 100%;
+    }
+    .f03-head { display: flex; flex-direction: column; align-items: center; gap: 12px; padding-bottom: 26px; border-bottom: 2px dashed rgb(17 18 21 / 0.3); }
+    .f03-logo { display: flex; align-items: flex-end; font-size: 64px; line-height: 1; }
+    .f03-logo-word { display: block; height: 1em; }
+    .f03-logo-casa { aspect-ratio: 557 / 205; background: #1D4ED8; -webkit-mask: url("assets/logo-casa.webp") center / 100% 100% no-repeat; mask: url("assets/logo-casa.webp") center / 100% 100% no-repeat; }
+    .f03-logo-guell { aspect-ratio: 548 / 205; background: #111215; -webkit-mask: url("assets/logo-guell.webp") center / 100% 100% no-repeat; mask: url("assets/logo-guell.webp") center / 100% 100% no-repeat; }
+    .f03-place { margin: 0; font-size: 19px; letter-spacing: 0.2em; text-transform: uppercase; color: rgb(17 18 21 / 0.7); }
+    .f03-rows { margin: 0; padding: 20px 0 0; }
+    .f03-row { display: flex; align-items: baseline; height: 92px; font-size: 27px; white-space: nowrap; }
+    .f03-row dt, .f03-row dd { margin: 0; flex: none; }
+    .f03-leader { flex: 1; min-width: 24px; margin: 0 12px; border-bottom: 2px dotted rgb(17 18 21 / 0.4); transform: translateY(-5px); }
+  </style>
+
+  <div data-hf-id="hf-q3x4" id="root" data-composition-id="03-reserva" data-width="1920" data-height="1080" data-duration="7.6">
+    <div data-hf-id="hf-7jxd" id="f03-ground" class="f03-ground clip" data-start="0" data-duration="7.6" data-track-index="0">
+      <div data-hf-id="hf-vdl7" class="f03-print"></div>
+    </div>
+
+    <div data-hf-id="hf-rj8u" id="f03-stage" class="f03-stage clip" data-start="0" data-duration="7.6" data-track-index="1">
+      <div data-hf-id="hf-mfux" class="f03-copy">
+        <h2 data-hf-id="hf-mxzx" class="f03-title">
+          <span data-hf-id="hf-kotl" class="f03-line"><span data-hf-id="hf-nco7" class="f03-mask"><span data-hf-id="hf-vrxt" class="f03-word">Reserva</span></span></span>
+          <span data-hf-id="hf-ueu5" class="f03-line"><span data-hf-id="hf-cu4n" class="f03-mask"><span data-hf-id="hf-chyw" class="f03-word">tu</span></span> <span data-hf-id="hf-cftm" class="f03-mask"><span data-hf-id="hf-xjfd" class="f03-word">mesa</span></span></span>
+        </h2>
+      </div>
+
+      <div data-hf-id="hf-5zym" class="f03-call">
+        <p data-hf-id="hf-bkz5" class="f03-call-label">O llámanos al</p>
+        <p data-hf-id="hf-k4jv" class="f03-phone">936 43 43 84</p>
+        <span data-hf-id="hf-xd9h" class="f03-rule"></span>
+      </div>
+
+      <div data-hf-id="hf-qrpr" class="f03-ticket-wrap">
+        <div data-hf-id="hf-jari" class="f03-ticket">
+          <div data-hf-id="hf-r7ow" class="f03-head">
+            <div data-hf-id="hf-8awm" class="f03-logo" role="img" aria-label="Casa Güell">
+              <span data-hf-id="hf-5g6n" class="f03-logo-word f03-logo-casa"></span>
+              <span data-hf-id="hf-qvgc" class="f03-logo-word f03-logo-guell"></span>
+            </div>
+            <p data-hf-id="hf-8plz" class="f03-place">Sant Martí · Barcelona</p>
+          </div>
+          <dl data-hf-id="hf-d2bs" class="f03-rows">
+            <div data-hf-id="hf-8mqu" class="f03-row f03-row-1"><dt data-hf-id="hf-hxqz">Miércoles a Sábado</dt><span data-hf-id="hf-8brk" class="f03-leader"></span><dd data-hf-id="hf-o9m8">13:00 - 00:00</dd></div>
+            <div data-hf-id="hf-4omt" class="f03-row f03-row-2"><dt data-hf-id="hf-l3me">Domingo</dt><span data-hf-id="hf-cj8o" class="f03-leader"></span><dd data-hf-id="hf-cavv">13:00 - 18:00</dd></div>
+            <div data-hf-id="hf-3wz0" class="f03-row f03-row-3"><dt data-hf-id="hf-f1vx">Lunes y Martes</dt><span data-hf-id="hf-bcbl" class="f03-leader"></span><dd data-hf-id="hf-4psl">Cerrado</dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      const HIDDEN = "inset(-12% 100% -12% 0%)";
+      const PRINTED = "inset(-12% -1% -12% 0%)";
+
+      // El papel de bandeja se desliza muy despacio durante todo el plano
+      tl.fromTo(".f03-print", { x: 0, y: 0 }, { x: -90, y: -130, duration: 7, ease: "none" }, 0);
+
+      // Escena 1 · el titular sube palabra a palabra
+      tl.fromTo(".f03-word", { yPercent: 116 }, { yPercent: 0, duration: 0.95, ease: "power4.out", stagger: 0.13 }, 0.15);
+
+      // Escena 2 · el teléfono se escribe y un filete se traza debajo
+      tl.fromTo(".f03-call-label", { clipPath: HIDDEN }, { clipPath: PRINTED, duration: 0.45, ease: "steps(13)" }, 1.6);
+      tl.fromTo(".f03-phone", { clipPath: "inset(-10% 100% -10% 0%)" }, { clipPath: "inset(-10% -2% -10% 0%)", duration: 0.95, ease: "power2.inOut" }, 1.8);
+      tl.fromTo(".f03-rule", { scaleX: 0, transformOrigin: "left center" }, { scaleX: 1, transformOrigin: "left center", duration: 0.7, ease: "power3.inOut" }, 2.55);
+
+      // Escena 3 · sube el tique del horario y se imprimen sus tres filas
+      tl.fromTo(".f03-ticket-wrap", { y: 940, rotation: 2 }, { y: 0, rotation: 2, duration: 1.05, ease: "power3.out" }, 3.2);
+      tl.fromTo(".f03-row-1", { clipPath: HIDDEN }, { clipPath: PRINTED, duration: 0.5, ease: "steps(14)" }, 4.1);
+      tl.fromTo(".f03-row-2", { clipPath: HIDDEN }, { clipPath: PRINTED, duration: 0.5, ease: "steps(14)" }, 4.55);
+      tl.fromTo(".f03-row-3", { clipPath: HIDDEN }, { clipPath: PRINTED, duration: 0.5, ease: "steps(14)" }, 5.0);
+
+      window.__timelines["03-reserva"] = tl;
+    })();
+  </script>
+</template>

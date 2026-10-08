@@ -1,0 +1,66 @@
+# Asset Descriptions
+
+⚠️  No vision credentials — descriptions below are catalog-derived (alt text, headings, section context, filename) instead of Vision-generated. To get richer Vision descriptions on the next capture, set GEMINI_API_KEY (or GOOGLE_API_KEY), or HYPERFRAMES_VERTEX_PROJECT_ID plus HYPERFRAMES_VERTEX_SERVICE_ACCOUNT for Vertex service-account auth, and re-run.
+
+The `logo-<hash>.svg` filename prefix is a structural hint (DOM said this SVG was inside a `<header>`, home-link `<a>`, or had an aria-label matching the page brand). To pick the actual brand logo without Vision, open the `logo-*` candidates in a previewer or rasterize them with `sharp` before referencing — composing a fake logo ships off-brand in the final video.
+
+- chef-brioche.webp — 80KB, retrato vertical: el chef Jordi, con chaqueta azul marino y delantal verde, presenta en la sala una bandeja de madera con el brioche tostado con tobico (plato de la semana)
+- el-chef-con-un-plato-de-bolets-de-tempor.webp — 240KB, retrato vertical: el chef Jordi en la sala con un plato de setas de temporada
+- el-mercado-manda.webp — 35KB, el mercado manda
+- favicon.svg — 0KB, favicon
+- icon-icon-unsized.svg — 0KB, icon icon unsized
+- mercat2-800.webp — 99KB, "Jordi, el chef, mirando con sorpresa una caja azul llena de cigalas frescas en l", section: "El mercado manda"
+- mercat2.webp — 756KB, "Jordi, el chef, mirando con sorpresa una caja azul llena de cigalas frescas en l", section: "El mercado manda"
+- og-image.jpg — 101KB, og image
+- treinta-aos-volviendo-a-la-esencia.webp — 83KB, treinta aos volviendo a la esencia
+- una-cigala-fresca-sostenida-en-la-mano-s.webp — 227KB, retrato vertical: una cigala fresca sostenida en la mano sobre un plato con más cigalas, en la cocina
+- svgs/logo-12a0cc70-2.svg — logo 12a0cc70 2
+- svgs/logo-12a0cc70.svg — logo 12a0cc70
+- svgs/logo-4c63c040-2.svg — logo 4c63c040 2
+- svgs/logo-4c63c040-3.svg — logo 4c63c040 3
+- svgs/logo-4c63c040-4.svg — logo 4c63c040 4
+- svgs/logo-4c63c040-5.svg — logo 4c63c040 5
+- svgs/logo-4c63c040-6.svg — logo 4c63c040 6
+- svgs/logo-4c63c040.svg — logo 4c63c040
+- svgs/logo-56eb303d.svg — logo 56eb303d
+- svgs/logo-690e4426-2.svg — logo 690e4426 2
+- svgs/logo-690e4426.svg — logo 690e4426
+- svgs/logo-6c7ddfde.svg — logo 6c7ddfde
+- svgs/logo-6d152e69.svg — logo 6d152e69
+- svgs/logo-9390c6c6-2.svg — logo 9390c6c6 2
+- svgs/logo-9390c6c6-3.svg — logo 9390c6c6 3
+- svgs/logo-9390c6c6-4.svg — logo 9390c6c6 4
+- svgs/logo-9390c6c6-5.svg — logo 9390c6c6 5
+- svgs/logo-9390c6c6-6.svg — logo 9390c6c6 6
+- svgs/logo-9390c6c6.svg — logo 9390c6c6
+- svgs/logo-9b9efb79.svg — logo 9b9efb79
+- svgs/logo-9e2e67b1.svg — logo 9e2e67b1
+- svgs/logo-a68ccbb3.svg — logo a68ccbb3
+- svgs/logo-e70911ab.svg — logo e70911ab
+- svgs/svg-1078d36e.svg — svg 1078d36e
+- svgs/svg-1f7e0828.svg — svg 1f7e0828
+- svgs/svg-33ab8dcc.svg — svg 33ab8dcc
+- svgs/svg-956b339b.svg — svg 956b339b
+- svgs/svg-e4765737.svg — svg e4765737
+- svgs/svg-ed9e67a1.svg — svg ed9e67a1
+- svgs/svg-f69819d4.svg — svg f69819d4
+- fonts/inter-cyrillic-ext-wght-normal-BOeWTOD4.woff2 — font file
+- fonts/inter-cyrillic-wght-normal-DqGufNeO.woff2 — font file
+- fonts/inter-greek-ext-wght-normal-DlzME5K_.woff2 — font file
+- fonts/inter-greek-wght-normal-CkhJZR-_.woff2 — font file
+- fonts/inter-latin-ext-wght-normal-DO1Apj_S.woff2 — font file
+- fonts/inter-latin-wght-normal-Dx4kXJAl.woff2 — font file
+- fonts/playfair-display-cyrillic-wght-normal-5WvUvBgz.woff2 — font file
+- fonts/playfair-display-latin-ext-wght-italic-ze_cPdSg.woff2 — font file
+- fonts/playfair-display-latin-ext-wght-normal-CT1r92Rl.woff2 — font file
+- fonts/playfair-display-latin-wght-italic-DmbndNpe.woff2 — font file
+- fonts/playfair-display-latin-wght-normal-BOwq7MWX.woff2 — font file
+- fonts/playfair-display-vietnamese-wght-normal-Cabi7G8-.woff2 — font file
+- fonts/space-mono-latin-400-normal-Rg4St2Dn.woff2 — font file
+- fonts/space-mono-latin-400-normal-_3DlpgIW.woff — font file
+- fonts/space-mono-latin-ext-400-normal-D4cJI_B-.woff — font file
+- fonts/space-mono-latin-ext-400-normal-DTLbW2xa.woff2 — font file
+- fonts/space-mono-latin-ext-700-normal-B2s3bDs2.woff2 — font file
+- fonts/space-mono-latin-ext-700-normal-B_E7P90g.woff — font file
+- logo-casa.webp — 59KB, palabra "Casa" del logotipo como silueta (canal alfa); en la web se usa como máscara rellena de azul de marca. Material del proyecto (public/assets/img).
+- logo-guell.webp — 56KB, palabra "Güell" del logotipo como silueta (canal alfa); se rellena de tinta. Material del proyecto (public/assets/img).

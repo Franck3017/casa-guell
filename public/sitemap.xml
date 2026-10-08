@@ -2,24 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://www.casaguellbcn.com/ca</loc>
-    <xhtml:link rel="alternate" hreflang="ca" href="https://www.casaguellbcn.com/ca"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.casaguellbcn.com/es"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.casaguellbcn.com/en"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.casaguellbcn.com/ca"/>
+    <loc>https://casa-guell-drab.vercel.app/ca</loc>
+    <lastmod>2026-10-08</lastmod>
+    <xhtml:link rel="alternate" hreflang="ca" href="https://casa-guell-drab.vercel.app/ca"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://casa-guell-drab.vercel.app/es"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://casa-guell-drab.vercel.app/en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://casa-guell-drab.vercel.app/ca"/>
   </url>
   <url>
-    <loc>https://www.casaguellbcn.com/es</loc>
-    <xhtml:link rel="alternate" hreflang="ca" href="https://www.casaguellbcn.com/ca"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.casaguellbcn.com/es"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.casaguellbcn.com/en"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.casaguellbcn.com/ca"/>
+    <loc>https://casa-guell-drab.vercel.app/es</loc>
+    <lastmod>2026-10-08</lastmod>
+    <xhtml:link rel="alternate" hreflang="ca" href="https://casa-guell-drab.vercel.app/ca"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://casa-guell-drab.vercel.app/es"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://casa-guell-drab.vercel.app/en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://casa-guell-drab.vercel.app/ca"/>
   </url>
   <url>
-    <loc>https://www.casaguellbcn.com/en</loc>
-    <xhtml:link rel="alternate" hreflang="ca" href="https://www.casaguellbcn.com/ca"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.casaguellbcn.com/es"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.casaguellbcn.com/en"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.casaguellbcn.com/ca"/>
+    <loc>https://casa-guell-drab.vercel.app/en</loc>
+    <lastmod>2026-10-08</lastmod>
+    <xhtml:link rel="alternate" hreflang="ca" href="https://casa-guell-drab.vercel.app/ca"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://casa-guell-drab.vercel.app/es"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://casa-guell-drab.vercel.app/en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://casa-guell-drab.vercel.app/ca"/>
   </url>
 </urlset>

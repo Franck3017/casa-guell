@@ -3,7 +3,7 @@ import { useLocation } from 'react-router'
 import { LOCALES, DEFAULT_LOCALE, useI18n, type Locale } from '@/i18n'
 import { restaurantSchema, websiteSchema } from './Seo/structuredData'
 
-export const BASE_URL = 'https://www.casaguellbcn.com'
+export const BASE_URL = 'https://casa-guell-drab.vercel.app'
 /** Imagen para compartir (1200×630). La misma ruta va escrita en index.html para quien no ejecuta JS. */
 export const OG_IMAGE = `${BASE_URL}/assets/img/og-casa-guell.jpg`
 const OG_LOCALE: Record<Locale, string> = { ca: 'ca_ES', es: 'es_ES', en: 'en_US' }

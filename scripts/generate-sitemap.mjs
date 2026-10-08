@@ -1,6 +1,6 @@
 import { writeFileSync } from 'node:fs'
 
-const BASE = 'https://www.casaguellbcn.com'
+const BASE = 'https://casa-guell-drab.vercel.app'
 const LOCALES = ['ca', 'es', 'en']
 const today = new Date().toISOString().split('T')[0]
 

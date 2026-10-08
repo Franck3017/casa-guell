@@ -39,6 +39,7 @@
   --cg-stone: #737373;
   --cg-brand: #1D4ED8;
   --cg-surface: #FEFDFB;          /* tarjetas elevadas sobre el crema */
+  --cg-chalk: #FAF8F5;            /* tiza: anotaciones sobre fotos; no cambia con el tema */
   --cg-elev: 0 8px 30px rgb(17 18 21 / 0.12);
   --cg-img: none;
   --cg-dur: 450ms;

@@ -4,9 +4,12 @@ import { loadGsapDrawSvg } from '@/lib/gsapLoader'
 /**
  * Entrada dibujada del hero: una pluma azul traza el marco de la hoja y del retrato y sombrea el retrato
  * a lápiz; debajo de cada boceto aparece la capa real y las líneas se retiran. "sin maquillaje" se escribe
- * y se subraya con el mismo trazo. El resto del titular y los botones no se animan.
+ * y se subraya con el mismo trazo. Con la foto ya puesta, una tiza rodea el plato de la semana, tira una
+ * flecha hasta su pie y el pie se escribe; después, de vez en cuando, sube un poco de vapor del plato.
+ * El resto del titular y los botones no se animan.
  * Localiza sus piezas por atributos data-* (data-sketch-layer, data-sketch, data-hero-fill, data-hero-accent,
- * data-hero-caption, data-hero-wordmark). Solo corre si el usuario no ha pedido reducir el movimiento.
+ * data-hero-caption, data-hero-caption-line, data-hero-wordmark, data-note). Solo corre si el usuario no ha
+ * pedido reducir el movimiento.
  * GSAP llega en carga diferida. Mientras tanto no hay parpadeo: un script de index.html ya ha ocultado por
  * CSS (clase `entrance-pending`) las piezas que se van a animar, y aquí se retira al tomar el control.
  */
@@ -27,10 +30,15 @@ export function useDrawnEntrance (sectionRef: React.RefObject<HTMLElement | null
         const layers = q('[data-sketch-layer]')
         const lines = (layer: string, kind: string) => q(`[data-sketch-layer="${layer}"] [data-sketch="${kind}"]`)
         const fill = (layer: string) => q(`[data-hero-fill="${layer}"]`)
+        const note = (kind: string) => q(`[data-note="${kind}"]`)
+        const wisps = note('steam')
 
         gsap.set(layers, { visibility: 'visible' })
         gsap.set(q('[data-sketch]'), { drawSVG: '0%' })
         gsap.set(q('[data-hero-fill]'), { opacity: 0 })
+        gsap.set([note('loop'), note('arrow'), note('arrowhead')], { drawSVG: '0%' })
+        gsap.set(wisps, { drawSVG: '0% 0%', autoAlpha: 0 })
+        gsap.set(q('[data-hero-caption]'), { autoAlpha: 0 })
 
         const pen = { drawSVG: '100%', ease: 'power2.inOut' }
         const tl = gsap.timeline({
@@ -55,10 +63,29 @@ export function useDrawnEntrance (sectionRef: React.RefObject<HTMLElement | null
             { clipPath: 'inset(-12% -6% -12% -6%)', duration: 0.8 }, 0.3)
           .to(q('[data-sketch="underline"]'), { ...pen, duration: 0.7 }, 0.9)
 
-          .fromTo(q('[data-hero-caption]'), { autoAlpha: 0, y: 10 }, { autoAlpha: 1, y: 0, duration: 0.6 }, 1.7)
+          // Anotaciones: círculo alrededor del plato, flecha hasta el pie y el pie que se escribe
+          .to(note('loop'), { drawSVG: '100%', duration: 0.85, ease: 'power2.inOut' }, 1.9)
+          .to(note('arrow'), { drawSVG: '100%', duration: 0.45, ease: 'power2.in' }, 2.7)
+          .to(note('arrowhead'), { drawSVG: '100%', duration: 0.18, ease: 'power1.out' }, 3.15)
+          .set(q('[data-hero-caption]'), { autoAlpha: 1 }, 3.05)
+          .fromTo(q('[data-hero-caption-line]'),
+            { clipPath: 'inset(-15% 100% -15% 0%)' },
+            { clipPath: 'inset(-15% -3% -15% 0%)', duration: 0.5, stagger: 0.22, ease: 'power2.out' }, 3.1)
+
+        // Vapor: cada hilo sube, se suelta por abajo y se desvanece. Vuelve cada pocos segundos.
+        const steam = gsap.timeline({ repeat: -1, repeatDelay: 3.4, delay: 4.6 })
+        wisps.forEach((wisp, i) => {
+          steam.add(gsap.timeline()
+            .fromTo(wisp, { drawSVG: '0% 0%', autoAlpha: 0.85, y: 0 }, { drawSVG: '0% 75%', duration: 0.9, ease: 'power1.out', immediateRender: false })
+            .to(wisp, { drawSVG: '100% 100%', y: -6, autoAlpha: 0, duration: 1.1, ease: 'power1.in' }), i * 0.3)
+        })
+        // Con el hero fuera de pantalla el vapor no trabaja
+        const watcher = new IntersectionObserver(([entry]) => { if (entry.isIntersecting) steam.resume(); else steam.pause() })
+        watcher.observe(section)
 
         // Los estados iniciales ya están puestos por GSAP: se retira la clase que los sostenía por CSS.
         document.documentElement.classList.remove('entrance-pending')
+        return () => watcher.disconnect()
       })
     })
 

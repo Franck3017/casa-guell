@@ -242,7 +242,8 @@ html.dark .maplibregl-ctrl-attrib-button { filter: invert(1); }
 */
 html.entrance-pending [data-hero-fill],
 html.entrance-pending [data-hero-wordmark],
-html.entrance-pending [data-sketch="underline"] { opacity: 0; }
+html.entrance-pending [data-sketch="underline"],
+html.entrance-pending [data-note] { opacity: 0; }
 html.entrance-pending [data-hero-caption] { visibility: hidden; }
 html.entrance-pending [data-hero-accent] { clip-path: inset(-12% 100% -12% -6%); }
 

@@ -1,12 +1,14 @@
 // features/hero/HeroCollage.tsx
 import { IMG } from '@/lib/constants'
 import { useI18n } from '@/i18n'
+import { DishNotes } from './DishNotes'
 import { Sketch } from './Sketch'
 import { PAPER_SKETCH, PORTRAIT_SKETCH } from './sketchPaths'
 
 /**
  * Collage del hero: hoja de papel de bandeja girada (detrás) y retrato del chef presentando el plato
- * destacado, con su pie. Cada capa lleva sus envoltorios: deriva con el scroll > boceto + contenido.
+ * destacado, con sus anotaciones a mano y su pie. Cada capa lleva sus envoltorios: deriva con el scroll >
+ * boceto + contenido.
  */
 export function HeroCollage () {
   const { t } = useI18n()
@@ -37,6 +39,7 @@ export function HeroCollage () {
               />
             </figure>
             <Sketch name='portrait' geometry={PORTRAIT_SKETCH} />
+            <DishNotes />
           </div>
           {/* En escritorio el pie cuelga del retrato y deriva con él; así el retrato nunca lo tapa al hacer scroll */}
           <div data-hero-caption className='absolute left-0 top-full mt-3 hidden w-[57%] md:block'>
@@ -57,13 +60,13 @@ function DishCaption () {
   const { t } = useI18n()
   return (
     <>
-      <p className='font-mono2 text-[11px] uppercase tracking-[0.16em] text-brand'>
+      <p data-hero-caption-line className='font-mono2 text-[11px] uppercase tracking-[0.16em] text-brand'>
         {t.hero.featuredLabel}
       </p>
-      <p className='mt-1.5 font-display text-[clamp(1.375rem,1.8vw,1.75rem)] leading-[1.08] tracking-[-0.03em] text-ink'>
+      <p data-hero-caption-line className='mt-1.5 font-display text-[clamp(1.375rem,1.8vw,1.75rem)] leading-[1.08] tracking-[-0.03em] text-ink'>
         {t.hero.featuredDish}
       </p>
-      <p className='mt-1.5 text-balance text-sm text-ink/70'>{t.hero.featuredDescription}</p>
+      <p data-hero-caption-line className='mt-1.5 text-balance text-sm text-ink/70'>{t.hero.featuredDescription}</p>
     </>
   )
 }

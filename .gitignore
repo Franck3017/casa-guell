@@ -60,3 +60,29 @@ src/plugins/impeccable-live.client.ts
 .env*
 # Playwright CLI output (may contain credentials)
 .playwright-cli/
+
+# Skills de heygen-com/hyperframes: 18 MB con imágenes, tipografías y audio de ejemplo. No van al
+# repositorio; skills-lock.json las registra. Para recuperarlas en otra máquina (el repositorio de origen
+# es grande y el instalador necesita más tiempo del que da por defecto):
+#   SKILLS_CLONE_TIMEOUT_MS=560000 pnpm dlx skills add heygen-com/hyperframes -y -a claude-code
+.claude/skills/embedded-captions/
+.claude/skills/faceless-explainer/
+.claude/skills/figma/
+.claude/skills/general-video/
+.claude/skills/hyperframes/
+.claude/skills/hyperframes-animation/
+.claude/skills/hyperframes-audio/
+.claude/skills/hyperframes-cli/
+.claude/skills/hyperframes-core/
+.claude/skills/hyperframes-creative/
+.claude/skills/hyperframes-keyframes/
+.claude/skills/hyperframes-registry/
+.claude/skills/hyperframes-studio/
+.claude/skills/media-use/
+.claude/skills/motion-graphics/
+.claude/skills/music-to-video/
+.claude/skills/pr-to-video/
+.claude/skills/product-launch-video/
+.claude/skills/remotion-to-hyperframes/
+.claude/skills/slideshow/
+.claude/skills/talking-head-recut/

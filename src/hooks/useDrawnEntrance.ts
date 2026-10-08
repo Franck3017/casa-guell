@@ -68,9 +68,14 @@ export function useDrawnEntrance (sectionRef: React.RefObject<HTMLElement | null
           .to(note('arrow'), { drawSVG: '100%', duration: 0.45, ease: 'power2.in' }, 2.7)
           .to(note('arrowhead'), { drawSVG: '100%', duration: 0.18, ease: 'power1.out' }, 3.15)
           .set(q('[data-hero-caption]'), { autoAlpha: 1 }, 3.05)
-          .fromTo(q('[data-hero-caption-line]'),
+
+        // El pie existe dos veces (colgado del retrato en escritorio, bajo el collage en móvil) y solo se ve
+        // una. Cada copia escribe sus líneas por su cuenta: en un solo escalonado, la visible esperaría a la oculta.
+        q('[data-hero-caption]').forEach((caption) => {
+          tl.fromTo(caption.querySelectorAll('[data-hero-caption-line]'),
             { clipPath: 'inset(-15% 100% -15% 0%)' },
             { clipPath: 'inset(-15% -3% -15% 0%)', duration: 0.5, stagger: 0.22, ease: 'power2.out' }, 3.1)
+        })
 
         // Vapor: cada hilo sube, se suelta por abajo y se desvanece. Vuelve cada pocos segundos.
         const steam = gsap.timeline({ repeat: -1, repeatDelay: 3.4, delay: 4.6 })

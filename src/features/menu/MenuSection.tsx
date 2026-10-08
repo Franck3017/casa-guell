@@ -1,6 +1,6 @@
 import { lazy, Suspense } from 'react'
 import { Skeleton } from 'boneyard-js/react'
-import { Reveal, SectionTitle } from '@/components/ui'
+import { ErrorBoundary, LoadError, Reveal, SectionTitle } from '@/components/ui'
 import { AllergenLegend } from '@/lib/allergens'
 import { useI18n } from '@/i18n'
 
@@ -27,15 +27,17 @@ export function MenuSection () {
         bloque que aparece con fundido se quedaría invisible si su umbral no llegara a cumplirse.
       */}
       <div className='mt-9'>
-        <Suspense
-          fallback={
-            <Skeleton name='menu-browser' loading>
-              <div aria-hidden='true' />
-            </Skeleton>
-          }
-        >
-          <MenuBrowser />
-        </Suspense>
+        <ErrorBoundary fallback={<LoadError message={t.loadError.menu} className='py-16' />}>
+          <Suspense
+            fallback={
+              <Skeleton name='menu-browser' loading>
+                <div aria-hidden='true' />
+              </Skeleton>
+            }
+          >
+            <MenuBrowser />
+          </Suspense>
+        </ErrorBoundary>
       </div>
 
       <Reveal className='mt-4'>

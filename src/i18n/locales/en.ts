@@ -51,6 +51,7 @@ export const en: Messages = {
   reserve: { title: 'Book a table', short: 'Book', date: 'Date', time: 'Time', people: 'Guests', name: 'Name', phone: 'Phone', phoneHint: 'We will call this number to confirm your booking.', lunch: 'Lunch', dinner: 'Dinner', submit: 'Request booking', sending: 'Sending…', success: 'Request received', successDesc: 'We will call you to confirm your table.', error: 'We could not send your request. Please try again.', close: 'Close', closedDay: 'We are closed on Monday and Tuesday. Choose Wednesday to Sunday.', noSlots: 'No times left today. Please choose another day.', bigGroup: 'For parties of 9 or more, please call us and we will arrange it.', errorCall: 'You can also call us on' },
   closing: { title: 'Book your table', phoneLabel: 'Or call us on' },
   film: { label: 'Casa Güell in five ideas', pause: 'Pause the animation', play: 'Resume the animation' },
+  loadError: { map: "We couldn't load the map.", menu: "We couldn't load the menu.", page: 'Something went wrong loading the page.', reload: 'Reload the page' },
   marquee: ['Market produce', 'Real xup-xup', 'Catalan memory', 'Slow fire', 'No shortcuts'],
   whatsapp: { label: 'WhatsApp', message: 'Hello, I would like to book a table at Casa Güell' },
   newsletter: {

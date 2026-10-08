@@ -3,6 +3,7 @@ import { RootLayout } from './RootLayout'
 import { LocaleLayout } from './LocaleLayout'
 import { HomePage } from './HomePage'
 import { NotFoundPage } from './NotFoundPage'
+import { RouteError } from './RouteError'
 import { detectLocale } from '@/i18n'
 
 function LocaleRedirect () {
@@ -19,6 +20,7 @@ function LocaleRedirect () {
 export const routes: RouteObject[] = [
   {
     element: <RootLayout />,
+    errorElement: <RouteError />,
     children: [
       { path: '/', element: <LocaleRedirect /> },
       {

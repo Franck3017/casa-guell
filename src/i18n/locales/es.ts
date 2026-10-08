@@ -51,6 +51,7 @@ export const es: Messages = {
   reserve: { title: 'Reservar mesa', short: 'Reservar', date: 'Fecha', time: 'Hora', people: 'Personas', name: 'Nombre', phone: 'Teléfono', phoneHint: 'Te llamaremos a este número para confirmar la reserva.', lunch: 'Comida', dinner: 'Cena', submit: 'Solicitar reserva', sending: 'Enviando…', success: 'Solicitud recibida', successDesc: 'Te llamaremos para confirmar tu mesa.', error: 'No hemos podido enviar tu solicitud. Inténtalo de nuevo.', close: 'Cerrar', closedDay: 'Cerramos lunes y martes. Elige de miércoles a domingo.', noSlots: 'Hoy ya no quedan horas disponibles. Elige otro día.', bigGroup: 'Para grupos de 9 o más personas, llámanos y lo preparamos.', errorCall: 'También puedes llamarnos al' },
   closing: { title: 'Reserva tu mesa', phoneLabel: 'O llámanos al' },
   film: { label: 'Casa Güell en cinco ideas', pause: 'Pausar la animación', play: 'Reanudar la animación' },
+  loadError: { map: 'No hemos podido cargar el mapa.', menu: 'No hemos podido cargar la carta.', page: 'Algo ha fallado al cargar la página.', reload: 'Recargar la página' },
   marquee: ['Producto de mercado', 'Xup-xup real', 'Memoria catalana', 'Fuego lento', 'Sin atajos'],
   whatsapp: { label: 'WhatsApp', message: 'Hola, quiero reservar mesa en Casa Güell' },
   newsletter: {

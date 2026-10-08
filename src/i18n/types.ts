@@ -46,6 +46,7 @@ export interface Messages {
   reserve: { title: string, short: string, date: string, time: string, people: string, name: string, phone: string, phoneHint: string, lunch: string, dinner: string, submit: string, sending: string, success: string, successDesc: string, error: string, close: string, closedDay: string, noSlots: string, bigGroup: string, errorCall: string }
   closing: { title: string, phoneLabel: string }
   film: { label: string, pause: string, play: string }
+  loadError: { map: string, menu: string, page: string, reload: string }
   marquee: readonly string[]
   whatsapp: { label: string, message: string }
   newsletter: {

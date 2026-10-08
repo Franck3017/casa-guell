@@ -1,4 +1,5 @@
 import { lazy, Suspense, useCallback, useEffect, useId, useMemo, useRef, useState, type KeyboardEvent } from 'react'
+import { ErrorBoundary } from '@/components/ui'
 import { useSearchFocus } from '@/hooks/useSearchFocus'
 import { useI18n } from '@/i18n'
 import type { DishIndex } from '@/lib/dishSearch'
@@ -141,17 +142,20 @@ export function SearchDishes () {
       </div>
 
       {showPanel && (
-        <Suspense fallback={null}>
-        <SearchResults
-          hits={hits}
-          tokens={tokens}
-          active={active}
-          listId={listId}
-          optionId={optionId}
-          onActivate={setActive}
-          onPick={pick}
-        />
-        </Suspense>
+        // Si el panel no llega a cargar, el buscador se queda sin resultados pero la cabecera sigue en pie
+        <ErrorBoundary fallback={null}>
+          <Suspense fallback={null}>
+            <SearchResults
+              hits={hits}
+              tokens={tokens}
+              active={active}
+              listId={listId}
+              optionId={optionId}
+              onActivate={setActive}
+              onPick={pick}
+            />
+          </Suspense>
+        </ErrorBoundary>
       )}
     </div>
   )

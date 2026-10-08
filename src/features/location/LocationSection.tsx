@@ -1,6 +1,6 @@
 import { lazy, Suspense, useRef } from 'react'
 import { ArrowUpRight, SquareParking, TrainFront, TramFront } from 'lucide-react'
-import { Reveal, SectionTitle, TornEdge } from '@/components/ui'
+import { ErrorBoundary, LoadError, Reveal, SectionTitle, TornEdge } from '@/components/ui'
 import { data } from '@/data'
 import { useNearViewport } from '@/hooks/useNearViewport'
 import { useI18n } from '@/i18n'
@@ -64,9 +64,12 @@ export function LocationSection () {
       {/* Altura fija también antes de que llegue el mapa: al cargar no empuja lo que hay debajo */}
       <div ref={mapRef} className='relative mt-12 h-[460px] bg-linen/40 md:mt-16 md:h-[600px]'>
         {near && (
-          <Suspense fallback={null}>
-            <RestaurantMap />
-          </Suspense>
+          // Si el mapa no llega, la dirección y el enlace a Google Maps de arriba siguen sirviendo
+          <ErrorBoundary fallback={<LoadError message={t.loadError.map} className='h-full' />}>
+            <Suspense fallback={null}>
+              <RestaurantMap />
+            </Suspense>
+          </ErrorBoundary>
         )}
         <TornEdge />
       </div>

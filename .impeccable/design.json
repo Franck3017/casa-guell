@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-06T18:11:47.356Z",
+  "generatedAt": "2026-10-08T00:36:26.146Z",
   "title": "Design System: Casa Güell",
   "extensions": {
     "colorMeta": {
@@ -107,6 +107,21 @@
           "#8fa8f0",
           "#bccbf6",
           "#e9eefc"
+        ]
+      },
+      "chalk": {
+        "role": "neutral",
+        "displayName": "Tiza",
+        "canonical": "#FAF8F5",
+        "tonalRamp": [
+          "#33291a",
+          "#55442b",
+          "#775f3c",
+          "#997a4d",
+          "#bba077",
+          "#d4c3aa",
+          "#e5dbcc",
+          "#f6f3ee"
         ]
       },
       "night-cream": {
@@ -218,15 +233,15 @@
     "typographyMeta": {
       "display": {
         "displayName": "Display",
-        "purpose": "Titular del hero."
+        "purpose": "Titular del hero y del pie; lleva una frase en cursiva azul que nunca se parte."
       },
       "headline": {
         "displayName": "Headline",
-        "purpose": "Títulos de sección."
+        "purpose": "Títulos de sección y el teléfono de Mercado."
       },
       "title": {
         "displayName": "Title",
-        "purpose": "Títulos de modal y bloque."
+        "purpose": "Títulos de bloque, modal y la cita del chef."
       },
       "body": {
         "displayName": "Body",
@@ -234,39 +249,98 @@
       },
       "label": {
         "displayName": "Label",
-        "purpose": "Precios, categorías, alérgenos y etiquetas."
+        "purpose": "Categorías, etiquetas de campo, pies de foto y tiques."
       }
     },
     "shadows": [
       {
         "name": "elev-floating",
         "value": "0 8px 30px rgb(17 18 21 / 0.12)",
-        "purpose": "Modal, popovers y botones flotantes (noche: rgb(0 0 0 / 0.55))."
+        "purpose": "Modal de reserva, lista de idiomas, selector de tema desplegado y etiqueta del mapa (noche: 0 8px 30px rgb(0 0 0 / 0.55))."
+      },
+      {
+        "name": "search-results",
+        "value": "0 12px 30px rgb(17 18 21 / 0.10)",
+        "purpose": "Panel de resultados bajo el campo de búsqueda."
       },
       {
         "name": "dish-preview",
         "value": "0 16px 40px rgb(17 18 21 / 0.25)",
-        "purpose": "Miniatura de plato que sigue al cursor."
+        "purpose": "Miniatura de plato que sigue al cursor, solo en escritorio."
+      },
+      {
+        "name": "resting-paper",
+        "value": "drop-shadow(0 10px 22px rgb(0 0 0 / 0.22))",
+        "purpose": "Papel apoyado sobre una foto: la nota del chef (noche: drop-shadow(0 10px 26px rgb(0 0 0 / 0.7))). Va en el envoltorio porque la máscara dentada recorta box-shadow."
+      },
+      {
+        "name": "chalk-halo",
+        "value": "drop-shadow(0 0 1.5px rgb(0 0 0 / 0.5))",
+        "purpose": "Contorno mínimo para que el trazo de tiza se lea sobre las zonas claras de la foto."
       }
     ],
     "motion": [
       {
+        "name": "ease-out",
+        "value": "cubic-bezier(0.23, 1, 0.32, 1)",
+        "purpose": "Entradas y respuesta de la interfaz (--ease-out)."
+      },
+      {
+        "name": "ease-wipe",
+        "value": "cubic-bezier(0.35, 0, 0.15, 1)",
+        "purpose": "Onda circular del cambio de tema (--ease-wipe)."
+      },
+      {
         "name": "theme-fade",
         "value": "450ms ease",
-        "purpose": "Interpolación de tokens entre tema claro y oscuro."
+        "purpose": "Interpolación de tokens entre tema claro y oscuro (--cg-dur)."
       },
       {
         "name": "reveal",
-        "value": "700ms cubic-bezier(0.22, 1, 0.36, 1)",
-        "purpose": "Aparición de bloques al hacer scroll."
+        "value": "450ms cubic-bezier(0.23, 1, 0.32, 1)",
+        "purpose": "Bloques que aparecen al hacer scroll: opacidad y 12px de subida."
+      },
+      {
+        "name": "press",
+        "value": "140ms cubic-bezier(0.23, 1, 0.32, 1)",
+        "purpose": "Respuesta al pulsar: el control se encoge al 97%."
       },
       {
         "name": "state-transition",
         "value": "200ms ease",
-        "purpose": "Hover y foco de botones y enlaces."
+        "purpose": "Hover y foco de botones y enlaces; mensaje de éxito de los formularios."
+      },
+      {
+        "name": "word-rise",
+        "value": "1s power4.out, 70ms entre palabras",
+        "purpose": "Titulares de sección: cada palabra sube desde detrás de su máscara."
+      },
+      {
+        "name": "photo-wipe",
+        "value": "1.3s power4.inOut",
+        "purpose": "Fotos que se descubren de abajo arriba mientras la imagen se asienta."
+      },
+      {
+        "name": "rule-draw",
+        "value": "1.2s power3.inOut",
+        "purpose": "Filetes que se trazan de izquierda a derecha."
+      },
+      {
+        "name": "hero-entrance",
+        "value": "≈4s, una vez",
+        "purpose": "Pluma que traza y sombrea el hero; tiza que anota el plato; el pie se escribe."
+      },
+      {
+        "name": "brand-film",
+        "value": "bucle de ≈17s",
+        "purpose": "Pieza animada de la portada; solo corre en pantalla y se puede pausar."
       }
     ],
     "breakpoints": [
+      {
+        "name": "sm",
+        "value": "640px"
+      },
       {
         "name": "md",
         "value": "768px"
@@ -274,6 +348,10 @@
       {
         "name": "lg",
         "value": "1024px"
+      },
+      {
+        "name": "xl",
+        "value": "1280px"
       }
     ]
   },
@@ -282,95 +360,149 @@
       "name": "Botón primario",
       "kind": "button",
       "refersTo": "button-primary",
-      "description": "Acción principal: reservar mesa.",
-      "html": "<button class=\"ds-btn\">Reservar mesa</button>",
-      "css": ".ds-btn{display:inline-flex;align-items:center;min-height:48px;padding:0 24px;border:0;border-radius:9999px;background:#111215;color:#FAF8F5;font:600 14px Inter,sans-serif;cursor:pointer;transition:background 200ms}.ds-btn:hover{background:#1D4ED8}.ds-btn:focus-visible{outline:2px solid #1D4ED8;outline-offset:4px}"
+      "description": "Acción principal: reservar mesa o enviar un formulario.",
+      "html": "<button class=\"ds-btn\">Reservar mesa <svg viewBox=\"0 0 24 24\" width=\"17\" height=\"17\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M7 7h10v10\"/><path d=\"M7 17 17 7\"/></svg></button>",
+      "css": ".ds-btn{display:inline-flex;align-items:center;gap:12px;min-height:48px;padding:0 24px;border:0;border-radius:9999px;background:var(--cg-ink,#111215);color:var(--cg-cream,#FAF8F5);font:600 15px \"Inter Variable\",Inter,\"Avenir Next\",\"Segoe UI\",sans-serif;cursor:pointer;transition:background-color 200ms ease,transform 140ms cubic-bezier(.23,1,.32,1)}.ds-btn:hover{background:var(--cg-brand,#1D4ED8)}.ds-btn:active{transform:scale(.97)}.ds-btn:focus-visible{outline:2px solid var(--cg-brand,#1D4ED8);outline-offset:4px}"
+    },
+    {
+      "name": "Botón sobre azul",
+      "kind": "button",
+      "refersTo": "button-on-brand",
+      "description": "El mismo botón dentro del bloque azul del pie: crema, y tinta al pasar el cursor.",
+      "html": "<div class=\"ds-onbrand\"><button class=\"ds-btn-onbrand\">Reservar mesa <svg viewBox=\"0 0 24 24\" width=\"17\" height=\"17\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M7 7h10v10\"/><path d=\"M7 17 17 7\"/></svg></button></div>",
+      "css": ".ds-onbrand{padding:28px;background:var(--cg-brand,#1D4ED8)}.ds-btn-onbrand{display:inline-flex;align-items:center;gap:12px;min-height:48px;padding:0 24px;border:0;border-radius:9999px;background:var(--cg-cream,#FAF8F5);color:var(--cg-ink,#111215);font:600 15px \"Inter Variable\",Inter,\"Avenir Next\",\"Segoe UI\",sans-serif;cursor:pointer;transition:background-color 200ms ease,color 200ms ease,transform 140ms cubic-bezier(.23,1,.32,1)}.ds-btn-onbrand:hover{background:var(--cg-ink,#111215);color:var(--cg-cream,#FAF8F5)}.ds-btn-onbrand:active{transform:scale(.97)}.ds-btn-onbrand:focus-visible{outline:2px solid var(--cg-cream,#FAF8F5);outline-offset:4px}"
+    },
+    {
+      "name": "Enlace secundario",
+      "kind": "custom",
+      "description": "Acción secundaria: texto subrayado con flecha que se mueve en diagonal.",
+      "html": "<a class=\"ds-link\" href=\"#\">La carta <svg viewBox=\"0 0 24 24\" width=\"17\" height=\"17\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M7 7h10v10\"/><path d=\"M7 17 17 7\"/></svg></a>",
+      "css": ".ds-link{display:inline-flex;align-items:center;gap:8px;min-height:48px;font:600 15px \"Inter Variable\",Inter,\"Avenir Next\",\"Segoe UI\",sans-serif;color:var(--cg-ink,#111215);text-decoration:underline;text-decoration-color:color-mix(in srgb,var(--cg-ink,#111215) 25%,transparent);text-underline-offset:8px;transition:color 200ms ease,text-decoration-color 200ms ease}.ds-link svg{transition:transform 200ms ease}.ds-link:hover{color:var(--cg-brand,#1D4ED8);text-decoration-color:var(--cg-brand,#1D4ED8)}.ds-link:hover svg{transform:translate(2px,-2px)}.ds-link:focus-visible{outline:2px solid var(--cg-brand,#1D4ED8);outline-offset:4px}"
     },
     {
       "name": "Enlace de navegación",
       "kind": "nav",
       "refersTo": "nav-link",
-      "description": "Enlace de sección en píldora; el activo lleva fondo tintado.",
-      "html": "<a class=\"ds-nav\" aria-current=\"location\" href=\"#\">Carta</a> <a class=\"ds-nav\" href=\"#\">Mercat</a>",
-      "css": ".ds-nav{display:inline-flex;align-items:center;min-height:40px;padding:0 14px;border-radius:9999px;font:500 13px Inter,sans-serif;color:rgba(17,18,21,.6);text-decoration:none;transition:background 200ms,color 200ms}.ds-nav:hover{background:rgba(17,18,21,.05);color:#111215}.ds-nav[aria-current]{background:rgba(17,18,21,.06);color:#111215}"
+      "description": "Sección en la barra de escritorio, en píldora; la actual lleva fondo tintado.",
+      "html": "<a class=\"ds-nav\" aria-current=\"location\" href=\"#\">Carta</a> <a class=\"ds-nav\" href=\"#\">Mercado</a>",
+      "css": ".ds-nav{display:inline-flex;align-items:center;min-height:44px;padding:0 16px;border-radius:9999px;font:500 13px \"Inter Variable\",Inter,\"Avenir Next\",\"Segoe UI\",sans-serif;color:color-mix(in srgb,var(--cg-ink,#111215) 60%,transparent);text-decoration:none;transition:background-color 200ms ease,color 200ms ease}.ds-nav:hover{background:color-mix(in srgb,var(--cg-ink,#111215) 5%,transparent);color:var(--cg-ink,#111215)}.ds-nav[aria-current]{background:color-mix(in srgb,var(--cg-ink,#111215) 6%,transparent);color:var(--cg-ink,#111215)}.ds-nav:focus-visible{outline:2px solid var(--cg-brand,#1D4ED8);outline-offset:2px}"
     },
     {
       "name": "Categoría de carta",
       "kind": "chip",
       "refersTo": "menu-category",
-      "description": "Filtro de categoría en mono mayúsculas con subrayado en la activa.",
-      "html": "<span class=\"ds-cat on\">Carta</span> <span class=\"ds-cat\">Bebidas</span>",
-      "css": ".ds-cat{font:400 11px \"Space Mono\",monospace;letter-spacing:.2em;text-transform:uppercase;color:rgba(17,18,21,.45);padding-bottom:12px;border-bottom:1px solid rgba(17,18,21,.15);margin-right:20px}.ds-cat.on{color:#111215;border-bottom-color:#111215}"
+      "description": "Primer nivel de la carta: mono en mayúsculas sobre un filete; la activa va subrayada.",
+      "html": "<div class=\"ds-cats\"><button class=\"ds-cat\" aria-selected=\"true\">Cocina</button><button class=\"ds-cat\">Bebidas</button><button class=\"ds-cat\">Espirituosos</button></div>",
+      "css": ".ds-cats{display:flex;gap:28px;border-bottom:1px solid color-mix(in srgb,var(--cg-ink,#111215) 15%,transparent)}.ds-cat{min-height:44px;margin-bottom:-1px;padding:0;border:0;border-bottom:2px solid transparent;background:none;font:400 11px \"Space Mono\",SFMono-Regular,Consolas,monospace;letter-spacing:.2em;text-transform:uppercase;color:color-mix(in srgb,var(--cg-ink,#111215) 65%,transparent);cursor:pointer;transition:color 200ms ease}.ds-cat:hover{color:var(--cg-ink,#111215)}.ds-cat[aria-selected=true]{color:var(--cg-ink,#111215);border-bottom-color:var(--cg-ink,#111215)}.ds-cat:focus-visible{outline:2px solid var(--cg-brand,#1D4ED8);outline-offset:3px}"
+    },
+    {
+      "name": "Subfiltro de carta",
+      "kind": "chip",
+      "refersTo": "menu-subfilter",
+      "description": "Segundo nivel de la carta: píldoras de 32px; la activa en tinta.",
+      "html": "<button class=\"ds-sub\" aria-selected=\"true\">La Barra</button> <button class=\"ds-sub\">Para Empezar</button> <button class=\"ds-sub\">Postres</button>",
+      "css": ".ds-sub{height:32px;padding:0 12px;border:0;border-radius:9999px;background:none;font:400 13px \"Inter Variable\",Inter,\"Avenir Next\",\"Segoe UI\",sans-serif;color:color-mix(in srgb,var(--cg-ink,#111215) 70%,transparent);cursor:pointer;transition:background-color 200ms ease,color 200ms ease}.ds-sub:hover{background:color-mix(in srgb,var(--cg-ink,#111215) 5%,transparent);color:var(--cg-ink,#111215)}.ds-sub[aria-selected=true]{background:var(--cg-ink,#111215);color:var(--cg-cream,#FAF8F5)}.ds-sub:focus-visible{outline:2px solid var(--cg-brand,#1D4ED8);outline-offset:3px}"
     },
     {
       "name": "Fila de carta",
       "kind": "custom",
-      "refersTo": "menu-category",
-      "description": "Nombre, puntos guía y precio en mono con alérgenos debajo.",
-      "html": "<div class=\"ds-row\"><div class=\"ds-line\"><span class=\"ds-name\">Mar y montaña</span><span class=\"ds-lead\"></span><span class=\"ds-price\">19,80 €</span></div><p class=\"ds-all\">F · G · M · P</p></div>",
-      "css": ".ds-row{padding:12px 0;width:320px}.ds-line{display:flex;align-items:baseline}.ds-name{font:500 15px Inter,sans-serif;color:#111215}.ds-lead{flex:1;margin:0 .6rem;border-bottom:1px dotted rgba(17,18,21,.35);transform:translateY(-4px)}.ds-price{font:400 14px \"Space Mono\",monospace;color:#111215}.ds-all{margin:2px 0 0;font:400 10px \"Space Mono\",monospace;letter-spacing:.1em;text-transform:uppercase;color:rgba(17,18,21,.4)}"
+      "description": "Nombre, puntos guía y precio en mono.",
+      "html": "<div class=\"ds-row\"><span class=\"ds-name\">Mar y montaña</span><span class=\"ds-lead\"></span><span class=\"ds-price\">19,80 €</span></div>",
+      "css": ".ds-row{display:flex;align-items:baseline;width:320px;padding:16px 0}.ds-name{font:500 15px \"Inter Variable\",Inter,\"Avenir Next\",\"Segoe UI\",sans-serif;color:var(--cg-ink,#111215)}.ds-lead{flex:1;margin:0 .6rem;border-bottom:1px dotted color-mix(in srgb,var(--cg-ink,#111215) 35%,transparent);transform:translateY(-4px)}.ds-price{font:400 15px \"Space Mono\",SFMono-Regular,Consolas,monospace;font-variant-numeric:tabular-nums;color:var(--cg-ink,#111215)}"
     },
     {
       "name": "Campo de formulario",
       "kind": "input",
       "refersTo": "input-field",
-      "description": "Campo rectangular con etiqueta mono; el foco tiñe el borde de azul.",
-      "html": "<label class=\"ds-f\"><span>Fecha</span><input type=\"text\" value=\"12/10/2026\"></label>",
-      "css": ".ds-f{display:block;width:240px}.ds-f span{font:400 10px \"Space Mono\",monospace;letter-spacing:.1em;text-transform:uppercase;color:rgba(17,18,21,.45)}.ds-f input{display:block;width:100%;box-sizing:border-box;margin-top:4px;padding:8px 12px;border:1px solid rgba(17,18,21,.15);background:transparent;color:#111215;font:400 14px Inter,sans-serif;outline:none}.ds-f input:focus{border-color:#1D4ED8}"
+      "description": "Campo rectangular con etiqueta en mono; el foco tiñe el borde de azul.",
+      "html": "<label class=\"ds-f\"><span>Correo electrónico</span><input type=\"email\" placeholder=\"tu@mail.com\"></label>",
+      "css": ".ds-f{display:block;width:280px}.ds-f span{font:400 11px \"Space Mono\",SFMono-Regular,Consolas,monospace;letter-spacing:.1em;text-transform:uppercase;color:color-mix(in srgb,var(--cg-ink,#111215) 60%,transparent)}.ds-f input{display:block;width:100%;box-sizing:border-box;min-height:48px;margin-top:8px;padding:0 12px;border:1px solid color-mix(in srgb,var(--cg-ink,#111215) 15%,transparent);border-radius:0;background:transparent;color:var(--cg-ink,#111215);font:400 15px \"Inter Variable\",Inter,\"Avenir Next\",\"Segoe UI\",sans-serif;outline:none;transition:border-color 200ms ease}.ds-f input::placeholder{color:color-mix(in srgb,var(--cg-ink,#111215) 60%,transparent)}.ds-f input:focus{border-color:var(--cg-brand,#1D4ED8)}"
     },
     {
       "name": "Modal de reserva",
       "kind": "card",
       "refersTo": "reserve-modal",
-      "description": "Única superficie elevada de lectura: borde fino, sombra flotante, esquinas rectas.",
-      "html": "<div class=\"ds-m\"><h3>Reservar mesa</h3><p>Elige fecha, hora y comensales.</p></div>",
-      "css": ".ds-m{width:300px;box-sizing:border-box;padding:32px;background:#FEFDFB;border:1px solid rgba(17,18,21,.1);box-shadow:0 8px 30px rgba(17,18,21,.12)}.ds-m h3{margin:0;font:400 24px \"Playfair Display\",Georgia,serif;letter-spacing:-.025em;color:#111215}.ds-m p{margin:8px 0 0;font:400 14px Inter,sans-serif;color:rgba(17,18,21,.6)}"
+      "description": "Único elemento elevado de lectura: superficie de mesa con borde fino y sombra flotante.",
+      "html": "<div class=\"ds-modal\"><h2>Reservar mesa</h2><p>Te llamaremos a este número para confirmar la reserva.</p></div>",
+      "css": ".ds-modal{width:320px;padding:32px;border:1px solid color-mix(in srgb,var(--cg-ink,#111215) 10%,transparent);background:var(--cg-surface,#FEFDFB);box-shadow:var(--cg-elev,0 8px 30px rgb(17 18 21 / .12))}.ds-modal h2{margin:0;font:400 24px/1.06 \"Playfair Display Variable\",\"Playfair Display\",Georgia,serif;letter-spacing:-.025em;color:var(--cg-ink,#111215)}.ds-modal p{margin:12px 0 0;font:400 15px/1.55 \"Inter Variable\",Inter,\"Avenir Next\",\"Segoe UI\",sans-serif;color:color-mix(in srgb,var(--cg-ink,#111215) 70%,transparent)}"
+    },
+    {
+      "name": "Tique",
+      "kind": "custom",
+      "refersTo": "receipt",
+      "description": "Papel de caja con el borde dentado: mono, línea discontinua y puntos guía. La sombra, si la lleva, va en el envoltorio.",
+      "html": "<div class=\"ds-receipt-wrap\"><div class=\"ds-receipt\"><p class=\"ds-receipt-head\">Sant Martí · Barcelona</p><div class=\"ds-receipt-row\"><span>Domingo</span><i></i><span>13:00 - 18:00</span></div><div class=\"ds-receipt-row\"><span>Lunes y Martes</span><i></i><span>Cerrado</span></div></div></div>",
+      "css": ".ds-receipt-wrap{padding:24px;background:var(--cg-brand,#1D4ED8)}.ds-receipt{width:260px;padding:24px 22px 34px;background:var(--cg-surface,#FEFDFB);color:var(--cg-ink,#111215);font:400 13px/1.35 \"Space Mono\",SFMono-Regular,Consolas,monospace;transform:rotate(2deg);-webkit-mask:conic-gradient(from -45deg at bottom,transparent,#000 1deg 89deg,transparent 90deg) 50%/14px 100%;mask:conic-gradient(from -45deg at bottom,transparent,#000 1deg 89deg,transparent 90deg) 50%/14px 100%}.ds-receipt-head{margin:0 0 12px;padding-bottom:14px;border-bottom:1px dashed color-mix(in srgb,var(--cg-ink,#111215) 30%,transparent);text-align:center;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:color-mix(in srgb,var(--cg-ink,#111215) 70%,transparent)}.ds-receipt-row{display:flex;align-items:baseline;min-height:34px}.ds-receipt-row i{flex:1;margin:0 .6rem;border-bottom:1px dotted color-mix(in srgb,var(--cg-ink,#111215) 35%,transparent);transform:translateY(-4px)}"
     }
   ],
   "narrative": {
     "northStar": "La carta de papel",
-    "overview": "Casa Güell se lee como una carta impresa en una mesa de Sant Martí: papel crema de día, papel carbón de noche, tinta casi negra y un único azul de loza que aparece solo donde algo se puede tocar o merece atención. La voz tipográfica es editorial, una serif de contraste para titulares con Inter para leer y Space Mono para los pequeños rótulos de imprenta (precios, categorías, alérgenos). El plato fotografiado es siempre lo más vivo de la pantalla; la interfaz se queda en papel.\n\nLa densidad es cómoda y de ritmo lento: secciones con mucho aire vertical, líneas de texto cortas, listas de carta a dos columnas con puntos guía entre nombre y precio. El tema oscuro no es una inversión mecánica sino la misma carta de noche: el cambio se funde por interpolación de tokens, no salta.",
+    "overview": "Casa Güell se lee como una carta impresa en una mesa de Sant Martí: papel crema de día, papel carbón de noche, tinta casi negra y un único azul de loza. La voz tipográfica es editorial, una serif de contraste para titulares con Inter para leer y Space Mono para los rótulos de imprenta. El plato fotografiado es siempre lo más vivo de la pantalla; la interfaz se queda en papel.\n\nEl papel no es solo un color de fondo: es un objeto. Las franjas tintadas se separan con un canto rasgado y no con una regla recta; el papel de bandeja impreso con \"Casa Güell\" (el mismo sobre el que se sirven los platos) reaparece como textura; el horario y la cita del chef van en tiques de caja con el borde dentado. Encima del papel trabaja una mano: una pluma azul traza marcos, sombreados y subrayados, y una tiza blanca anota las fotos.\n\nEl azul se reserva para lo que se puede tocar, para la identidad y para el trazo de pluma, y solo rellena superficie en dos momentos de marca: el pie y la pieza animada de la portada. El movimiento forma parte del mundo: lo que entra se dibuja, se descubre o sube desde detrás de una máscara, como al imprimir o al escribir, y todo se apaga con `prefers-reduced-motion`. El tema oscuro no es una inversión mecánica sino la misma carta de noche: el cambio se funde por interpolación de tokens, no salta.",
     "keyCharacteristics": [
-      "Papel cálido en dos versiones, con alternancia sutil de franjas lino entre secciones.",
-      "Un solo acento, el azul de marca, reservado a hover, foco, selección y detalles clave.",
-      "Serif editorial para titulares; mono pequeño en mayúsculas para datos de carta.",
-      "Plano y tonal: la profundidad la dan las capas de papel, no las sombras.",
-      "Botones en píldora; campos, tarjetas y modales de esquinas rectas."
+      "Papel cálido en dos versiones (día y noche), con franjas lino separadas por canto rasgado.",
+      "Un solo acento, el azul de marca: interacción, identidad, trazo de pluma y dos superficies de marca.",
+      "Serif editorial para titulares; mono pequeño en mayúsculas para los rótulos de imprenta.",
+      "El papel como objeto: canto rasgado, papel de bandeja impreso, tique dentado, grano fijo.",
+      "Trazo a mano: pluma azul sobre papel, tiza blanca sobre foto.",
+      "Plano y tonal: la sombra es solo para lo que flota y para el papel apoyado sobre una foto o el mapa.",
+      "Botones en píldora; campos, tiques, modales y fotos de esquinas rectas.",
+      "Cada sección tiene su propio esqueleto: ninguna repite la composición de la anterior."
     ],
     "rules": [
       {
         "name": "The One Blue Rule",
-        "body": "El azul de marca nunca es relleno de superficie grande; solo toca lo interactivo, el foco y un puñado de detalles de identidad por pantalla.",
+        "body": "Hay un solo acento. El azul rellena superficie únicamente en los dos momentos de marca, el bloque del pie y las escenas de la pieza animada; en cualquier otro sitio solo toca lo interactivo, el foco, la identidad y el trazo de pluma.",
         "section": "colors"
       },
       {
         "name": "The Paper Pair Rule",
-        "body": "Cada token de color existe en versión de día y de noche; un color nuevo se define siempre en ambos temas.",
+        "body": "Cada token de color existe en versión de día y de noche; un color nuevo se define siempre en ambos temas. La única excepción es la tiza, que vive sobre fotos.",
+        "section": "colors"
+      },
+      {
+        "name": "The Ink-On-Blue Rule",
+        "body": "Sobre el azul, el texto usa el token crema (de noche resulta tinta oscura sobre azul claro) y los secundarios son ese mismo token al 85%, nunca un gris.",
         "section": "colors"
       },
       {
         "name": "The Printed Label Rule",
-        "body": "Precios, categorías y datos de alérgenos van siempre en Space Mono; el resto de la interfaz nunca usa mono.",
+        "body": "Space Mono es la voz de imprenta: precios, categorías, alérgenos, etiquetas de campo, pies de foto y todo lo que va dentro de un tique. Nunca texto corrido.",
+        "section": "typography"
+      },
+      {
+        "name": "The Whole Phrase Rule",
+        "body": "La frase en cursiva azul del titular nunca se parte en dos líneas. Si en un idioma es más larga, el titular entero reduce su tamaño en proporción; el titular no pasa de tres líneas en ningún ancho.",
         "section": "typography"
       },
       {
         "name": "The Flat-By-Default Rule",
-        "body": "En reposo las superficies no llevan sombra; solo lo que flota sobre el contenido la recibe.",
+        "body": "En reposo las superficies no llevan sombra. La reciben lo que flota sobre el contenido y el papel que se apoya encima de una foto o del mapa.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Masked Paper Rule",
+        "body": "Un tique lleva el borde dentado como máscara, y la máscara recorta cualquier `box-shadow`. Su sombra va siempre en el envoltorio, con `drop-shadow`.",
         "section": "elevation"
       }
     ],
     "dos": [
-      "**Do** usar el azul de marca solo en interacción, foco, selección y detalles de identidad.",
-      "**Do** definir cada color nuevo en versión de día y de noche.",
-      "**Do** poner precios, categorías y alérgenos en Space Mono mayúsculas con tracking amplio.",
-      "**Do** usar píldora para lo pulsable y esquinas rectas para campos, tarjetas y modal.",
-      "**Do** distinguir capas con papel (crema, superficie, lino) y filetes de tinta al 10–15%.",
-      "**Do** respetar `prefers-reduced-motion`: toda animación decorativa debe poder apagarse."
+      "**Do** usar el azul de marca en interacción, foco, selección, identidad y trazo de pluma, y como relleno solo en el pie y en la pieza animada.",
+      "**Do** definir cada color nuevo en versión de día y de noche; la tiza es la única excepción.",
+      "**Do** poner precios, categorías, alérgenos, etiquetas de campo y pies de foto en Space Mono.",
+      "**Do** usar píldora para lo pulsable y esquinas rectas para campos, tiques, modal y fotos.",
+      "**Do** separar las franjas tintadas con el canto rasgado y distinguir capas con papel (crema, superficie, lino) y filetes de tinta al 10–20%.",
+      "**Do** anotar las fotos en tiza blanca y el papel en pluma azul.",
+      "**Do** dar a cada sección un esqueleto propio, distinto del de la sección anterior.",
+      "**Do** mantener reservar siempre a la vista en la cabecera, con objetivos táctiles de 44px o más.",
+      "**Do** respetar `prefers-reduced-motion`: toda animación debe tener un estado fijo completo, y lo que se mueve solo debe poder pausarse."
     ],
     "donts": [
-      "**Don't** rellenar secciones grandes con el azul de marca.",
-      "**Don't** añadir sombras a tarjetas en reposo; la sombra es solo para lo flotante.",
+      "**Don't** rellenar con azul ninguna superficie que no sea el pie o la pieza animada.",
+      "**Don't** añadir sombras a lo que está en reposo sobre el papel; la sombra es para lo que flota y para el papel apoyado sobre una foto o el mapa.",
+      "**Don't** poner `box-shadow` a un tique: su máscara la recorta.",
       "**Don't** usar la serif display por debajo de títulos de bloque ni el mono para texto corrido.",
+      "**Don't** poner un rótulo pequeño ni un número de sección encima de un titular.",
+      "**Don't** partir en dos líneas la frase en cursiva del titular.",
       "**Don't** cambiar el nombre Casa Güell, la paleta existente ni la voz centrada en el producto (compromisos de marca de PRODUCT.md).",
       "**Don't** introducir un segundo acento de color."
     ]

@@ -27,7 +27,7 @@ export interface Messages {
   ubicacio: {
     kicker: string; title: string
     adressLabel: string; scheduleLabel: string; contactLabel: string
-    maps: string; mapCaption: string; mapLabel: string; closed: string
+    maps: string; mapCaption: string; mapLabel: string; zoomHint: string; panHint: string; closed: string
     days: { md: string, dg: string, ll: string }
     overlay: {
       ubicacio: string; barri: string; barriTitle: string; barriDesc: string
@@ -45,6 +45,7 @@ export interface Messages {
   skip: { content: string }
   reserve: { title: string, short: string, date: string, time: string, people: string, name: string, phone: string, phoneHint: string, lunch: string, dinner: string, submit: string, sending: string, success: string, successDesc: string, error: string, close: string, closedDay: string, noSlots: string, bigGroup: string, errorCall: string }
   closing: { title: string, phoneLabel: string }
+  film: { label: string, pause: string, play: string }
   marquee: readonly string[]
   whatsapp: { label: string, message: string }
   newsletter: {

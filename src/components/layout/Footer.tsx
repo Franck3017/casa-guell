@@ -40,7 +40,7 @@ export function Footer () {
   const year = new Date().getFullYear()
 
   return (
-    <footer className='pt-12 md:pt-16'>
+    <footer>
       <div className='relative isolate overflow-clip bg-brand text-cream'>
         <TornEdge />
         {/*

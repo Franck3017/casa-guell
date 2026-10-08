@@ -95,7 +95,9 @@ export function SearchDishes () {
         title={t.search.hint}
         className={`absolute right-0 top-0 z-10 flex h-11 items-center overflow-hidden rounded-full border transition-[width,background-color,border-color] duration-200 ease-(--ease-out) motion-reduce:transition-none ${
           open
-            ? 'w-[min(20rem,calc(100vw-2rem))] gap-2 border-brand bg-surface pl-[13px] pr-2'
+            // Por debajo de escritorio el hueco del buscador no está pegado al borde derecho (le siguen reservar y
+            // el menú): abierto ocupa la barra entera, de margen a margen, para no salirse por la izquierda.
+            ? 'gap-2 border-brand bg-surface pl-[13px] pr-2 max-lg:fixed max-lg:inset-x-4 max-lg:top-[calc(env(safe-area-inset-top)+0.375rem)] sm:max-lg:inset-x-6 lg:w-80'
             : 'w-11 cursor-pointer border-ink/15 bg-transparent pl-[13px] hover:border-ink/40'
         }`}
       >
@@ -122,14 +124,14 @@ export function SearchDishes () {
           spellCheck={false}
           enterKeyHint='search'
           // 16 px en móvil evita el zoom automático de iOS al enfocar
-          className={`min-w-0 bg-transparent font-mono2 text-base text-ink outline-none placeholder:text-ink/55 md:text-xs ${open ? 'flex-1' : 'w-0 opacity-0'}`}
+          className={`min-w-0 bg-transparent font-mono2 text-base text-ink outline-none! placeholder:text-ink/55 md:text-xs ${open ? 'flex-1' : 'w-0 opacity-0'}`}
         />
         {query !== '' && (
           <button
             type='button'
             aria-label={t.search.clear}
             onClick={() => { setQuery(''); inputRef.current?.focus() }}
-            className='press flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-ink/60 transition-colors hover:bg-ink/5 hover:text-ink'
+            className='press flex size-8 shrink-0 items-center justify-center rounded-full text-ink/60 transition-colors hover:bg-ink/5 hover:text-ink pointer-coarse:size-10'
           >
             <svg viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth='1.75' strokeLinecap='round' className='h-3 w-3' aria-hidden='true'>
               <path d='M6 6l12 12M18 6 6 18' />

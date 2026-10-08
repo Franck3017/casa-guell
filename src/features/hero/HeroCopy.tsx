@@ -3,15 +3,23 @@ import { ArrowUpRight } from 'lucide-react'
 import { useI18n } from '@/i18n'
 import { openReserve } from '@/lib/events'
 
+const ACCENT_FIT_CHARS = 14
+
 /** Columna de texto del hero: titular con "sin maquillaje" subrayado a pluma, entradilla y las dos acciones. */
 export function HeroCopy () {
   const { t } = useI18n()
+  // La frase en azul nunca se parte. El tamaño está calculado para las 14 letras de «sin maquillaje»; si en
+  // otro idioma es más larga («sense maquillatge»), el titular entero se reduce en proporción para que quepa.
+  const scale = Math.min(1, ACCENT_FIT_CHARS / t.hero.lema2.length)
 
   return (
     <div className='hero-drift-copy'>
-      <h1 className='max-w-[13ch] font-display text-[clamp(3.5rem,7.3vw,5.9rem)] leading-[1.02] tracking-[-0.04em] text-ink'>
+      <h1
+        style={{ '--hero-scale': scale } as React.CSSProperties}
+        className='max-w-[13ch] font-display text-[calc(clamp(3rem,14.5vw,3.5rem)*var(--hero-scale))] md:text-[calc(clamp(2.75rem,7.3vw-1.25rem,5.9rem)*var(--hero-scale))] leading-[1.02] tracking-[-0.04em] text-ink'
+      >
         {t.hero.lema1}{' '}
-        <em data-hero-accent className='relative inline-block pb-1 text-brand'>
+        <em data-hero-accent className='relative inline-block whitespace-nowrap pb-1 text-brand'>
           {t.hero.lema2}
           {/* Subrayado a pluma: decorativo, se dibuja al final de la frase */}
           <svg

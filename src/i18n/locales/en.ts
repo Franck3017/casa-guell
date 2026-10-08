@@ -35,6 +35,7 @@ export const en: Messages = {
     contactLabel: 'Contact',
     maps: 'Open in Google Maps →',
     mapCaption: 'Sant Martí · Barcelona', mapLabel: "Map showing Casa Güell's location in Sant Martí, Barcelona",
+    zoomHint: 'Use Ctrl + scroll to zoom the map', panHint: 'Use two fingers to move the map',
     closed: 'Closed',
     days: { md: 'Wednesday to Saturday', dg: 'Sunday', ll: 'Monday and Tuesday' },
     overlay: { ubicacio: 'Location', barri: 'The neighbourhood', barriTitle: 'A neighbourhood with character', barriDesc: 'Former industrial district turned creative hub. Five minutes from Poblenou metro, with public parking 200 metres away.', metro: 'Metro L4 Poblenou (5 min)', parking: 'Public parking (200 m)', tram: 'Tram T4 (3 min)', back: '← Back to info', hide: 'Hide details', show: 'Show details', zone: 'Restaurant area', comArribar: 'How to get there' }
@@ -49,6 +50,7 @@ export const en: Messages = {
   skip: { content: 'Skip to content' },
   reserve: { title: 'Book a table', short: 'Book', date: 'Date', time: 'Time', people: 'Guests', name: 'Name', phone: 'Phone', phoneHint: 'We will call this number to confirm your booking.', lunch: 'Lunch', dinner: 'Dinner', submit: 'Request booking', sending: 'Sending…', success: 'Request received', successDesc: 'We will call you to confirm your table.', error: 'We could not send your request. Please try again.', close: 'Close', closedDay: 'We are closed on Monday and Tuesday. Choose Wednesday to Sunday.', noSlots: 'No times left today. Please choose another day.', bigGroup: 'For parties of 9 or more, please call us and we will arrange it.', errorCall: 'You can also call us on' },
   closing: { title: 'Book your table', phoneLabel: 'Or call us on' },
+  film: { label: 'Casa Güell in five ideas', pause: 'Pause the animation', play: 'Resume the animation' },
   marquee: ['Market produce', 'Real xup-xup', 'Catalan memory', 'Slow fire', 'No shortcuts'],
   whatsapp: { label: 'WhatsApp', message: 'Hello, I would like to book a table at Casa Güell' },
   newsletter: {

@@ -12,7 +12,9 @@ export function HeroCollage () {
   const { t } = useI18n()
 
   return (
-    <div className='mx-auto w-full max-w-[720px] md:ml-auto'>
+    // En escritorio el ancho también depende del alto de la pantalla: el collage es casi cuadrado y, con su
+    // pie, tiene que caber entero bajo la barra de navegación (si no, el pie se corta en portátiles).
+    <div className='mx-auto w-full max-w-[720px] md:ml-auto md:max-w-[clamp(400px,calc((100svh-13rem)/1.02),720px)]'>
       <div className='relative aspect-[1/1.02] w-full'>
         <div className='hero-drift-paper absolute -right-[3%] top-[9%] h-[80%] w-[58%]'>
           <div aria-hidden='true' className='relative h-full w-full -rotate-3'>

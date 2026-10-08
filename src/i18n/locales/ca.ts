@@ -35,6 +35,7 @@ export const ca: Messages = {
     contactLabel: 'Contacte',
     maps: 'Obrir a Google Maps →',
     mapCaption: 'Sant Martí · Barcelona', mapLabel: "Mapa amb la ubicació de Casa Güell, a Sant Martí (Barcelona)",
+    zoomHint: 'Fes servir Ctrl + la roda per apropar el mapa', panHint: 'Fes servir dos dits per moure el mapa',
     closed: 'Tancat',
     days: { md: 'Dimecres a Dissabte', dg: 'Diumenge', ll: 'Dilluns i Dimarts' },
     overlay: { ubicacio: 'Ubicació', barri: 'El barri', barriTitle: 'Barri amb caràcter', barriDesc: 'Antic districte industrial reconvertit en hub creatiu. A 5 minuts del metro Poblenou, amb aparcament públic a 200 metres.', metro: 'Metro L4 Poblenou (5 min)', parking: 'Pàrquing públic (200 m)', tram: 'Tramvia T4 (3 min)', back: '← Tornar a info', hide: 'Amaga la informació', show: 'Mostra la informació', zone: 'Zona del restaurant', comArribar: 'Com arribar-hi' }
@@ -49,6 +50,7 @@ export const ca: Messages = {
   skip: { content: 'Salta al contingut' },
   reserve: { title: 'Reservar taula', short: 'Reservar', date: 'Data', time: 'Hora', people: 'Persones', name: 'Nom', phone: 'Telèfon', phoneHint: 'Et trucarem a aquest número per confirmar la reserva.', lunch: 'Dinar', dinner: 'Sopar', submit: 'Sol·licitar reserva', sending: 'Enviant…', success: 'Sol·licitud rebuda', successDesc: 'Et trucarem per confirmar la teva taula.', error: 'No hem pogut enviar la teva sol·licitud. Torna-ho a provar.', close: 'Tanca', closedDay: 'Tanquem dilluns i dimarts. Tria de dimecres a diumenge.', noSlots: 'Avui ja no queden hores disponibles. Tria un altre dia.', bigGroup: 'Per a grups de 9 o més persones, truca’ns i ho preparem.', errorCall: 'També pots trucar-nos al' },
   closing: { title: 'Reserva la teva taula', phoneLabel: 'O truca’ns al' },
+  film: { label: 'Casa Güell en cinc idees', pause: "Atura l'animació", play: "Reprèn l'animació" },
   marquee: ['Producte de mercat', 'Xup-xup real', 'Memòria catalana', 'Foc lent', 'Sense dreceres'],
   whatsapp: { label: 'WhatsApp', message: 'Hola, vull reservar taula a Casa Güell' },
   newsletter: {

@@ -35,6 +35,7 @@ export const es: Messages = {
     contactLabel: 'Contacto',
     maps: 'Abrir en Google Maps →',
     mapCaption: 'Sant Martí · Barcelona', mapLabel: "Mapa con la ubicación de Casa Güell, en Sant Martí (Barcelona)",
+    zoomHint: 'Usa Ctrl + la rueda para acercar el mapa', panHint: 'Usa dos dedos para mover el mapa',
     closed: 'Cerrado',
     days: { md: 'Miércoles a Sábado', dg: 'Domingo', ll: 'Lunes y Martes' },
     overlay: { ubicacio: 'Ubicación', barri: 'El barrio', barriTitle: 'Barrio con carácter', barriDesc: 'Antiguo distrito industrial reconvertido en hub creativo. A 5 minutos del metro Poblenou, con aparcamiento público a 200 metros.', metro: 'Metro L4 Poblenou (5 min)', parking: 'Aparcamiento público (200 m)', tram: 'Tranvía T4 (3 min)', back: '← Volver a info', hide: 'Ocultar información', show: 'Mostrar información', zone: 'Zona del restaurante', comArribar: 'Cómo llegar' }
@@ -49,6 +50,7 @@ export const es: Messages = {
   skip: { content: 'Saltar al contenido' },
   reserve: { title: 'Reservar mesa', short: 'Reservar', date: 'Fecha', time: 'Hora', people: 'Personas', name: 'Nombre', phone: 'Teléfono', phoneHint: 'Te llamaremos a este número para confirmar la reserva.', lunch: 'Comida', dinner: 'Cena', submit: 'Solicitar reserva', sending: 'Enviando…', success: 'Solicitud recibida', successDesc: 'Te llamaremos para confirmar tu mesa.', error: 'No hemos podido enviar tu solicitud. Inténtalo de nuevo.', close: 'Cerrar', closedDay: 'Cerramos lunes y martes. Elige de miércoles a domingo.', noSlots: 'Hoy ya no quedan horas disponibles. Elige otro día.', bigGroup: 'Para grupos de 9 o más personas, llámanos y lo preparamos.', errorCall: 'También puedes llamarnos al' },
   closing: { title: 'Reserva tu mesa', phoneLabel: 'O llámanos al' },
+  film: { label: 'Casa Güell en cinco ideas', pause: 'Pausar la animación', play: 'Reanudar la animación' },
   marquee: ['Producto de mercado', 'Xup-xup real', 'Memoria catalana', 'Fuego lento', 'Sin atajos'],
   whatsapp: { label: 'WhatsApp', message: 'Hola, quiero reservar mesa en Casa Güell' },
   newsletter: {

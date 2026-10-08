@@ -26,7 +26,7 @@ export function SearchResults ({ hits, tokens, active, listId, optionId, onActiv
   return (
     <div
       onMouseDown={(e) => e.preventDefault()}
-      className='absolute right-0 top-full z-50 mt-2 w-[min(calc(100vw-2rem),24rem)] overflow-hidden rounded-lg border border-ink/10 bg-surface shadow-[0_12px_30px_rgb(17_18_21/0.10)]'
+      className='absolute right-0 top-full z-50 mt-2 overflow-hidden max-lg:fixed max-lg:inset-x-4 max-lg:top-[calc(env(safe-area-inset-top)+3.5rem)] max-lg:mt-1 sm:max-lg:inset-x-6 lg:w-96 rounded-lg border border-ink/10 bg-surface shadow-[0_12px_30px_rgb(17_18_21/0.10)]'
     >
       {hits.length === 0
         ? (

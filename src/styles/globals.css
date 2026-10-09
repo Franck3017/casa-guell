@@ -228,12 +228,6 @@ html.dark .maplibregl-ctrl-attrib-button { filter: invert(1); }
   mask-image: var(--torn-line);
 }
 
-/* Cinta cinética: las palabras alternas van solo en contorno, como tipo de imprenta sin entintar. */
-.marquee-outline {
-  color: transparent;
-  -webkit-text-stroke: 1px color-mix(in srgb, var(--cg-ink) 55%, transparent);
-}
-
 /*
   Estado previo a la entrada dibujada del hero. La clase la pone un script de index.html antes de pintar y
   la retira la animación al arrancar (o un temporizador, si el JS no carga). Sin ella, el HTML prerenderizado

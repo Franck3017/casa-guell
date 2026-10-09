@@ -53,7 +53,7 @@ export function LocationSection () {
             rel='noreferrer'
             className='group mt-4 inline-flex min-h-12 items-center gap-2 font-body text-sm font-semibold text-ink underline decoration-brand underline-offset-8 transition-colors hover:text-brand motion-reduce:transition-none'
           >
-            {t.ubicacio.maps.replace(/\s*→$/, '')}
+            {t.ubicacio.maps}
             <ArrowUpRight aria-hidden='true' size={16} strokeWidth={1.7} className='transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 motion-reduce:transition-none' />
           </a>
         </Reveal>

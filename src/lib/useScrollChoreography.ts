@@ -10,7 +10,6 @@ import { loadGsapScrollTrigger } from '@/lib/gsapLoader'
  *   data-wipe         foto que se descubre de abajo arriba, con la imagen asentándose
  *   data-parallax     capa que se desplaza a otra velocidad (valor = % de recorrido)
  *   data-print-drift  papel de bandeja que se desliza bajo el texto
- *   data-marquee      cinta que corre sola y se acelera con el scroll
  *   data-magnetic     control que se deja atraer por el cursor (solo ratón)
  * Nada se oculta desde el CSS: si no hay JS o se pide reducir movimiento, todo se ve colocado.
  * GSAP y ScrollTrigger llegan en carga diferida; la coreografía se monta en cuanto están.
@@ -77,31 +76,6 @@ export function useScrollChoreography (rerunKey: string): void {
           backgroundPosition: '-90px -160px',
           ease: 'none',
           scrollTrigger: { trigger: el, start: 'top bottom', end: 'bottom top', scrub: true }
-        })
-      })
-
-      gsap.utils.toArray<HTMLElement>('[data-marquee]').forEach((el) => {
-        const dir = el.dataset.marquee === 'reverse' ? -1 : 1
-        const run = gsap.fromTo(el, { xPercent: dir === 1 ? 0 : -50 }, {
-          xPercent: dir === 1 ? -50 : 0,
-          duration: 38,
-          ease: 'none',
-          repeat: -1
-        })
-        // Arranca con vueltas ya dadas: así puede correr hacia atrás al subir sin toparse con el inicio.
-        run.totalTime(run.duration() * 50)
-        // El scroll empuja la cinta: más rápido cuanto más rápido se baja, y vuelve sola a su paso.
-        ScrollTrigger.create({
-          trigger: el,
-          start: 'top bottom',
-          end: 'bottom top',
-          onUpdate: (self) => {
-            const v = self.getVelocity()
-            const sign = v < 0 ? -1 : 1
-            run.timeScale(gsap.utils.clamp(-6, 6, sign * (1 + Math.abs(v) / 260)))
-            gsap.to(run, { timeScale: sign, duration: 0.9, ease: 'power2.out', overwrite: true, delay: 0.1 })
-          },
-          onToggle: (self) => { if (self.isActive) run.play(); else run.pause() }
         })
       })
 

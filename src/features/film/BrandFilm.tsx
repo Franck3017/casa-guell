@@ -17,19 +17,19 @@ const BUBBLES = [[8, 5], [19, 3], [29, 6.5], [41, 3.5], [52, 5], [63, 3], [72, 6
 /**
  * "Casa Güell en cinco ideas": pieza animada a todo el ancho, entre la filosofía y la carta. Seis escenas
  * apiladas (la última, el rótulo, queda encima y es lo que se ve sin animación). El movimiento está en
- * useBrandFilm; aquí solo se pintan las escenas. Las frases son las de la casa (t.marquee).
+ * useBrandFilm; aquí solo se pintan las escenas. Las frases son las de la casa (t.film.phrases).
  * Es decorativa para lectores de pantalla, que reciben las cinco frases como una lista normal.
  */
 export function BrandFilm () {
   const { t, locale } = useI18n()
   const stageRef = useRef<HTMLDivElement>(null)
   const { ready, paused, toggle } = useBrandFilm(stageRef, locale)
-  const [market = '', simmer = '', memory = '', fire = '', shortcuts = ''] = t.marquee
+  const { market, simmer, memory, fire, shortcuts } = t.film.phrases
 
   return (
     <section aria-label={t.film.label} className='relative'>
       <ul className='sr-only'>
-        {t.marquee.map((phrase) => <li key={phrase}>{phrase}</li>)}
+        {[market, simmer, memory, fire, shortcuts].map((phrase) => <li key={phrase}>{phrase}</li>)}
       </ul>
 
       <div

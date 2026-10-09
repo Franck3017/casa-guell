@@ -3,16 +3,16 @@ export interface Messages {
   nav: { label: string, filosofia: string, carta: string, mercat: string, ubicacio: string, paleta: string, menuOpen: string, menuClose: string }
   hero: {
     kicker: string, lema1: string, lema2: string, intro: string, ctaCarta: string, ctaOnSom: string
-    fitxaLabel: string, chefAlt: string, featuredLabel: string, featuredDish: string
-    featuredDescription: string, featuredAlt: string
+    chefAlt: string, featuredLabel: string, featuredDish: string
+    featuredDescription: string
   }
   filosofia: {
-    kicker: string; title: string; imgAlt: string
+    title: string; imgAlt: string
     pilars: { origen: { t: string, d: string }, mercat: { t: string, d: string }, foc: { t: string, d: string } }
     quote: string; sign: string
   }
   carta: {
-    kicker: string; title: string; subtitle: string
+    title: string; subtitle: string
     tabs: { cuina: string, begudes: string, esperits: string }
     sets: {
       barra: string; empezar: string; compartir: string; rematar: string; postres: string
@@ -23,35 +23,30 @@ export interface Messages {
     section: string; refs: string; refsOne: string; empty: string; shot: string; glass: string
     allergenLegend: string
   }
-  mercat: { kicker: string, title: string, desc: string, accion: string, caption: string, imgAlt: string, imgAlt2: string, imgAlt3: string }
+  mercat: { title: string, desc: string, accion: string, caption: string, imgAlt2: string, imgAlt3: string }
   ubicacio: {
-    kicker: string; title: string
-    adressLabel: string; scheduleLabel: string; contactLabel: string
-    maps: string; mapCaption: string; mapLabel: string; zoomHint: string; panHint: string; closed: string
+    title: string
+    maps: string; mapLabel: string; zoomHint: string; panHint: string; closed: string
     days: { md: string, dg: string, ll: string }
-    overlay: {
-      ubicacio: string; barri: string; barriTitle: string; barriDesc: string
-      metro: string; parking: string; tram: string; back: string; hide: string; show: string; zone: string
-      comArribar: string
-    }
+    overlay: { metro: string; parking: string; tram: string; comArribar: string }
   }
-  branding: { kicker: string, title: string }
-  footer: { allergens: string, rights: string }
-  theme: { label: string, light: string, auto: string, dark: string, shortcut: string, toLight: string, toDark: string }
+  footer: { rights: string }
+  theme: { label: string, light: string, auto: string, dark: string, shortcut: string }
   lang: { label: string }
   search: { label: string, placeholder: string, noResults: string, hint: string, clear: string }
   backToTop: { label: string }
-  allergenTip: { contains: string }
   skip: { content: string }
   reserve: { title: string, short: string, date: string, time: string, people: string, name: string, phone: string, phoneHint: string, lunch: string, dinner: string, submit: string, sending: string, success: string, successDesc: string, error: string, close: string, closedDay: string, noSlots: string, bigGroup: string, errorCall: string }
   closing: { title: string, phoneLabel: string }
-  film: { label: string, pause: string, play: string }
+  film: {
+    label: string, pause: string, play: string
+    /** Las cinco ideas de la pieza animada. Cada una tiene su escena y su dibujo: van por nombre, no por orden. */
+    phrases: { market: string, simmer: string, memory: string, fire: string, shortcuts: string }
+  }
   loadError: { map: string, menu: string, page: string, reload: string }
-  marquee: readonly string[]
-  whatsapp: { label: string, message: string }
   newsletter: {
-    kicker: string; label: string; title: string; desc: string; placeholder: string
+    label: string; title: string; desc: string; placeholder: string
     submit: string; sending: string; success: string; successDesc: string
-    error: string; privacy: string; today: string
+    error: string; privacy: string
   }
 }

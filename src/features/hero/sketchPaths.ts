@@ -55,47 +55,25 @@ function sketchFrame (w: number, h: number, seed: number): string[] {
   ]
 }
 
-/** Sombreado a lápiz: diagonales paralelas de ida y vuelta, con los extremos desiguales. */
-function sketchHatch (w: number, h: number, count: number, seed: number): string[] {
-  const rand = seeded(seed)
-  const lines: string[] = []
-  for (let i = 1; i <= count; i++) {
-    const c = ((w + h) / (count + 1)) * i + (rand() - 0.5) * w * 0.03
-    let a: Point = [Math.min(c, w), c - Math.min(c, w)]
-    let b: Point = [Math.max(0, c - h), c - Math.max(0, c - h)]
-    // Los extremos no llegan siempre al borde: el lápiz se levanta antes
-    const inA = rand() * 0.1
-    const inB = rand() * 0.1
-    const ax = a[0] + (b[0] - a[0]) * inA; const ay = a[1] + (b[1] - a[1]) * inA
-    const bx = b[0] + (a[0] - b[0]) * inB; const by = b[1] + (a[1] - b[1]) * inB
-    a = [ax, ay]; b = [bx, by]
-    lines.push(i % 2 === 0 ? sketchLine(rand, a, b, w * 0.008) : sketchLine(rand, b, a, w * 0.008))
-  }
-  return lines
-}
-
 export interface SketchGeometry {
   /** Lienzo del boceto, en la misma proporción que la capa que cubre (así el trazo no se deforma). */
   w: number
   h: number
   frame: string[]
-  hatch: string[]
 }
 
-/** Retrato del chef: marco y sombreado a lápiz. */
+/** Marco del retrato del chef. */
 export const PORTRAIT_SKETCH: SketchGeometry = {
   w: 400,
   h: 500,
-  frame: sketchFrame(400, 500, 11),
-  hatch: sketchHatch(400, 500, 15, 23)
+  frame: sketchFrame(400, 500, 11)
 }
 
-/** Hoja de papel de bandeja: solo marco. */
+/** Marco de la hoja de papel de bandeja. */
 export const PAPER_SKETCH: SketchGeometry = {
   w: 390,
   h: 500,
-  frame: sketchFrame(390, 500, 5),
-  hatch: []
+  frame: sketchFrame(390, 500, 5)
 }
 
 /**

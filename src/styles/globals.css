@@ -171,8 +171,9 @@ main img { filter: var(--cg-img); transition: filter 0.4s ease; }
 
 /*
   ── Hero: dos capas de movimiento, cada una en su propio envoltorio para que no se pisen ──
-  1. Entrada dibujada: la orquesta GSAP en HeroSection.tsx (una pluma traza el marco del papel y del
-     retrato, sombrea a lápiz y rodea el plato; debajo aparece la foto). Aquí no hay CSS de entrada.
+  1. Entrada dibujada: la orquesta GSAP en useDrawnEntrance (una pluma traza el marco del papel y del
+     retrato y una tiza rodea el plato). El retrato está a la vista desde el primer pintado; lo que
+     espera a la animación se oculta más abajo, con `entrance-pending`.
   2. Deriva con el scroll (.hero-drift-*): al salir el hero, cada capa se mueve a distinta velocidad.
      Va con animation-timeline (sin JS, fuera del hilo principal); donde no exista, no hay deriva.
   Con prefers-reduced-motion no hay dibujo ni deriva: todo se ve colocado desde el inicio.
@@ -250,6 +251,9 @@ html.dark .maplibregl-ctrl-attrib-button { filter: invert(1); }
   la retira la animación al arrancar (o un temporizador, si el JS no carga). Sin ella, el HTML prerenderizado
   enseñaría el hero completo un instante y luego lo vería desaparecer para animarse.
   Sin JS, o con movimiento reducido, la clase no existe y todo se ve desde el principio.
+  El retrato del chef no está en la lista a propósito: es la imagen más grande de la primera pantalla y
+  ocultarlo hasta que cargue el JavaScript retrasaba varios segundos su aparición en móviles lentos.
+  [data-hero-fill] es solo la hoja de papel que asoma detrás.
 */
 html.entrance-pending [data-hero-fill],
 html.entrance-pending [data-hero-wordmark],

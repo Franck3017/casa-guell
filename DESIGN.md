@@ -271,7 +271,7 @@ Los filetes son de 1px en tinta al 10–20%; el filete que abre un bloque es de 
 - **Papel de bandeja:** el estampado "Casa Güell" en varios giros, en azul al 17–20% sobre papel y en crema al 10–11% sobre azul. Se usa en la hoja del hero, en el pie (difuminado hacia un lado) y en la primera escena de la pieza animada; se desliza despacio con el scroll.
 
 ### Pluma y tiza
-- **Pluma (azul):** al cargar, traza el marco de la hoja y del retrato del hero, sombrea el retrato a lápiz y se retira cuando aparece la foto; después subraya la frase del titular.
+- **Pluma (azul):** al cargar, traza el marco de la hoja de papel del hero y enmarca el retrato, que está a la vista desde el primer instante, y se retira; después subraya la frase del titular.
 - **Tiza (blanca):** con la foto ya puesta, rodea el plato de la semana, tira una flecha hasta su pie y el pie se escribe de izquierda a derecha. En reposo suben del plato tres hilos de vapor cada pocos segundos. En móvil no hay flecha y el trazo es más grueso. Las coordenadas dependen de la foto concreta.
 
 ### Pieza animada

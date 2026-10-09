@@ -28,8 +28,8 @@ export function HeroCollage () {
         <div className='hero-drift-portrait absolute left-[3%] top-0 w-[70%]'>
           <div className='relative'>
             <figure className='aspect-[4/5] overflow-hidden'>
+              {/* Sin data-hero-fill: el retrato no se oculta para la entrada, se ve desde el primer pintado */}
               <img
-                data-hero-fill='portrait'
                 src={HERO_PORTRAIT.src}
                 srcSet={HERO_PORTRAIT.srcSet}
                 sizes={HERO_PORTRAIT.sizes}

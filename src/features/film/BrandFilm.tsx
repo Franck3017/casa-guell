@@ -139,7 +139,6 @@ export function BrandFilm () {
           type='button'
           onClick={toggle}
           aria-label={paused ? t.film.play : t.film.pause}
-          aria-pressed={paused}
           className='press absolute bottom-7 right-4 inline-flex size-11 items-center justify-center rounded-full border border-ink/15 bg-surface/90 text-ink transition-colors hover:border-ink/40 sm:right-6'
         >
           {paused ? <Play aria-hidden='true' size={16} strokeWidth={1.8} /> : <Pause aria-hidden='true' size={16} strokeWidth={1.8} />}

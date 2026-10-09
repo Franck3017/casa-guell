@@ -1,7 +1,4 @@
-import { data } from '@/data'
-
-const PHONE = data.ubicacion.contacto.telefono
-const PHONE_HREF = `tel:+34${PHONE.replace(/\s/g, '')}`
+import { PHONE, PHONE_HREF } from '@/lib/place'
 
 /** Teléfono del restaurante como enlace para llamar. */
 export function PhoneLink () {

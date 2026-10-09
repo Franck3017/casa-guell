@@ -4,13 +4,11 @@ import { ErrorBoundary, LoadError, Reveal, SectionTitle, TornEdge } from '@/comp
 import { data } from '@/data'
 import { useNearViewport } from '@/hooks/useNearViewport'
 import { useI18n } from '@/i18n'
+import { MAPS_HREF } from '@/lib/place'
 
 const RestaurantMap = lazy(async () =>
   await import('./RestaurantMap').then((m) => ({ default: m.RestaurantMap }))
 )
-
-// Mismas coordenadas que el marcador del mapa (RestaurantMap), sin cargar ese archivo antes de tiempo
-const MAPS_HREF = 'https://www.google.com/maps/search/?api=1&query=41.404493,2.1988202'
 
 /**
  * Sección de ubicación: la dirección y cómo llegar, y debajo el mapa de lado a lado, como una tira de

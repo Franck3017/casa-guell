@@ -6,13 +6,11 @@ import { Logo, TornEdge, Words } from '@/components/ui'
 import { NAV_IDS } from '@/lib/constants'
 import { openReserve } from '@/lib/events'
 import { plainHours } from '@/lib/menuFormat'
+import { PHONE, PHONE_HREF } from '@/lib/place'
 import { SOCIAL_LINKS } from '@/lib/social'
 import { BackToTop } from './BackToTop'
 
 type DayKey = 'md' | 'dg' | 'll'
-
-const PHONE = data.ubicacion.contacto.telefono
-const PHONE_HREF = `tel:+34${PHONE.replace(/\s/g, '')}`
 
 /** Línea de tique: concepto a la izquierda, puntos de relleno y valor a la derecha. */
 function ReceiptRow ({ label, children }: { label: string, children: ReactNode }) {

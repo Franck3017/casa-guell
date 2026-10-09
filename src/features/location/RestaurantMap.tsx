@@ -9,6 +9,7 @@ import {
 import type { FeatureCollection } from 'geojson'
 import { useTheme } from '@/hooks/theme'
 import { useI18n } from '@/i18n'
+import { COORDS } from '@/lib/place'
 import { Logo } from '@/components/ui'
 
 const CASA_GUELL_GEOJSON: FeatureCollection = {
@@ -30,11 +31,6 @@ const CASA_GUELL_GEOJSON: FeatureCollection = {
     }
   ]
 }
-
-const RESTAURANT_LOCATION = {
-  longitude: 2.1988202,
-  latitude: 41.404493
-} as const
 
 /** Marcador: el rótulo de la casa en una etiqueta de papel, clavada en el punto exacto. */
 function RestaurantPin () {
@@ -82,7 +78,7 @@ export function RestaurantMap () {
         desplazando la página; para mover el mapa hace falta Ctrl + rueda o dos dedos.
       */}
       <Map
-        center={[RESTAURANT_LOCATION.longitude, RESTAURANT_LOCATION.latitude]}
+        center={[COORDS.longitude, COORDS.latitude]}
         zoom={16.6}
         className='h-full w-full'
         theme={resolved}
@@ -102,8 +98,8 @@ export function RestaurantMap () {
         <MapControls position='bottom-right' showZoom showFullscreen />
 
         <MapMarker
-          longitude={RESTAURANT_LOCATION.longitude}
-          latitude={RESTAURANT_LOCATION.latitude}
+          longitude={COORDS.longitude}
+          latitude={COORDS.latitude}
           anchor='bottom'
         >
           <MarkerContent>

@@ -1,12 +1,9 @@
 import { Phone } from 'lucide-react'
 import { Reveal, SectionTitle, TornEdge } from '@/components/ui'
-import { data } from '@/data'
 import { IMG, imgSrcSet } from '@/lib/constants'
+import { PHONE, PHONE_HREF } from '@/lib/place'
 import { useI18n } from '@/i18n'
 import { NewsletterSignup } from './NewsletterSignup'
-
-const PHONE = data.ubicacion.contacto.telefono
-const PHONE_HREF = `tel:+34${PHONE.replace(/\s/g, '')}`
 
 /**
  * Mercado, en dos alturas. Arriba, la historia: a la izquierda el porqué (no hay carta fija) y, abajo del

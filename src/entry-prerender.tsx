@@ -9,7 +9,7 @@ import { LOCALES, type Locale } from '@/i18n'
 import { ca } from '@/i18n/locales/ca'
 import { en } from '@/i18n/locales/en'
 import { es } from '@/i18n/locales/es'
-import { IMG } from '@/lib/constants'
+import { HERO_PORTRAIT } from '@/lib/constants'
 
 const DICTS = { ca, es, en }
 const OG_LOCALE: Record<Locale, string> = { ca: 'ca_ES', es: 'es_ES', en: 'en_US' }
@@ -45,7 +45,7 @@ export function headFor (locale: Locale) {
     canonical: `${BASE_URL}/${locale}`,
     ogLocale: OG_LOCALE[locale],
     ogImage: OG_IMAGE,
-    heroImage: IMG.chefBrioche,
+    heroImage: HERO_PORTRAIT,
     jsonLd: {
       'ld-restaurant': restaurantSchema(locale, description),
       'ld-website': websiteSchema(locale)

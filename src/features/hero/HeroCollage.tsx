@@ -1,5 +1,5 @@
 // features/hero/HeroCollage.tsx
-import { IMG } from '@/lib/constants'
+import { HERO_PORTRAIT } from '@/lib/constants'
 import { useI18n } from '@/i18n'
 import { DishNotes } from './DishNotes'
 import { Sketch } from './Sketch'
@@ -30,7 +30,9 @@ export function HeroCollage () {
             <figure className='aspect-[4/5] overflow-hidden'>
               <img
                 data-hero-fill='portrait'
-                src={IMG.chefBrioche}
+                src={HERO_PORTRAIT.src}
+                srcSet={HERO_PORTRAIT.srcSet}
+                sizes={HERO_PORTRAIT.sizes}
                 alt={t.hero.chefAlt}
                 width={1024}
                 height={1536}

@@ -63,6 +63,23 @@ body {
 
 .font-mono2 { font-variant-numeric: tabular-nums; }
 
+/*
+  Siluetas del logotipo (Logo.tsx las usa como máscara). En un móvil el logotipo más grande es el de la
+  pieza animada, que no pasa de unos 175 px reales de alto ni con densidad 3 (el rótulo de fondo del hero
+  no se pinta en pantallas estrechas): basta la versión a media resolución, de 205 px, que pesa un tercio
+  (40 kB las dos palabras en vez de 115).
+*/
+:root {
+  --logo-casa: url('/assets/img/logo-casa-205.webp');
+  --logo-guell: url('/assets/img/logo-guell-205.webp');
+}
+@media (min-width: 480px) {
+  :root {
+    --logo-casa: url('/assets/img/logo-casa.webp');
+    --logo-guell: url('/assets/img/logo-guell.webp');
+  }
+}
+
 ::selection { background: var(--cg-brand); color: var(--cg-cream); }
 
 /* Focus visible conmutable y consistente */

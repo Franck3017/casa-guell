@@ -103,7 +103,10 @@ export interface DishNotesGeometry {
   loop: string
   arrow: string
   arrowhead: string
-  steam: string[]
+  /** Punto del plato del que sale cada hilo de vapor. */
+  steam: Point[]
+  /** Forma de un hilo, relativa a su punto de salida: sube 51 unidades haciendo eses. */
+  steamCurve: string
 }
 
 /**
@@ -117,9 +120,6 @@ export const DISH_NOTES: DishNotesGeometry = {
   loop: sketchLoop(290, 332, 112, 56, -23.5, 7),
   arrow: 'M192 414 C176 462 96 452 34 486',
   arrowhead: 'M48 485.3 L34 486 L42.1 474.6',
-  steam: [
-    'M258 312 c7 -9 -7 -17 0 -27 s6 -15 0 -24',
-    'M297 295 c7 -9 -7 -17 0 -27 s6 -15 0 -24',
-    'M332 285 c7 -9 -7 -17 0 -27 s6 -15 0 -24'
-  ]
+  steam: [[258, 312], [297, 295], [332, 285]],
+  steamCurve: 'c7 -9 -7 -17 0 -27 s6 -15 0 -24'
 }

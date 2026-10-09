@@ -1,6 +1,9 @@
 import { useLayoutEffect } from 'react'
 import { loadGsapDrawSvg } from '@/lib/gsapLoader'
 
+// Cada cuánto sale una bocanada de vapor: los 2,6 s que dura (ver .steam-wisp en globals.css) y 3,4 s de reposo
+const STEAM_EVERY_MS = 6000
+
 /**
  * Entrada dibujada del hero: una pluma azul traza el marco de la hoja de papel, que aparece debajo, y
  * enmarca el retrato; después las líneas se retiran. "sin maquillaje" se escribe y se subraya con el mismo
@@ -31,22 +34,32 @@ export function useDrawnEntrance (sectionRef: React.RefObject<HTMLElement | null
         const layers = q('[data-sketch-layer]')
         const frame = (layer: string) => q(`[data-sketch-layer="${layer}"] [data-sketch="frame"]`)
         const paper = q('[data-hero-fill]')
-        const note =(kind: string) => q(`[data-note="${kind}"]`)
-        const wisps = note('steam')
+        const note = (kind: string) => q(`[data-note="${kind}"]`)
 
-        // Vapor: cada hilo sube, se suelta por abajo y se desvanece. Vuelve cada pocos segundos.
+        // Vapor: lo anima el CSS (.steam-wisp en globals.css), no GSAP, para que el navegador lo mueva sin
+        // repintar. Aquí solo se da la salida de cada bocanada: la primera pone data-steam en el hero, con
+        // lo que arranca la animación, y las siguientes la vuelven a reproducir cada 6 s. Entre una y otra
+        // no queda ninguna animación en marcha.
         const steamFrom = (delay: number): (() => void) => {
-          gsap.set(wisps, { drawSVG: '0% 0%', autoAlpha: 0 })
-          const steam = gsap.timeline({ repeat: -1, repeatDelay: 3.4, delay })
-          wisps.forEach((wisp, i) => {
-            steam.add(gsap.timeline()
-              .fromTo(wisp, { drawSVG: '0% 0%', autoAlpha: 0.85, y: 0 }, { drawSVG: '0% 75%', duration: 0.9, ease: 'power1.out', immediateRender: false })
-              .to(wisp, { drawSVG: '100% 100%', y: -6, autoAlpha: 0, duration: 1.1, ease: 'power1.in' }), i * 0.3)
-          })
-          // Con el hero fuera de pantalla el vapor no trabaja
-          const watcher = new IntersectionObserver(([entry]) => { if (entry.isIntersecting) steam.resume(); else steam.pause() })
+          let inView = true
+          let timer = 0
+          const puff = (): void => {
+            timer = window.setTimeout(puff, STEAM_EVERY_MS)
+            // Con el hero fuera de pantalla no sale vapor
+            if (!inView) return
+            if (section.dataset.steam == null) { section.dataset.steam = ''; return }
+            for (const animation of section.getAnimations({ subtree: true })) {
+              if (animation instanceof CSSAnimation && animation.animationName.startsWith('steam-')) animation.play()
+            }
+          }
+          timer = window.setTimeout(puff, delay * 1000)
+          const watcher = new IntersectionObserver(([entry]) => { inView = entry.isIntersecting })
           watcher.observe(section)
-          return () => watcher.disconnect()
+          return () => {
+            window.clearTimeout(timer)
+            watcher.disconnect()
+            delete section.dataset.steam
+          }
         }
 
         // Si GSAP llega después de que el temporizador de index.html haya destapado el hero (conexión o

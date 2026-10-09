@@ -194,6 +194,39 @@ main img { filter: var(--cg-img); transition: filter 0.4s ease; }
     .hero-drift-wordmark { animation-name: hero-drift-wordmark; }
   }
 }
+/*
+  Vapor del plato del hero (Steam, en DishNotes.tsx). Cada hilo es una ventana que recorta y, dentro, su
+  trazo ya dibujado. La ventana sube y el trazo baja lo mismo, así que el trazo no se mueve de su sitio y lo
+  único que cambia es cuánto asoma: se ve dibujarse de abajo arriba, soltarse por abajo y desvanecerse.
+  Va así, y no dibujando el trazo de verdad desde JavaScript, porque solo se animan transform y opacity:
+  el navegador las mueve sin repintar. Dibujarlo obligaba a repintar y recomponer la página entera en cada
+  fotograma, durante 2,6 s de cada 6, mientras el hero estuviera a la vista.
+  Cada hilo tarda 2 s (0,9 s subiendo y 1,1 s soltándose) y los tres salen escalonados, 2,6 s en total.
+  La animación se reproduce una vez y se queda en su último fotograma, invisible: es useDrawnEntrance
+  quien la arranca, poniendo data-steam en el hero, y quien la repite cada 6 s. Así, entre bocanada y
+  bocanada no hay ninguna animación en marcha. Sin esa marca (sin JS o con movimiento reducido) el vapor
+  no existe.
+*/
+.steam-wisp { display: none; }
+[data-steam] .steam-wisp { display: block; }
+[data-steam] .steam-wisp,
+[data-steam] .steam-wisp > svg {
+  animation: steam-window 2s both;
+  animation-delay: calc(var(--i, 0) * 0.3s);
+}
+[data-steam] .steam-wisp > svg { animation-name: steam-ink; }
+@keyframes steam-window {
+  0% { transform: translateY(100%); opacity: 0.85; animation-timing-function: cubic-bezier(0.5, 1, 0.89, 1); }
+  45% { transform: translateY(25%); opacity: 0.85; animation-timing-function: cubic-bezier(0.11, 0, 0.5, 0); }
+  100% { transform: translateY(-100%); opacity: 0; }
+}
+/* El trazo compensa a la ventana y, al soltarse, sube un poco con ella (el 10 % de su caja) */
+@keyframes steam-ink {
+  0% { transform: translateY(-100%); animation-timing-function: cubic-bezier(0.5, 1, 0.89, 1); }
+  45% { transform: translateY(-25%); animation-timing-function: cubic-bezier(0.11, 0, 0.5, 0); }
+  100% { transform: translateY(90%); }
+}
+
 @keyframes hero-drift-paper { to { translate: 0 10%; rotate: 5deg; } }
 @keyframes hero-drift-portrait { to { translate: 0 16%; } }
 /* El texto solo se desplaza: no se atenúa, porque el botón de reservar sigue en pantalla */

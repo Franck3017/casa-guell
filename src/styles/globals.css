@@ -1,4 +1,10 @@
-@import "tailwindcss";
+/*
+  Tailwind solo busca clases en src/. Por defecto recorre toda la carpeta del proyecto, y las guías de
+  .agents/ y .claude/, la captura de videos/ y las notas de plans/ están llenas de clases de ejemplo que
+  acababan en el CSS de la web. index.html y scripts/ no llevan clases.
+*/
+@import "tailwindcss" source(none);
+@source "../";
 @import "./theme.css";
 
 /* dark: de Tailwind pasa a depender de la clase .dark (no de prefers-color-scheme) */

@@ -128,7 +128,8 @@ export function Footer () {
         </div>
 
         <div className='mx-auto flex max-w-6xl flex-col-reverse items-center gap-2 border-t border-cream/25 px-6 py-3 md:flex-row md:justify-between'>
-          <p className='text-center font-mono2 text-[11px] uppercase tracking-widest text-cream/85'>
+          {/* El año del HTML es el del build: si ya ha cambiado, React conserva ese texto sin darlo por error */}
+          <p suppressHydrationWarning className='text-center font-mono2 text-[11px] uppercase tracking-widest text-cream/85'>
             © {year} Casa Güell · {t.footer.rights}
           </p>
           <BackToTop inverted />

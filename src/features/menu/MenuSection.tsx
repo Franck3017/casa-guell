@@ -1,14 +1,9 @@
-import { lazy, Suspense } from 'react'
-import { Skeleton } from 'boneyard-js/react'
 import { ErrorBoundary, LoadError, Reveal, SectionTitle } from '@/components/ui'
 import { AllergenLegend } from '@/lib/allergens'
 import { useI18n } from '@/i18n'
+import { MenuBrowser } from './MenuBrowser'
 
-const MenuBrowser = lazy(async () =>
-  await import('./MenuBrowser').then((m) => ({ default: m.MenuBrowser }))
-)
-
-/** Sección de la carta: título, navegador de la carta (carga diferida) y leyenda de alérgenos. */
+/** Sección de la carta: título, navegador de la carta y leyenda de alérgenos. */
 export function MenuSection () {
   const { t } = useI18n()
 
@@ -25,18 +20,12 @@ export function MenuSection () {
       {/*
         El navegador no va dentro de <Reveal>: es alto y cambia de altura al cambiar de sección, y un
         bloque que aparece con fundido se quedaría invisible si su umbral no llegara a cumplirse.
+        Tampoco se carga aparte: la carta viene ya pintada en el HTML del build, y React solo la adopta sin
+        volver a crearla si tiene su código desde el principio.
       */}
       <div className='mt-9'>
         <ErrorBoundary fallback={<LoadError message={t.loadError.menu} className='py-16' />}>
-          <Suspense
-            fallback={
-              <Skeleton name='menu-browser' loading>
-                <div aria-hidden='true' />
-              </Skeleton>
-            }
-          >
-            <MenuBrowser />
-          </Suspense>
+          <MenuBrowser />
         </ErrorBoundary>
       </div>
 

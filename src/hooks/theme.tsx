@@ -87,22 +87,29 @@ function commitWithWipe (next: ResolvedTheme, origin?: { x: number, y: number },
   })
 }
 
-function getInitialChoice (): ThemeChoice {
-  return typeof window === 'undefined' ? 'system' : readStored()
-}
-
 export function ThemeProvider ({ children, shortcut = true }: { children: ReactNode, shortcut?: boolean }) {
-  const [choice, setChoiceState] = useState<ThemeChoice>(getInitialChoice)
-  const [sysDark, setSysDark] = useState(() => typeof window !== 'undefined' && systemDark())
+  /* El HTML prerenderizado no sabe nada de quien visita: sale con el tema en «auto» y claro, y el primer
+     render tiene que dar eso mismo para que React pueda adoptarlo. La elección guardada y el tema del
+     sistema se leen al montar, antes de pintar; si coinciden con ese punto de partida no se repinta nada. */
+  const [choice, setChoiceState] = useState<ThemeChoice>('system')
+  const [sysDark, setSysDark] = useState(false)
   const choiceRef = useRef(choice)
   useEffect(() => { choiceRef.current = choice }, [choice])
 
   const resolved: ResolvedTheme = choice === 'system' ? (sysDark ? 'dark' : 'light') : choice
 
-  /* Red de seguridad: al montar, el DOM debe coincidir con la elección guardada
-     (evita que un script del <head> desincronizado deje la clase .dark equivocada) */
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  useLayoutEffect(() => { applyResolved(resolved) }, [])
+  useLayoutEffect(() => {
+    const stored = readStored()
+    const dark = systemDark()
+    choiceRef.current = stored
+    // Los dos valores viven fuera de React (almacenamiento y sistema) y no se pueden leer antes de montar
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setChoiceState(stored)
+    setSysDark(dark)
+    /* Red de seguridad: al montar, el DOM debe coincidir con la elección guardada
+       (evita que un script del <head> desincronizado deje la clase .dark equivocada) */
+    applyResolved(stored === 'system' ? (dark ? 'dark' : 'light') : stored)
+  }, [])
 
   const setChoice = useCallback((c: ThemeChoice, from?: OriginSource) => {
     choiceRef.current = c

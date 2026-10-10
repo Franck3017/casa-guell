@@ -16,7 +16,10 @@ const OG_LOCALE: Record<Locale, string> = { ca: 'ca_ES', es: 'es_ES', en: 'en_US
 
 export { LOCALES }
 
-/** HTML de la portada en un idioma, con el contenido diferido (la carta) ya resuelto. */
+/**
+ * HTML de la portada en un idioma. El navegador lo adopta tal cual (hydrateRoot en main.tsx), así que tiene
+ * que coincidir con el primer render de allí: nada de lo que se pinta aquí puede depender de quien visita.
+ */
 export async function renderPage (locale: Locale): Promise<string> {
   const handler = createStaticHandler(routes)
   const context = await handler.query(new Request(`${BASE_URL}/${locale}`))
@@ -24,9 +27,10 @@ export async function renderPage (locale: Locale): Promise<string> {
   const router = createStaticRouter(handler.dataRoutes, context)
 
   const { prelude } = await prerenderToNodeStream(
+    // hydrate={false} solo evita el <script> con datos de rutas, que aquí no hay (ninguna ruta tiene loader)
     <StaticRouterProvider router={router} context={context} hydrate={false} />,
     {
-      // Un bloque que no puede pintarse sin navegador (el mapa) se queda con su esqueleto: no es un fallo del build.
+      // Un bloque que no pudiera pintarse sin navegador se quedaría con su esqueleto: no es un fallo del build.
       onError: (error) => { console.warn(`  [prerender ${locale}] bloque dejado para el navegador:`, (error as Error).message) }
     }
   )

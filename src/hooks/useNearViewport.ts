@@ -3,10 +3,11 @@ import { useEffect, useState, type RefObject } from 'react'
 /**
  * Devuelve `true` cuando el elemento está cerca de entrar en pantalla (a menos de `margin` de distancia),
  * y ya no vuelve a `false`. Sirve para no descargar algo pesado hasta que de verdad va a hacer falta.
- * Sin navegador (prerenderizado del build) devuelve `true`: el HTML se genera con el contenido completo.
+ * Empieza en `false` también en el prerenderizado del build: el primer render del navegador tiene que dar
+ * el mismo HTML que el generado, o React no podría adoptarlo.
  */
 export function useNearViewport (ref: RefObject<Element | null>, margin = '800px'): boolean {
-  const [near, setNear] = useState(() => typeof window === 'undefined')
+  const [near, setNear] = useState(false)
 
   useEffect(() => {
     const el = ref.current

@@ -122,7 +122,14 @@ html { scrollbar-color: color-mix(in srgb, var(--cg-ink) 25%, transparent) var(-
   background-size: 340px 232px;
 }
 
-/* Grano de papel: capa fija, sin eventos, nunca sobre contenedores con scroll. */
+/*
+  Grano de papel: capa fija, sin eventos, nunca sobre contenedores con scroll. Es ruido negro casi
+  transparente de día y blanco de noche.
+  No lleva mix-blend-mode ni filter, y es a propósito. Con tinta negra pura, "multiply" da exactamente el
+  mismo píxel que la mezcla normal (y "screen" con blanco puro, igual), pero obligaba al navegador a
+  componer la pantalla entera en un paso aparte en cada fotograma. Lo mismo el filtro que de noche
+  invertía el color: ahora el mosaico de noche es blanco directamente.
+*/
 body::before {
   content: '';
   position: fixed;
@@ -130,13 +137,11 @@ body::before {
   z-index: 55;
   pointer-events: none;
   opacity: 0.05;
-  mix-blend-mode: multiply;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1.2 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 .dark body::before {
   opacity: 0.06;
-  mix-blend-mode: screen;
-  filter: invert(1);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1.2 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 main img { filter: var(--cg-img); transition: filter 0.4s ease; }

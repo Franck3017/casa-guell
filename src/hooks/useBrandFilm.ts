@@ -1,4 +1,5 @@
 import { useCallback, useLayoutEffect, useRef, useState } from 'react'
+import { useNearViewport } from '@/hooks/useNearViewport'
 import { loadGsapScrollTrigger } from '@/lib/gsapLoader'
 
 const WIPE = 'power3.inOut'
@@ -11,15 +12,19 @@ const SHOWN = 'inset(0% 0% 0% 0%)'
  * Localiza sus piezas por atributos data-* (data-scene, data-word, data-char, data-plate, data-bubble,
  * data-bar, data-tick, data-hand, data-slow-fill, data-shortcut, data-route, data-film-kicker, data-cover).
  * Sin JS o con movimiento reducido no se monta nada: queda a la vista la última escena, el rótulo.
+ * Tampoco se monta al cargar la página: la pieza queda a más de dos pantallas de la primera, y preparar su
+ * línea de tiempo (unas 25 animaciones sobre un centenar de elementos) es de lo más caro del arranque.
+ * Se monta cuando el visitante está a una pantalla de llegar.
  */
 export function useBrandFilm (stageRef: React.RefObject<HTMLElement | null>, rerunKey: string) {
   const [ready, setReady] = useState(false)
   const [paused, setPaused] = useState(false)
   const control = useRef<{ setUserPaused: (value: boolean) => void } | null>(null)
+  const near = useNearViewport(stageRef, '100%')
 
   useLayoutEffect(() => {
     const stage = stageRef.current
-    if (stage == null) return
+    if (stage == null || !near) return
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
     let cancelled = false
     let revert = (): void => {}
@@ -93,7 +98,7 @@ export function useBrandFilm (stageRef: React.RefObject<HTMLElement | null>, rer
     })
 
     return () => { cancelled = true; revert(); control.current = null; setReady(false); setPaused(false) }
-  }, [stageRef, rerunKey])
+  }, [stageRef, rerunKey, near])
 
   const toggle = useCallback(() => {
     setPaused((prev) => {

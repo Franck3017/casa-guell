@@ -1,7 +1,7 @@
 /*
   Tailwind solo busca clases en src/. Por defecto recorre toda la carpeta del proyecto, y las guías de
   .agents/ y .claude/, la captura de videos/ y las notas de plans/ están llenas de clases de ejemplo que
-  acababan en el CSS de la web. index.html y scripts/ no llevan clases.
+  acabarían en el CSS de la web. index.html y scripts/ no llevan clases.
 */
 @import "tailwindcss" source(none);
 @source "../";
@@ -131,10 +131,10 @@ html { scrollbar-color: color-mix(in srgb, var(--cg-ink) 25%, transparent) var(-
 /*
   Grano de papel: capa fija, sin eventos, nunca sobre contenedores con scroll. Es ruido negro casi
   transparente de día y blanco de noche.
-  No lleva mix-blend-mode ni filter, y es a propósito. Con tinta negra pura, "multiply" da exactamente el
-  mismo píxel que la mezcla normal (y "screen" con blanco puro, igual), pero obligaba al navegador a
-  componer la pantalla entera en un paso aparte en cada fotograma. Lo mismo el filtro que de noche
-  invertía el color: ahora el mosaico de noche es blanco directamente.
+  No lleva mix-blend-mode ni filter, y es a propósito. Con tinta negra pura, "multiply" da el mismo píxel
+  que la mezcla normal (y "screen" con blanco puro, igual), pero obliga al navegador a componer la
+  pantalla entera en un paso aparte en cada fotograma. Por eso el mosaico de noche es blanco, en vez de
+  ser el de día invertido con un filtro.
 */
 body::before {
   content: '';
@@ -210,8 +210,8 @@ main img { filter: var(--cg-img); transition: filter 0.4s ease; }
   trazo ya dibujado. La ventana sube y el trazo baja lo mismo, así que el trazo no se mueve de su sitio y lo
   único que cambia es cuánto asoma: se ve dibujarse de abajo arriba, soltarse por abajo y desvanecerse.
   Va así, y no dibujando el trazo de verdad desde JavaScript, porque solo se animan transform y opacity:
-  el navegador las mueve sin repintar. Dibujarlo obligaba a repintar y recomponer la página entera en cada
-  fotograma, durante 2,6 s de cada 6, mientras el hero estuviera a la vista.
+  el navegador las mueve sin repintar. Dibujarlo obligaría a repintar y recomponer la página entera en cada
+  fotograma, durante 2,6 s de cada 6, mientras el hero esté a la vista.
   Cada hilo tarda 2 s (0,9 s subiendo y 1,1 s soltándose) y los tres salen escalonados, 2,6 s en total.
   La animación se reproduce una vez y se queda en su último fotograma, invisible: es useDrawnEntrance
   quien la arranca, poniendo data-steam en el hero, y quien la repite cada 6 s. Así, entre bocanada y
@@ -296,7 +296,7 @@ html.dark .maplibregl-ctrl-attrib-button { filter: invert(1); }
   enseñaría el hero completo un instante y luego lo vería desaparecer para animarse.
   Sin JS, o con movimiento reducido, la clase no existe y todo se ve desde el principio.
   El retrato del chef no está en la lista a propósito: es la imagen más grande de la primera pantalla y
-  ocultarlo hasta que cargue el JavaScript retrasaba varios segundos su aparición en móviles lentos.
+  ocultarlo hasta que cargue el JavaScript retrasaría varios segundos su aparición en móviles lentos.
   [data-hero-fill] es solo la hoja de papel que asoma detrás.
 */
 html.entrance-pending [data-hero-fill],

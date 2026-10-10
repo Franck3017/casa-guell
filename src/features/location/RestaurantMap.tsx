@@ -10,7 +10,7 @@ import type { FeatureCollection } from 'geojson'
 import { useTheme } from '@/hooks/theme'
 import { useI18n } from '@/i18n'
 import { COORDS } from '@/lib/place'
-import { Logo } from '@/components/ui'
+import { RestaurantPin } from './RestaurantPin'
 
 const CASA_GUELL_GEOJSON: FeatureCollection = {
   type: 'FeatureCollection',
@@ -30,19 +30,6 @@ const CASA_GUELL_GEOJSON: FeatureCollection = {
       }
     }
   ]
-}
-
-/** Marcador: el rótulo de la casa en una etiqueta de papel, clavada en el punto exacto. */
-function RestaurantPin () {
-  return (
-    <div className='flex flex-col items-center'>
-      <div className='elev border border-ink/10 bg-surface px-3.5 py-2.5'>
-        <Logo className='text-[22px]' />
-      </div>
-      <div className='h-5 w-px bg-ink' />
-      <div className='size-2.5 rounded-full bg-brand ring-2 ring-surface' />
-    </div>
-  )
 }
 
 /** Mapa de la ubicación. Ocupa todo el ancho de su contenedor; la altura la pone quien lo usa. */

@@ -1,14 +1,64 @@
 import { lazy, Suspense, useRef } from 'react'
+import { Skeleton } from 'boneyard-js/react'
 import { ArrowUpRight, SquareParking, TrainFront, TramFront } from 'lucide-react'
 import { ErrorBoundary, LoadError, Reveal, SectionTitle, TornEdge } from '@/components/ui'
 import { data } from '@/data'
 import { useNearViewport } from '@/hooks/useNearViewport'
 import { useI18n } from '@/i18n'
 import { MAPS_HREF } from '@/lib/place'
+import { RestaurantPin } from './RestaurantPin'
 
 const RestaurantMap = lazy(async () =>
   await import('./RestaurantMap').then((m) => ({ default: m.RestaurantMap }))
 )
+
+/** Alto de la franja del mapa. Lo comparte la réplica con la que se mide el esqueleto de carga. */
+const MAP_HEIGHT = 'h-[460px] md:h-[600px]'
+
+/** Color de los huesos: tinta al 12 %, el tono de los filetes, que sirve en los dos temas. */
+const BONE_COLOR = 'color-mix(in srgb, var(--cg-ink) 12%, transparent)'
+
+/**
+ * Réplica estática de lo que el mapa pone sobre el plano: el rótulo clavado en el centro y, abajo a la
+ * derecha, los botones (con el tamaño que les da MapControls). En la web no se ve nunca: la pinta boneyard
+ * cuando captura, en desarrollo, para medir dónde va cada pieza.
+ */
+function MapFixture () {
+  return (
+    <div className={`relative ${MAP_HEIGHT}`}>
+      <div className='absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-full'>
+        <RestaurantPin />
+      </div>
+      <div className='absolute bottom-10 right-2 flex flex-col gap-1.5'>
+        <div className='h-[67px] w-[34px] rounded-md bg-ink' />
+        <div className='size-[34px] rounded-md bg-ink' />
+      </div>
+    </div>
+  )
+}
+
+/**
+ * Lo que ocupa la franja hasta que llega el mapa: los huesos del rótulo y de los botones, cada uno donde
+ * estará después. Los dibuja boneyard a partir de src/bones/restaurant-map.bones.json, que rellena su
+ * captura (el plugin de Vite mientras corre `pnpm dev`, o `pnpm bones:build`).
+ * Van quietos: están en la página desde el principio, fuera de pantalla, y una animación sin fin correría
+ * durante toda la visita.
+ */
+function MapSkeleton () {
+  return (
+    <Skeleton
+      name='restaurant-map'
+      loading
+      className='h-full'
+      animate='solid'
+      color={BONE_COLOR}
+      darkColor={BONE_COLOR}
+      fixture={import.meta.env.DEV ? <MapFixture /> : undefined}
+    >
+      {null}
+    </Skeleton>
+  )
+}
 
 /**
  * Sección de ubicación: la dirección y cómo llegar, y debajo el mapa de lado a lado, como una tira de
@@ -60,15 +110,17 @@ export function LocationSection () {
       </div>
 
       {/* Altura fija también antes de que llegue el mapa: al cargar no empuja lo que hay debajo */}
-      <div ref={mapRef} className='relative mt-12 h-[460px] bg-linen/40 md:mt-16 md:h-[600px]'>
-        {near && (
-          // Si el mapa no llega, la dirección y el enlace a Google Maps de arriba siguen sirviendo
-          <ErrorBoundary fallback={<LoadError message={t.loadError.map} className='h-full' />}>
-            <Suspense fallback={null}>
-              <RestaurantMap />
-            </Suspense>
-          </ErrorBoundary>
-        )}
+      <div ref={mapRef} className={`relative mt-12 bg-linen/40 md:mt-16 ${MAP_HEIGHT}`}>
+        {near
+          ? (
+            // Si el mapa no llega, la dirección y el enlace a Google Maps de arriba siguen sirviendo
+            <ErrorBoundary fallback={<LoadError message={t.loadError.map} className='h-full' />}>
+              <Suspense fallback={<MapSkeleton />}>
+                <RestaurantMap />
+              </Suspense>
+            </ErrorBoundary>
+            )
+          : <MapSkeleton />}
         <TornEdge />
       </div>
     </section>

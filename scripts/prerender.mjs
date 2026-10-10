@@ -43,9 +43,6 @@ for (const locale of LOCALES) {
     `<meta name="twitter:title" content="${escapeAttr(head.title)}" />`,
     `<meta name="twitter:description" content="${escapeAttr(head.description)}" />`,
     `<meta name="twitter:image" content="${head.ogImage}" />`,
-    // La foto del hero es lo más grande de la primera pantalla: se pide cuanto antes, y con el mismo
-    // srcset y sizes que su <img> para que el navegador elija el mismo archivo y no la baje dos veces
-    `<link rel="preload" as="image" href="${head.heroImage.src}" imagesrcset="${head.heroImage.srcSet}" imagesizes="${head.heroImage.sizes}" fetchpriority="high" />`,
     ...Object.entries(head.jsonLd).map(([id, data]) =>
       `<script id="${id}" type="application/ld+json">${JSON.stringify(data).replace(/</g, '\\u003c')}</script>`)
   ].map((line) => `    ${line}`).join('\n')

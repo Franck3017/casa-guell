@@ -6,9 +6,9 @@ export const IMG = {
 } as const
 
 /**
- * Retrato del hero: la imagen más grande de la primera pantalla. La piden el <img> (HeroCollage) y el
- * <link rel="preload"> del HTML prerenderizado, que tienen que coincidir en srcset y sizes para que el
- * navegador no la descargue dos veces.
+ * Retrato del hero: la imagen más grande de la primera pantalla. Su <img> (HeroCollage) lleva
+ * fetchPriority='high', y con eso React añade al HTML prerenderizado un <link rel="preload"> con este
+ * mismo srcset y sizes: no hace falta escribirlo a mano.
  */
 export const HERO_PORTRAIT = {
   src: IMG.chefBrioche,

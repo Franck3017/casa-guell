@@ -47,6 +47,12 @@ function systemDark (): boolean {
   return window.matchMedia('(prefers-color-scheme: dark)').matches
 }
 
+/** El tema que se ve con una elección dada: «auto» sigue al sistema. */
+function resolveTheme (choice: ThemeChoice, systemIsDark: boolean): ResolvedTheme {
+  if (choice !== 'system') return choice
+  return systemIsDark ? 'dark' : 'light'
+}
+
 /** El click de teclado trae clientX/Y = 0: siempre se parte del centro del elemento */
 function originOf (src?: OriginSource): { x: number, y: number } | undefined {
   const el = (src == null) ? null : src instanceof HTMLElement ? src : (src.currentTarget as HTMLElement | null)
@@ -96,7 +102,7 @@ export function ThemeProvider ({ children, shortcut = true }: { children: ReactN
   const choiceRef = useRef(choice)
   useEffect(() => { choiceRef.current = choice }, [choice])
 
-  const resolved: ResolvedTheme = choice === 'system' ? (sysDark ? 'dark' : 'light') : choice
+  const resolved = resolveTheme(choice, sysDark)
 
   useLayoutEffect(() => {
     const stored = readStored()
@@ -108,14 +114,14 @@ export function ThemeProvider ({ children, shortcut = true }: { children: ReactN
     setSysDark(dark)
     /* Red de seguridad: al montar, el DOM debe coincidir con la elección guardada
        (evita que un script del <head> desincronizado deje la clase .dark equivocada) */
-    applyResolved(stored === 'system' ? (dark ? 'dark' : 'light') : stored)
+    applyResolved(resolveTheme(stored, dark))
   }, [])
 
   const setChoice = useCallback((c: ThemeChoice, from?: OriginSource) => {
     choiceRef.current = c
     setChoiceState(c)
     writeStored(c)
-    commitWithWipe(c === 'system' ? (systemDark() ? 'dark' : 'light') : c, originOf(from))
+    commitWithWipe(resolveTheme(c, systemDark()), originOf(from))
   }, [])
 
   const cycle = useCallback((from?: OriginSource) => {
@@ -141,7 +147,7 @@ export function ThemeProvider ({ children, shortcut = true }: { children: ReactN
       const v: ThemeChoice = e.newValue === 'light' || e.newValue === 'dark' ? e.newValue : 'system'
       setChoiceState(v)
       choiceRef.current = v
-      commitWithWipe(v === 'system' ? (systemDark() ? 'dark' : 'light') : v, undefined, false)
+      commitWithWipe(resolveTheme(v, systemDark()), undefined, false)
     }
     window.addEventListener('storage', onStorage)
     return () => window.removeEventListener('storage', onStorage)

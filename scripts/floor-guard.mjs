@@ -45,31 +45,36 @@ if (!mergeBase) bail(`no hay punto común con ${base}`)
 const diff = git(['diff', '--unified=0', '-M', mergeBase, '--'])
 if (diff === null) bail(`no se ha podido comparar con ${mergeBase}`)
 
-// `---` y `+++` solo son cabeceras entre la línea `diff` de un archivo y su primer `@@`; dentro de un
-// bloque todo es contenido (un `++i` añadido se ve como `+++i`).
-const added = []
-const removed = []
-const deleted = []
-const renamed = []
-const pathOf = (s) => s.trim().replace(/^[ab]\//, '')
-let file = ''
-let oldFile = ''
-let inHeader = false
-for (const line of diff.split('\n')) {
-  if (line.startsWith('diff ')) inHeader = true
-  else if (line.startsWith('@@')) inHeader = false
-  else if (inHeader) {
-    if (line.startsWith('rename from ')) oldFile = line.slice(12).trim()
-    else if (line.startsWith('rename to ')) renamed.push({ from: oldFile, to: line.slice(10).trim() })
-    else if (line.startsWith('--- ')) oldFile = pathOf(line.slice(4))
-    else if (line.startsWith('+++ ')) {
-      const newFile = pathOf(line.slice(4))
-      file = newFile === '/dev/null' ? oldFile : newFile
-      if (newFile === '/dev/null') deleted.push(file)
-    }
-  } else if (line.startsWith('+')) added.push({ file, text: line.slice(1) })
-  else if (line.startsWith('-')) removed.push({ file, text: line.slice(1) })
+// Lo que dice el diff: las líneas añadidas y quitadas, cada una con su archivo, y los archivos borrados
+// y movidos. `---` y `+++` solo son cabeceras entre la línea `diff` de un archivo y su primer `@@`;
+// dentro de un bloque todo es contenido (un `++i` añadido se ve como `+++i`).
+const parseDiff = (text) => {
+  const added = []
+  const removed = []
+  const deleted = []
+  const renamed = []
+  const pathOf = (s) => s.trim().replace(/^[ab]\//, '')
+  let file = ''
+  let oldFile = ''
+  let inHeader = false
+  for (const line of text.split('\n')) {
+    if (line.startsWith('diff ')) inHeader = true
+    else if (line.startsWith('@@')) inHeader = false
+    else if (inHeader) {
+      if (line.startsWith('rename from ')) oldFile = line.slice(12).trim()
+      else if (line.startsWith('rename to ')) renamed.push({ from: oldFile, to: line.slice(10).trim() })
+      else if (line.startsWith('--- ')) oldFile = pathOf(line.slice(4))
+      else if (line.startsWith('+++ ')) {
+        const newFile = pathOf(line.slice(4))
+        file = newFile === '/dev/null' ? oldFile : newFile
+        if (newFile === '/dev/null') deleted.push(file)
+      }
+    } else if (line.startsWith('+')) added.push({ file, text: line.slice(1) })
+    else if (line.startsWith('-')) removed.push({ file, text: line.slice(1) })
+  }
+  return { added, removed, deleted, renamed }
 }
+const { added, removed, deleted, renamed } = parseDiff(diff)
 
 // El diff no ve los archivos nuevos sin añadir: se leen enteros y todo su contenido cuenta como añadido.
 // Se saltan los binarios (un byte nulo al principio, el criterio de git) y los repositorios anidados,
@@ -243,8 +248,8 @@ for (const line of rulesNow.filter(isException)) {
   const before = rulesBefore.find((x) => ruleKey(x) === ruleKey(line))
   if (!before) { flag('excepción nueva', 'CONSTRAINTS.md', line); continue }
   const was = exceptionOf(before)
-  const is = exceptionOf(line)
-  if (is.rule !== was.rule || is.path !== was.path || is.expires > was.expires) flag('excepción cambiada', 'CONSTRAINTS.md', `${before}  ->  ${line}`)
+  const now = exceptionOf(line)
+  if (now.rule !== was.rule || now.path !== was.path || now.expires > was.expires) flag('excepción cambiada', 'CONSTRAINTS.md', `${before}  ->  ${line}`)
 }
 // Quitar una excepción endurece: no hace ruido.
 for (const before of rulesBefore.filter((x) => !isException(x))) {

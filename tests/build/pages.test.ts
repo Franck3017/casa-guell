@@ -19,6 +19,9 @@ const asset = (pattern: RegExp): string => {
   if (name == null) throw new Error(`No hay ningún archivo ${pattern} en dist/assets`)
   return `assets/${name}`
 }
+// La hoja de estilos y el JavaScript de entrada llevan un hash en el nombre.
+const CSS_FILE = asset(/^index-.*\.css$/)
+const JS_FILE = asset(/^index-.*\.js$/)
 
 const DICTS = { ca, es, en }
 /** Los nombres de la carta tal como se pintan, uno por plato (alguno se repite en más de una sección). */
@@ -83,8 +86,8 @@ describe('página para rutas que no existen', () => {
 })
 
 describe('archivos de la aplicación', () => {
-  const css = read(asset(/^index-.*\.css$/))
-  const js = read(asset(/^index-.*\.js$/))
+  const css = read(CSS_FILE)
+  const js = read(JS_FILE)
 
   // Tailwind solo debe leer src/. Estas dos clases salen en las guías de .agents/ y .claude/, no en la web.
   it('el CSS no arrastra clases de carpetas que no son de la aplicación', () => {
@@ -105,10 +108,10 @@ describe('peso de lo que se descarga al entrar', () => {
   })
 
   it('el CSS no pasa de su límite', () => {
-    expect(gzipKb(asset(/^index-.*\.css$/))).toBeLessThanOrEqual(maxOf('Peso del CSS'))
+    expect(gzipKb(CSS_FILE)).toBeLessThanOrEqual(maxOf('Peso del CSS'))
   })
 
   it('el JavaScript principal no pasa de su límite', () => {
-    expect(gzipKb(asset(/^index-.*\.js$/))).toBeLessThanOrEqual(maxOf('Peso del JavaScript principal'))
+    expect(gzipKb(JS_FILE)).toBeLessThanOrEqual(maxOf('Peso del JavaScript principal'))
   })
 })

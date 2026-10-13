@@ -31,14 +31,36 @@ if (!existsSync(path.join(dist, 'es.html'))) {
   process.exit(2)
 }
 
-const TYPES = { '.html': 'text/html; charset=utf-8', '.js': 'application/javascript', '.css': 'text/css', '.json': 'application/json', '.svg': 'image/svg+xml', '.webp': 'image/webp', '.jpg': 'image/jpeg', '.png': 'image/png', '.woff2': 'font/woff2', '.xml': 'application/xml', '.txt': 'text/plain' }
+const TYPES = {
+  '.html': 'text/html; charset=utf-8',
+  '.js': 'application/javascript',
+  '.css': 'text/css',
+  '.json': 'application/json',
+  '.svg': 'image/svg+xml',
+  '.webp': 'image/webp',
+  '.jpg': 'image/jpeg',
+  '.png': 'image/png',
+  '.woff2': 'font/woff2',
+  '.xml': 'application/xml',
+  '.txt': 'text/plain'
+}
+// Lo que es texto viaja comprimido, como en el alojamiento.
+const COMPRESSED = /\.(html|js|css|json|svg|xml|txt)$/
+const isServable = (file) => file.startsWith(dist) && existsSync(file) && statSync(file).isFile()
+
 const server = createServer((req, res) => {
+  // /es puede ser es.html o es/index.html. Lo que no existe recibe la página de las rutas desconocidas.
   const base = path.join(dist, decodeURIComponent(new URL(req.url, 'http://x').pathname))
-  const file = [base, `${base}.html`, path.join(base, 'index.html')].find((f) => f.startsWith(dist) && existsSync(f) && statSync(f).isFile()) ?? path.join(dist, '404.html')
+  const file = [base, `${base}.html`, path.join(base, 'index.html')].find(isServable) ?? path.join(dist, '404.html')
   const ext = path.extname(file)
-  const text = /\.(html|js|css|json|svg|xml|txt)$/.test(ext)
-  res.writeHead(200, { 'Content-Type': TYPES[ext] ?? 'application/octet-stream', 'Cache-Control': 'no-store', ...(text ? { 'Content-Encoding': 'gzip' } : {}) })
-  res.end(text ? gzipSync(readFileSync(file)) : readFileSync(file))
+  const headers = { 'Content-Type': TYPES[ext] ?? 'application/octet-stream', 'Cache-Control': 'no-store' }
+  if (COMPRESSED.test(ext)) {
+    res.writeHead(200, { ...headers, 'Content-Encoding': 'gzip' })
+    res.end(gzipSync(readFileSync(file)))
+  } else {
+    res.writeHead(200, headers)
+    res.end(readFileSync(file))
+  }
 })
 const listen = (srv) => new Promise((resolve) => srv.listen(0, '127.0.0.1', () => resolve(srv.address().port)))
 const origin = `http://127.0.0.1:${await listen(server)}`
@@ -73,8 +95,14 @@ try {
   const runs = []
   for (let i = 0; i < LIGHTHOUSE_RUNS; i++) {
     const { lhr } = await lighthouse(`${origin}/es`, { port: debugPort, onlyCategories: ['performance'], output: 'json', logLevel: 'error' })
-    const ms = (id) => lhr.audits[id].numericValue
-    runs.push({ score: Math.round(lhr.categories.performance.score * 100), lcp: Math.round(ms('largest-contentful-paint')), cls: Number(ms('cumulative-layout-shift').toFixed(3)), tbt: Math.round(ms('total-blocking-time')), bench: Math.round(lhr.environment.benchmarkIndex) })
+    const value = (audit) => lhr.audits[audit].numericValue
+    runs.push({
+      score: Math.round(lhr.categories.performance.score * 100),
+      lcp: Math.round(value('largest-contentful-paint')),
+      cls: Number(value('cumulative-layout-shift').toFixed(3)),
+      tbt: Math.round(value('total-blocking-time')),
+      bench: Math.round(lhr.environment.benchmarkIndex)
+    })
   }
   const median = (key) => runs.map((r) => r[key]).sort((a, b) => a - b)[Math.floor(runs.length / 2)]
   for (const key of ['score', 'lcp', 'cls', 'tbt', 'bench']) measured[key] = median(key)
@@ -89,14 +117,23 @@ let failed = 0
 for (const [key, { min, max, label }] of Object.entries(LIMITS)) {
   const value = measured[key]
   const ok = (min == null || value >= min) && (max == null || value <= max)
+  // Con el equipo frenado solo vale la accesibilidad, que no depende de la velocidad.
   const skipped = throttled && key !== 'seriousA11y'
   if (!ok && !skipped) failed++
-  console.log(`${skipped ? 'sin validez' : ok ? 'bien ' : 'FALLA'} · ${label}: ${value} (${min != null ? `mínimo ${min}` : `máximo ${max}`})`)
+  let verdict = ok ? 'bien ' : 'FALLA'
+  if (skipped) verdict = 'sin validez'
+  const limit = min != null ? `mínimo ${min}` : `máximo ${max}`
+  console.log(`${verdict} · ${label}: ${value} (${limit})`)
 }
 console.log(notes.join('\n'))
 if (throttled) console.log(`\ncheck-runtime: el equipo va frenado (índice ${measured.bench}, mínimo ${MIN_BENCHMARK_INDEX}). El rendimiento no se ha podido medir con garantías: repítelo con el equipo descansado.`)
 
 // Sin --strict, lo que falle aquí es un aviso: se informa y no detiene nada (ver CONSTRAINTS.md).
+// Con --strict sale con 1 si algo falla y con 2 si el rendimiento no se ha podido medir.
 const strict = process.argv.includes('--strict')
-if (failed > 0 && !strict) console.log(`\ncheck-runtime: ${failed} límite(s) superado(s). Es un aviso; con --strict detendría el trabajo.`)
-process.exit(strict && failed > 0 ? 1 : strict && throttled ? 2 : 0)
+if (!strict) {
+  if (failed > 0) console.log(`\ncheck-runtime: ${failed} límite(s) superado(s). Es un aviso; con --strict detendría el trabajo.`)
+  process.exit(0)
+}
+if (failed > 0) process.exit(1)
+process.exit(throttled ? 2 : 0)

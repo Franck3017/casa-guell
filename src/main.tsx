@@ -1,3 +1,4 @@
+import { startTransition } from 'react'
 import { createRoot, hydrateRoot } from 'react-dom/client'
 import { RouterProvider } from 'react-router'
 // Tipografías alojadas en el propio sitio (sin pedir nada a Google Fonts)
@@ -15,5 +16,7 @@ if (rootEl == null) throw new Error('#root missing')
 const app = <RouterProvider router={router} />
 // Las portadas (/ca, /es y /en) llegan ya pintadas por el prerenderizado del build: React adopta ese HTML
 // en vez de borrarlo y volver a crearlo. Con la raíz vacía ("/" y las rutas que no existen) se monta de cero.
-if (rootEl.hasChildNodes()) hydrateRoot(rootEl, app)
+// Dentro de una transición lo adopta a trozos, cediendo el hilo entre uno y otro, en vez de en una sola
+// tarea larga justo después del primer pintado.
+if (rootEl.hasChildNodes()) startTransition(() => { hydrateRoot(rootEl, app) })
 else createRoot(rootEl).render(app)

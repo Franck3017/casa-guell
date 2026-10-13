@@ -13,6 +13,7 @@
     "check:fast": "pnpm run check && node scripts/floor-guard.mjs",
     "check:task": "pnpm run check && pnpm run test && pnpm run test:build && node scripts/floor-guard.mjs",
     "check:full": "pnpm run check && pnpm run test && pnpm run test:build && node scripts/check-runtime.mjs && node scripts/floor-guard.mjs",
+    "check:prod": "node scripts/check-runtime.mjs --url https://casa-guell-drab.vercel.app",
     "test": "vitest run tests/unit tests/guard",
     "test:build": "pnpm run build && vitest run tests/build",
     "preview": "vite preview",

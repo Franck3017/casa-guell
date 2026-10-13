@@ -38,15 +38,24 @@ el resto de comprobaciones ya se ha lanzado.
 | Accesibilidad | 0 fallos críticos o graves de axe-core | `node scripts/check-runtime.mjs` | antes de subir a main | avisa | WCAG 2.1 AA en /ca, /es, /en y /es en oscuro; los leves y moderados suelen ser discutibles |
 | CLS | ≤ 0,1 | `node scripts/check-runtime.mjs` | antes de subir a main | avisa | Umbral «bueno» de Core Web Vitals |
 | TBT | ≤ 200 ms | `node scripts/check-runtime.mjs` | antes de subir a main | avisa | Umbral «bueno» de Lighthouse |
-| LCP de Lighthouse | ≤ 4050 ms | `node scripts/check-runtime.mjs` | antes de subir a main | avisa | El de hoy (3685) más un 10 %; ver «Objetivos que hoy no se cumplen» |
+| LCP de Lighthouse | ≤ 4050 ms | `node scripts/check-runtime.mjs` | antes de subir a main | avisa | El de hoy (3685) más un 10 %; es el del build servido en local, ver «Dos bancos de medida» |
 | Nota de Lighthouse | ≥ 81 | `node scripts/check-runtime.mjs` | antes de subir a main | avisa | La de hoy (84) menos 3 puntos: entre pasadas va de 82 a 86 |
+| LCP en producción | ≤ 2500 ms | `pnpm check:prod` | después de desplegar | avisa | Umbral «bueno» de Core Web Vitals; hoy da 2286 |
+| TBT en producción | ≤ 200 ms | `pnpm check:prod` | después de desplegar | avisa | Umbral «bueno» de Lighthouse; hoy da 60 de mediana, y entre pasadas va de 30 a 130 |
 
-Rendimiento y accesibilidad se miden con Lighthouse en móvil (mediana de 3 pasadas sobre /es) y axe-core,
-contra el build servido en local con compresión. Si el equipo va frenado (índice de Lighthouse por debajo
-de 1000), el rendimiento no se da por medido: se repite con el equipo descansado. Necesita el Chromium de
-Playwright, que se instala una vez por equipo con `pnpm bones:setup`.
+Rendimiento y accesibilidad se miden con Lighthouse en móvil (mediana de 3 pasadas sobre /es) y axe-core.
+Si el equipo va frenado (índice de Lighthouse por debajo de 1000), el rendimiento no se da por medido: se
+repite con el equipo descansado. Necesita el Chromium de Playwright, que se instala una vez por equipo
+con `pnpm bones:setup`.
 
-**Avisan, no detienen.** Las cinco últimas filas informan sin parar el trabajo durante dos semanas. El día
+**Dos bancos de medida.** Antes de subir se mide el build servido desde el propio equipo, con compresión
+(`pnpm check:full`). Después de desplegar se mide la web publicada (`pnpm check:prod`). El LCP y el TBT
+tienen una fila para cada banco porque no dan lo mismo: en local todo llega antes del primer pintado y
+Lighthouse carga al LCP el JavaScript y las tipografías, así que sale más alto (unos 3,6 s) que en la web
+publicada (2,3 s). El límite local sirve para no empeorar; el de producción es el umbral reconocido.
+Accesibilidad, CLS y nota usan la misma fila en los dos bancos.
+
+**Avisan, no detienen.** Las siete últimas filas informan sin parar el trabajo durante dos semanas. El día
 de la revisión se decide si pasan a detener (`node scripts/check-runtime.mjs --strict`).
 
 - Revisión de los avisos: hasta el 2026-10-27
@@ -65,14 +74,12 @@ Valores del 2026-10-13, de los que salen los límites de arriba.
 | HTML medido, gzip | 22,4 kB | no puede subir |
 | CSS medido, gzip | 14,4 kB | no puede subir |
 | JavaScript medido, gzip | 155,2 kB | no puede subir |
+| Nota medida en producción | 97 | no puede bajar |
+| LCP medido en producción | 2286 ms | no puede subir |
+| TBT medido en producción | 60 ms | no puede subir |
 
-Cuando una cifra mejore de forma estable, se actualiza aquí y se aprieta su límite.
-
-## Objetivos que hoy no se cumplen
-
-- LCP de Lighthouse ≤ 2500 ms: es el umbral «bueno» de Core Web Vitals, y hoy sale 3685. No se exige porque
-  un límite que nace en rojo se acaba ignorando; se exige no empeorar. Con una red 4G lenta aplicada de
-  verdad, en vez de simulada, la misma página da 1,8 s.
+Cuando una cifra mejore de forma estable, se actualiza aquí y se aprieta su límite. Las de producción son
+de después de desplegar el commit `88d431c`.
 
 ## Dónde corre cada cosa
 
@@ -81,6 +88,7 @@ Cuando una cifra mejore de forma estable, se actualiza aquí y se aprieta su lí
 | `pnpm check:fast` | tras cada edición | lint, tipos y suelo | unos 10 s |
 | `pnpm check:task` | antes de dar una tarea por terminada | lo anterior, pruebas de lógica, compilar y pruebas del build | unos 30 s |
 | `pnpm check:full` | antes de subir a main | lo anterior, accesibilidad y rendimiento | unos 90 s |
+| `pnpm check:prod` | después de desplegar | accesibilidad y rendimiento de la web publicada | unos 60 s |
 
 Tiempos con el equipo descansado; frenado, pueden triplicarse.
 
@@ -93,6 +101,8 @@ antes de subir, no lo comprueba nadie.
   código» es una regla escrita, sin herramienta detrás.
 - Cobertura de pruebas: no se mide.
 - Comportamiento en el navegador (tema, pestañas de la carta, reserva, pieza animada): no hay pruebas.
+- Datos de campo: no hay. El LCP, el CLS y el TBT son de laboratorio, y el INP, que solo existe con
+  visitantes reales, no está medido.
 - Intención: el vigilante del suelo mira líneas, no lo que significan. Una aserción cambiada por otra más
   floja, o un script de comprobación que hace menos con las mismas líneas, solo queda anotado.
 

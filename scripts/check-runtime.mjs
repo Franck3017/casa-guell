@@ -1,7 +1,9 @@
 // Comprobaciones que necesitan la web en marcha: accesibilidad (axe-core) y rendimiento (Lighthouse).
-// Sirve dist/ comprimido como lo hace el alojamiento, abre un solo Chromium para las dos y compara con
-// los límites de CONSTRAINTS.md, que se leen de ese archivo.
-// Uso: node scripts/check-runtime.mjs [--strict]   (necesita dist/: lo deja `pnpm build`)
+// Abre un solo Chromium para las dos y compara con los límites de CONSTRAINTS.md, que se leen de ese archivo.
+// Mide uno de dos bancos, cada uno con sus límites de LCP y TBT:
+//   - sin --url, el build de dist/ servido desde este equipo, comprimido como lo hace el alojamiento;
+//   - con --url, una web ya publicada.
+// Uso: node scripts/check-runtime.mjs [--strict] [--url <dirección>]   (sin --url necesita dist/: lo deja `pnpm build`)
 import { existsSync, readFileSync, statSync } from 'node:fs'
 import { createServer } from 'node:http'
 import path from 'node:path'
@@ -12,12 +14,28 @@ import lighthouse from 'lighthouse'
 import { chromium } from 'playwright'
 import { maxOf, minOf } from './constraints.mjs'
 
+const urlAt = process.argv.indexOf('--url')
+let published = null
+if (urlAt > -1) {
+  try {
+    published = new URL(process.argv[urlAt + 1]).origin
+  } catch {
+    console.error('check-runtime: --url necesita una dirección completa, por ejemplo https://ejemplo.com')
+    process.exit(2)
+  }
+}
+
 // Cada límite, por el nombre de su regla en CONSTRAINTS.md. `max`: no puede pasar de ahí; `min`: no puede bajar.
+// En local, Lighthouse carga al LCP recursos que en la web publicada llegan después del primer pintado:
+// por eso el LCP y el TBT tienen una regla para cada banco.
+const TIMING_RULES = published == null
+  ? { lcp: 'LCP de Lighthouse', tbt: 'TBT' }
+  : { lcp: 'LCP en producción', tbt: 'TBT en producción' }
 const LIMITS = {
   seriousA11y: { max: maxOf('Accesibilidad'), label: 'Fallos graves o críticos de accesibilidad' },
   cls: { max: maxOf('CLS'), label: 'CLS' },
-  tbt: { max: maxOf('TBT'), label: 'Bloqueo total, TBT (ms)' },
-  lcp: { max: maxOf('LCP de Lighthouse'), label: 'LCP (ms)' },
+  tbt: { max: maxOf(TIMING_RULES.tbt), label: 'Bloqueo total, TBT (ms)' },
+  lcp: { max: maxOf(TIMING_RULES.lcp), label: 'LCP (ms)' },
   score: { min: minOf('Nota de Lighthouse'), label: 'Nota de rendimiento de Lighthouse' }
 }
 const LIGHTHOUSE_RUNS = 3
@@ -26,7 +44,7 @@ const LIGHTHOUSE_RUNS = 3
 const MIN_BENCHMARK_INDEX = 1000
 
 const dist = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', 'dist')
-if (!existsSync(path.join(dist, 'es.html'))) {
+if (published == null && !existsSync(path.join(dist, 'es.html'))) {
   console.error('check-runtime: falta dist/. Lanza `pnpm build` antes.')
   process.exit(2)
 }
@@ -63,7 +81,7 @@ const server = createServer((req, res) => {
   }
 })
 const listen = (srv) => new Promise((resolve) => srv.listen(0, '127.0.0.1', () => resolve(srv.address().port)))
-const origin = `http://127.0.0.1:${await listen(server)}`
+const origin = published ?? `http://127.0.0.1:${await listen(server)}`
 
 // Un puerto libre para que Lighthouse se conecte al mismo navegador que usa axe: así llega ya en marcha,
 // y no mide el arranque en frío de un navegador recién abierto, que en algunos equipos falsea la nota.
@@ -109,9 +127,10 @@ try {
   notes.push(`  Lighthouse, ${LIGHTHOUSE_RUNS} pasadas: ${runs.map((r) => `nota ${r.score} · LCP ${r.lcp} · CLS ${r.cls} · TBT ${r.tbt}`).join(' | ')} · índice del equipo ${measured.bench}`)
 } finally {
   await browser.close()
-  server.close()
+  if (server.listening) server.close()
 }
 
+console.log(`check-runtime: ${published == null ? 'build local (dist/)' : `web publicada, ${published}`}`)
 const throttled = measured.bench < MIN_BENCHMARK_INDEX
 let failed = 0
 for (const [key, { min, max, label }] of Object.entries(LIMITS)) {

@@ -5,6 +5,8 @@ import { HomePage } from './HomePage'
 import { NotFoundPage } from './NotFoundPage'
 import { RouteError } from './RouteError'
 import { detectLocale } from '@/i18n'
+import { AdminLoadError, AdminShell } from './AdminShell'
+import { AdminLayout, BlocksPage, DashboardPage, LoginPage } from './adminPages'
 
 function LocaleRedirect () {
   const location = useLocation()
@@ -29,6 +31,25 @@ export const routes: RouteObject[] = [
         children: [
           { index: true, element: <HomePage /> },
           { path: '*', element: <NotFoundPage /> }
+        ]
+      }
+    ]
+  },
+  {
+    path: '/admin',
+    element: <AdminShell />,
+    errorElement: <AdminLoadError />,
+    children: [
+      {
+        path: 'login',
+        element: <LoginPage />
+      },
+      {
+        element: <AdminLayout />,
+        children: [
+          { index: true, element: <DashboardPage /> },
+          { path: 'dashboard', element: <DashboardPage /> },
+          { path: 'blocks', element: <BlocksPage /> }
         ]
       }
     ]

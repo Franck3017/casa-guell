@@ -36,7 +36,10 @@ export interface Messages {
   search: { label: string, placeholder: string, noResults: string, hint: string, clear: string }
   backToTop: { label: string }
   skip: { content: string }
-  reserve: { title: string, short: string, date: string, time: string, people: string, name: string, phone: string, phoneHint: string, lunch: string, dinner: string, submit: string, sending: string, success: string, successDesc: string, error: string, close: string, closedDay: string, noSlots: string, bigGroup: string, errorCall: string }
+  reserve: { title: string, short: string, date: string, time: string, people: string, name: string, phone: string, phoneHint: string, lunch: string, dinner: string, submit: string, sending: string, success: string, successDesc: string, close: string, closedDay: string, errorCall: string, selectSlot: string; noSlots: string; codeLabel: string; email: string; notes: string; errNoAvailability: string; errClosedDay: string; errDateRange: string; errTooMany: string; errGeneric: string
+    /** Diálogo de reserva: tira de días, comensales, horas libres. */
+    closedTag: string, otherDate: string, fewer: string, more: string, person: string, persons: string, full: string, pickSlot: string, slotsHint: string, loadingSlots: string, slotsFailed: string, retry: string 
+  }
   closing: { title: string, phoneLabel: string }
   film: {
     label: string, pause: string, play: string

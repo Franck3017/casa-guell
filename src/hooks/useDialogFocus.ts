@@ -1,6 +1,10 @@
 import { useEffect, useRef, type KeyboardEvent, type RefObject } from 'react'
 
-const FOCUSABLE = 'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+// Lo que recibe el foco con Tab. Quedan fuera los controles con tabindex -1: en un grupo que se recorre con
+// las flechas (los días, las horas) solo uno está en el orden de tabulación.
+const FOCUSABLE = ['a[href]', 'button:not([disabled])', 'input:not([disabled])', 'select:not([disabled])', 'textarea:not([disabled])', '[tabindex]']
+  .map((selector) => selector + ':not([tabindex="-1"])')
+  .join(', ')
 
 interface DialogFocusOptions {
   open: boolean
@@ -14,7 +18,8 @@ interface DialogFocusOptions {
 /**
  * Comportamiento de un diálogo modal: al abrir enfoca `initialRef`, Escape cierra, el fondo no hace
  * scroll, Tab y Shift+Tab dan la vuelta dentro del panel y, al cerrar, el foco vuelve a donde estaba.
- * `rememberFocus` se llama justo antes de abrir; `trapFocus` va en el onKeyDown del diálogo.
+ * `rememberFocus` se llama justo antes de abrir, si entre medias el foco puede cambiar de sitio; si no se
+ * llama, se toma el que haya al abrir. `trapFocus` va en el onKeyDown del diálogo.
  */
 export function useDialogFocus ({ open, close, panelRef, initialRef }: DialogFocusOptions) {
   const returnFocusRef = useRef<HTMLElement | null>(null)
@@ -28,11 +33,14 @@ export function useDialogFocus ({ open, close, panelRef, initialRef }: DialogFoc
     const prevOverflow = document.body.style.overflow
     document.body.style.overflow = 'hidden'
     window.addEventListener('keydown', onKey)
+    // Si quien abre no ha apuntado antes dónde estaba el foco (rememberFocus), se apunta aquí, antes de moverlo
+    returnFocusRef.current ??= document.activeElement instanceof HTMLElement ? document.activeElement : null
     initialRef.current?.focus()
     return () => {
       window.removeEventListener('keydown', onKey)
       document.body.style.overflow = prevOverflow
       returnFocusRef.current?.focus()
+      returnFocusRef.current = null
     }
   }, [open, initialRef])
 
@@ -43,15 +51,20 @@ export function useDialogFocus ({ open, close, panelRef, initialRef }: DialogFoc
   const trapFocus = (e: KeyboardEvent<HTMLElement>): void => {
     const panel = panelRef.current
     if (e.key !== 'Tab' || panel == null) return
-    const items = Array.from(panel.querySelectorAll<HTMLElement>(FOCUSABLE))
+    // Lo que no se pinta (una columna que solo sale en pantallas anchas) tampoco puede recibir el foco
+    const items = Array.from(panel.querySelectorAll<HTMLElement>(FOCUSABLE)).filter((item) => item.getClientRects().length > 0)
     if (items.length === 0) return
     const first = items[0]
     const last = items[items.length - 1]
     const active = document.activeElement
-    if (e.shiftKey && (active === first || !panel.contains(active))) {
+    const outside = active == null || !panel.contains(active)
+    // El foco puede estar en algo que no entra en la vuelta (un título enfocado al abrir): cuenta por su
+    // sitio en el documento, o el navegador lo sacaría del diálogo al no encontrar nada antes o después.
+    const where = (item: HTMLElement): number => active == null ? 0 : item.compareDocumentPosition(active)
+    if (e.shiftKey && (outside || active === first || (where(first) & Node.DOCUMENT_POSITION_PRECEDING) !== 0)) {
       e.preventDefault()
       last.focus()
-    } else if (!e.shiftKey && (active === last || !panel.contains(active))) {
+    } else if (!e.shiftKey && (outside || active === last || (where(last) & Node.DOCUMENT_POSITION_FOLLOWING) !== 0)) {
       e.preventDefault()
       first.focus()
     }

@@ -1,6 +1,7 @@
 import type { Locale } from '@/i18n'
 
-const INTL_LOCALE: Record<Locale, string> = { ca: 'ca-ES', es: 'es-ES', en: 'en-GB' }
+/** El idioma de la página como lo esperan las funciones de formato del navegador (Intl). */
+export const INTL_LOCALE: Record<Locale, string> = { ca: 'ca-ES', es: 'es-ES', en: 'en-GB' }
 
 /** Partículas que van en minúscula dentro de un nombre de plato (es/ca). */
 const SMALL_WORDS = new Set([

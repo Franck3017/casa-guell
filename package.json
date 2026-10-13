@@ -10,7 +10,11 @@
     "lint:fix": "oxlint src tests --fix --fix-suggestions",
     "typecheck": "tsc --noEmit && tsc --noEmit -p tests",
     "check": "pnpm run lint && pnpm run typecheck",
-    "test": "vitest run tests/unit",
+    "check:fast": "pnpm run check && node scripts/floor-guard.mjs",
+    "check:task": "pnpm run check && pnpm run test && pnpm run test:build && node scripts/floor-guard.mjs",
+    "check:full": "pnpm run check && pnpm run test && pnpm run test:build && node scripts/check-runtime.mjs && node scripts/floor-guard.mjs",
+    "test": "vitest run tests/unit tests/guard",
+    "test:build": "pnpm run build && vitest run tests/build",
     "preview": "vite preview",
     "bones:build": "boneyard-js build",
     "bones:setup": "playwright install chromium"
@@ -30,6 +34,7 @@
     "tailwind-merge": "^3.7.0"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.13.0",
     "@babel/core": "^7.29.7",
     "@rolldown/plugin-babel": "^0.2.3",
     "@tailwindcss/vite": "^4.3.3",
@@ -40,7 +45,9 @@
     "@types/react-dom": "^19.3.0",
     "@vitejs/plugin-react": "^6.1.1",
     "babel-plugin-react-compiler": "^1.0.0",
+    "lighthouse": "^13.5.0",
     "oxlint": "^1.81.0",
+    "playwright": "1.63.0",
     "tailwindcss": "^4.3.3",
     "typescript": "~6.0.3",
     "vite": "^8.3.0",

@@ -45,6 +45,6 @@ export function slotsFor (dateStr: string, now: Date): string[] {
   const limit = now.getHours() * 60 + now.getMinutes() + SAME_DAY_LEAD_MIN
   return base.filter((s) => {
     const [h, min] = s.split(':').map(Number)
-    return h * 60 + min > limit
+    return h * 60 + min >= limit
   })
 }

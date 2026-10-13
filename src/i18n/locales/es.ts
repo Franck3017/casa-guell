@@ -22,7 +22,8 @@ export const es: Messages = {
     sets: { barra: 'La Barra', empezar: 'Para Empezar', compartir: 'Para Compartir', rematar: 'Para Rematar', postres: 'Postres', cocteles: 'Cócteles', spritz: 'Spritz', apertivo: 'Aperitivo', cervezas: 'Cervezas', soft: 'Refrescos', gin: 'Gin', ron: 'Ron', whisky: 'Whisky', tequila: 'Tequila', vodka: 'Vodka', copas: 'Copas Premium', chupitos: 'Chupitos 3,50 €', copes: 'Copas 6,50 €', digestiu: 'Digestivo' },
     section: 'Sección',
     refs: 'referencias', refsOne: 'referencia', empty: 'Esta sección no tiene referencias por ahora.', shot: 'Chupito', glass: 'Copa',
-    allergenLegend: 'Leyenda de alérgenos'
+    allergenLegend: 'Leyenda de alérgenos',
+    allergenAsk: 'Otros alérgenos: consulta al personal'
   },
   mercat: { title: 'El mercado manda', desc: 'Cada mañana bajamos a la lonja y elegimos el mejor pescado y marisco del día. No hay carta fija de mercado: pregunta por el producto del día, porque cambia cada jornada según lo que ofrece el mar.', accion: 'Pregunta por el producto del día', caption: 'Lonja de Barcelona · compra diaria', imgAlt2: 'Jordi, el chef, mirando con sorpresa una caja azul llena de cigalas frescas en la cocina', imgAlt3: 'Una cigala fresca sostenida en la mano sobre un plato con más cigalas' },
   ubicacio: {

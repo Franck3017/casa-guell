@@ -22,7 +22,8 @@ export const ca: Messages = {
     sets: { barra: 'La Barra', empezar: 'Per Començar', compartir: 'Per Compartir', rematar: 'Per Rematar', postres: 'Postres', cocteles: 'Cocteles', spritz: 'Spritz', apertivo: 'Aperitiu', cervezas: 'Cerveses', soft: 'Refrescos', gin: 'Gin', ron: 'Ron', whisky: 'Whisky', tequila: 'Tequila', vodka: 'Vodka', copas: 'Copes Premium', chupitos: 'Xupitos 3,50 €', copes: 'Copes 6,50 €', digestiu: 'Digestiu' },
     section: 'Secció',
     refs: 'referències', refsOne: 'referència', empty: 'Aquesta secció no té referències ara mateix.', shot: 'Xupito', glass: 'Copa',
-    allergenLegend: 'Llegenda d\'al·lèrgens'
+    allergenLegend: 'Llegenda d\'al·lèrgens',
+    allergenAsk: 'Altres al·lèrgens: consulta el personal'
   },
   mercat: { title: 'El mercat mana', desc: 'Cada matí baixem a la llotja i triem el millor peix i marisc del dia. No hi ha carta fixa de mercat: pregunta pel producte del dia, perquè canvia cada jornada segons el que ofereix el mar.', accion: 'Pregunta pel producte del dia', caption: 'Llotja de Barcelona · compra diària', imgAlt2: 'Jordi, el xef, mirant amb sorpresa una caixa blava plena de escamarlans frescos a la cuina', imgAlt3: 'Un escamarlà fresc sostingut a la mà sobre un plat amb més escamarlans' },
   ubicacio: {

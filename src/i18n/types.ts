@@ -22,6 +22,7 @@ export interface Messages {
     }
     section: string; refs: string; refsOne: string; empty: string; shot: string; glass: string
     allergenLegend: string
+    allergenAsk: string
   }
   mercat: { title: string, desc: string, accion: string, caption: string, imgAlt2: string, imgAlt3: string }
   ubicacio: {

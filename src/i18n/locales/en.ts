@@ -22,7 +22,8 @@ export const en: Messages = {
     sets: { barra: 'The Bar', empezar: 'To Start', compartir: 'To Share', rematar: 'To Finish', postres: 'Desserts', cocteles: 'Cocktails', spritz: 'Spritz', apertivo: 'Aperitif', cervezas: 'Beers', soft: 'Soft Drinks', gin: 'Gin', ron: 'Rum', whisky: 'Whisky', tequila: 'Tequila', vodka: 'Vodka', copas: 'Premium Glasses', chupitos: 'Shots 3.50 €', copes: 'Glasses 6.50 €', digestiu: 'Digestif' },
     section: 'Section',
     refs: 'references', refsOne: 'item', empty: 'This section has no items right now.', shot: 'Shot', glass: 'Glass',
-    allergenLegend: 'Allergen key'
+    allergenLegend: 'Allergen key',
+    allergenAsk: 'Other allergens: ask our staff'
   },
   mercat: { title: 'The market leads', desc: 'Every morning we go down to the fish market and choose the best fish and seafood of the day. There is no fixed market menu: ask for the product of the day, because it changes daily according to what the sea offers.', accion: 'Ask for the product of the day', caption: 'Barcelona fish market · daily purchase', imgAlt2: 'Chef Jordi looking in surprise at a blue crate full of fresh langoustines in the kitchen', imgAlt3: 'A fresh langoustine held in the hand above a plate of more langoustines' },
   ubicacio: {

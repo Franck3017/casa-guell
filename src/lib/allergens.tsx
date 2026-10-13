@@ -1,31 +1,6 @@
 import type { ReactNode } from 'react'
 import { useI18n, type Locale } from '@/i18n'
-
-export type AllergenKey =
-  | 'gluten' | 'crustaceo' | 'huevo' | 'pescado' | 'lacteo' | 'soja'
-  | 'frutos' | 'apio' | 'mostaza' | 'sesamo' | 'sulfitos' | 'molusco' | 'altramuz'
-
-export const ALLERGEN_KEYS: AllergenKey[] = [
-  'gluten', 'crustaceo', 'huevo', 'pescado', 'lacteo', 'soja',
-  'frutos', 'apio', 'mostaza', 'sesamo', 'sulfitos', 'molusco', 'altramuz',
-]
-
-/** Códigos de carta impresa (G, H, L…) y nombres de carta web → clave interna. */
-const CODE_MAP: Record<string, AllergenKey> = {
-  G: 'gluten', GLUTEN: 'gluten',
-  C: 'crustaceo', CRUSTACEO: 'crustaceo',
-  H: 'huevo', HUEVO: 'huevo', OU: 'huevo',
-  P: 'pescado', PESCADO: 'pescado', PEIX: 'pescado',
-  L: 'lacteo', LACTEO: 'lacteo', LACTIS: 'lacteo', LECHE: 'lacteo',
-  S: 'soja', SOJA: 'soja',
-  F: 'frutos', 'FRUTOS SECOS': 'frutos', 'FRUITS DE CLOSCA': 'frutos', 'TREE NUTS': 'frutos',
-  A: 'apio', APIO: 'apio', API: 'apio',
-  M: 'mostaza', MOSTAZA: 'mostaza', MOSTASSA: 'mostaza',
-  SE: 'sesamo', SESAMO: 'sesamo', SESAM: 'sesamo', SESAME: 'sesamo',
-  SU: 'sulfitos', SULFITOS: 'sulfitos', SULFITS: 'sulfitos', SULPHITES: 'sulfitos',
-  MO: 'molusco', MOLUSCOS: 'molusco', MOLUSCS: 'molusco', MOLLUSCS: 'molusco',
-  AL: 'altramuz', ALTRAMUCES: 'altramuz', TRAMUSSOS: 'altramuz', LUPIN: 'altramuz',
-}
+import { ALLERGEN_KEYS, readAllergens, type AllergenKey } from './allergenCodes'
 
 export const LABELS: Record<AllergenKey, Record<Locale, string>> = {
   gluten:    { ca: 'Gluten', es: 'Gluten', en: 'Gluten' },
@@ -165,21 +140,6 @@ export const ICONS: Record<AllergenKey, () => ReactNode> = {
   ),
 }
 
-const norm = (s: string) =>
-  s.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toUpperCase().replace(/\s+/g, ' ').trim()
-
-/** Acepta código de carta impresa ('H.L.G.') o array de nombres (carta web). */
-export function parseAllergens(value?: string | string[] | null): AllergenKey[] {
-  if (!value) return []
-  const tokens = Array.isArray(value) ? value : value.split(/[.,;]/)
-  const out: AllergenKey[] = []
-  for (const tok of tokens) {
-    const k = CODE_MAP[norm(tok)]
-    if (k && !out.includes(k)) out.push(k)
-  }
-  return out
-}
-
 function AllergenChip({ k }: { k: AllergenKey }) {
   const { locale } = useI18n()
   const label = LABELS[k][locale]
@@ -195,20 +155,21 @@ function AllergenChip({ k }: { k: AllergenKey }) {
   )
 }
 
-/** Fila de iconos de alérgenos; fallback a texto si algún código no tiene icono. */
+/**
+ * Los alérgenos que declara un plato: un icono por cada uno. Si la carta trae algo que no se entiende (una
+ * letra que su leyenda no explica), no se calla: se pide consultar al personal, porque sin ese aviso el
+ * plato parecería llevar menos de lo que declara.
+ */
 export function AllergenIcons({ value }: { value?: string | string[] | null }) {
-  const keys = parseAllergens(value)
-  if (keys.length === 0) {
-    if (!value) return null
-    return (
-      <p className="mt-1 font-mono2 text-[11px] uppercase tracking-widest text-ink/60">
-        {Array.isArray(value) ? value.join(' · ') : value}
-      </p>
-    )
-  }
+  const { t } = useI18n()
+  const { known, unknown } = readAllergens(value)
+  if (known.length === 0 && unknown.length === 0) return null
   return (
-    <span className="mt-1.5 flex flex-wrap gap-1.5">
-      {keys.map((k) => <AllergenChip key={k} k={k} />)}
+    <span className="mt-1.5 flex flex-wrap items-center gap-1.5">
+      {known.map((k) => <AllergenChip key={k} k={k} />)}
+      {unknown.length > 0 && (
+        <span className="font-mono2 text-[11px] uppercase tracking-widest text-ink/70">{t.carta.allergenAsk}</span>
+      )}
     </span>
   )
 }

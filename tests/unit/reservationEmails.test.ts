@@ -2,6 +2,7 @@ import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest'
 import {
   createHandler,
   createResendSender,
+  DEFAULT_FROM,
   escapeHtml,
   restaurantTime,
   SECRET_HEADER,
@@ -473,23 +474,50 @@ describe('createResendSender', () => {
   it('falla cuando Resend rechaza el correo', async () => {
     const rejected: typeof fetch = async () => new Response('{"message":"The domain is not verified"}', { status: 403 })
 
-    await expect(createResendSender('clave', rejected)(EMAIL)).rejects.toThrow('403')
+    await expect(createResendSender({ apiKey: 'clave', fetchImpl: rejected })(EMAIL)).rejects.toThrow('403')
   })
 
   it('falla sin llamar a Resend si no hay clave', async () => {
     const neverCalled = vi.fn<typeof fetch>()
 
-    await expect(createResendSender('', neverCalled)(EMAIL)).rejects.toThrow('RESEND_API_KEY')
+    await expect(createResendSender({ apiKey: '', fetchImpl: neverCalled })(EMAIL)).rejects.toThrow('RESEND_API_KEY')
     expect(neverCalled).not.toHaveBeenCalled()
   })
 
   it('entrega a Resend el destinatario, el asunto y el contenido', async () => {
     const accepted = vi.fn<typeof fetch>(async () => new Response('{"id":"1"}', { status: 200 }))
 
-    await createResendSender('clave', accepted)(EMAIL)
+    await createResendSender({ apiKey: 'clave', fetchImpl: accepted })(EMAIL)
 
     const [, init] = accepted.mock.calls[0]
     expect(JSON.parse(String(init?.body))).toMatchObject(EMAIL)
+  })
+
+  describe('quién firma el correo', () => {
+    /** El remitente con el que llega a Resend un correo enviado con esa configuración. */
+    const signedBy = async (from?: string): Promise<unknown> => {
+      const accepted = vi.fn<typeof fetch>(async () => new Response('{"id":"1"}', { status: 200 }))
+      await createResendSender({ apiKey: 'clave', from, fetchImpl: accepted })(EMAIL)
+      return JSON.parse(String(accepted.mock.calls[0][1]?.body)).from
+    }
+
+    it('la dirección de la casa, si no se configura otra', async () => {
+      expect(await signedBy()).toBe(DEFAULT_FROM)
+      expect(DEFAULT_FROM).toBe('Casa Güell <reserves@casaguellbcn.com>')
+    })
+
+    it('el remitente que se configure, tal cual', async () => {
+      expect(await signedBy('Casa Güell <reservas@otro-dominio.example>')).toBe('Casa Güell <reservas@otro-dominio.example>')
+    })
+
+    it('sin los espacios que se cuelen al pegarlo', async () => {
+      expect(await signedBy('  reservas@otro-dominio.example \n')).toBe('reservas@otro-dominio.example')
+    })
+
+    it('un remitente en blanco no vale: firma la casa', async () => {
+      expect(await signedBy('')).toBe(DEFAULT_FROM)
+      expect(await signedBy('   ')).toBe(DEFAULT_FROM)
+    })
   })
 })
 

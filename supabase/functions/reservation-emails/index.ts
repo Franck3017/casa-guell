@@ -11,6 +11,8 @@ import { createHandler, createResendSender, type Reservation, type ReservationSt
 //
 // Lo único que hay que poner en los secretos de la función:
 // · RESEND_API_KEY: la clave de Resend. Sin ella no sale ningún correo (las reservas siguen funcionando).
+// · RESERVATION_EMAILS_FROM (opcional): el remitente, como «Casa Güell <reservas@dominio>». Su dominio
+//   tiene que estar verificado en Resend. Sin él firma el de la casa (DEFAULT_FROM en handler.ts).
 // · RESERVATION_NOTIFY_EMAIL (opcional): la dirección de la sala, para avisarla de cada solicitud nueva.
 
 const supabase = createClient(
@@ -64,7 +66,7 @@ Deno.serve(async (req) => {
     handler = createHandler({
       secret,
       store,
-      sendEmail: createResendSender(Deno.env.get('RESEND_API_KEY') ?? ''),
+      sendEmail: createResendSender({ apiKey: Deno.env.get('RESEND_API_KEY') ?? '', from: Deno.env.get('RESERVATION_EMAILS_FROM') }),
       notifyTo: Deno.env.get('RESERVATION_NOTIFY_EMAIL') || undefined
     })
   }

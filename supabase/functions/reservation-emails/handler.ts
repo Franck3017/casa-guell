@@ -95,17 +95,31 @@ export function escapeHtml (text: string): string {
 
 const safe = (value: unknown): string => escapeHtml(String(value))
 
+/** Quién firma los correos si no se configura otro remitente. */
+export const DEFAULT_FROM = 'Casa Güell <reserves@casaguellbcn.com>'
+
+interface ResendOptions {
+  apiKey: string
+  /**
+   * El remitente, como «Nombre <dirección>» o solo la dirección. Resend solo acepta direcciones de un
+   * dominio verificado en la cuenta; sin esto, o en blanco, firma DEFAULT_FROM.
+   */
+  from?: string
+  fetchImpl?: typeof fetch
+}
+
 /**
  * Envío con Resend. `fetch` no falla cuando el servidor responde con un error (clave caducada, dominio
  * sin verificar, demasiados envíos): hay que mirar la respuesta, o el correo se da por enviado sin estarlo.
  */
-export function createResendSender (apiKey: string, fetchImpl: typeof fetch = fetch): (email: Email) => Promise<void> {
+export function createResendSender ({ apiKey, from, fetchImpl = fetch }: ResendOptions): (email: Email) => Promise<void> {
+  const sender = from?.trim() || DEFAULT_FROM
   return async ({ to, subject, html }) => {
     if (apiKey === '') throw new Error('Falta RESEND_API_KEY')
     const response = await fetchImpl('https://api.resend.com/emails', {
       method: 'POST',
       headers: { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json' },
-      body: JSON.stringify({ from: 'Casa Güell <reserves@casaguellbcn.com>', to, subject, html })
+      body: JSON.stringify({ from: sender, to, subject, html })
     })
     if (!response.ok) throw new Error(`Resend ha respondido ${response.status}: ${await response.text()}`)
   }

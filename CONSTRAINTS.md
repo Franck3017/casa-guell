@@ -108,7 +108,7 @@ antes de subir, no lo comprueba nadie.
 
 ## Excepciones
 
-Ninguna. Una excepción es una fila con identificador (`W1`, `W2`…), regla, ruta, motivo, responsable y
+Una excepción es una fila con identificador (`W1`, `W2`…), regla, ruta, motivo, responsable y
 fecha de caducidad, a 90 días como mucho. La regla se escribe con el nombre que da el vigilante entre
 corchetes (`comprobador silenciado`, `trabajo a medias`, `prueba saltada`, `prueba borrada`,
 `aserción quitada`, `comprobación quitada`) y la ruta admite `*` y `**`.
@@ -119,3 +119,4 @@ toca a este archivo no hay excepciones.
 
 | ID | Regla | Ruta | Motivo | Responsable | Caduca |
 |----|-------|------|--------|-------------|--------|
+| W1 | `aserción quitada` | `tests/unit/reserveSchedule.test.ts` | Se borran `slotsFor` y `ALL_SLOTS`, que ya no usa nadie: las horas de mesa las da la base de datos. Sus pruebas se van con ellos | Franck3017 | 2026-10-20 |

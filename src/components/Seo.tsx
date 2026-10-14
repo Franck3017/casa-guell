@@ -49,18 +49,17 @@ export function LocaleSeo () {
   const location = useLocation()
 
   useEffect(() => {
-    // Cada idioma tiene su portada y su información legal: cualquier otra ruta es la de "no encontrado".
-    // Esa se marca noindex y se presenta como la portada, que es adonde lleva su canónica.
+    // Cada idioma tiene su portada y su información legal: cualquier otra ruta es la de "no encontrado",
+    // y pageMeta decide cómo se presenta y que no se indexe.
     const page = pageOf(locale, location.pathname)
-    const notFound = page == null
-    const { title, description: desc, canonical } = pageMeta(locale, t, page ?? '')
+    const { title, description: desc, canonical, robots } = pageMeta(locale, t, page)
     const ogImage = OG_IMAGE
 
     // --- Básicos ---
     document.documentElement.lang = locale
     document.title = title
     upsertMeta('name', 'description', desc)
-    upsertMeta('name', 'robots', notFound ? 'noindex, follow' : 'index, follow, max-image-preview:large')
+    upsertMeta('name', 'robots', robots)
 
     // --- Open Graph ---
     upsertMeta('property', 'og:site_name', 'Casa Güell')

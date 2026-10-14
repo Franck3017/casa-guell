@@ -4,7 +4,7 @@ import { prerenderToNodeStream } from 'react-dom/static'
 import { createStaticHandler, createStaticRouter, StaticRouterProvider } from 'react-router'
 import { routes } from '@/app/routes'
 import { BASE_URL, OG_IMAGE } from '@/components/Seo'
-import { PAGES, pageMeta, type PagePath } from '@/components/Seo/pageMeta'
+import { PAGES, pageMeta, ROBOTS, type PagePath } from '@/components/Seo/pageMeta'
 import { restaurantSchema, websiteSchema } from '@/components/Seo/structuredData'
 import { LOCALES, type Locale } from '@/i18n'
 import { ca } from '@/i18n/locales/ca'
@@ -14,7 +14,7 @@ import { es } from '@/i18n/locales/es'
 const DICTS = { ca, es, en }
 const OG_LOCALE: Record<Locale, string> = { ca: 'ca_ES', es: 'es_ES', en: 'en_US' }
 
-export { LOCALES, PAGES }
+export { LOCALES, PAGES, ROBOTS }
 
 /**
  * HTML de una página (la portada o la información legal) en un idioma. El navegador lo adopta tal cual

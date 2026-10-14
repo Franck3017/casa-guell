@@ -20,7 +20,7 @@ function setMeta (html, attr, key, content) {
   return html.replace(re, `$1${escapeAttr(content)}$2`)
 }
 
-const { renderPage, headFor, LOCALES, PAGES } = await import(pathToFileURL(path.join(ssr, 'entry-prerender.js')).href)
+const { renderPage, headFor, LOCALES, PAGES, ROBOTS } = await import(pathToFileURL(path.join(ssr, 'entry-prerender.js')).href)
 const template = await readFile(path.join(dist, 'index.html'), 'utf8')
 if (!template.includes('<div id="root"></div>')) throw new Error('La plantilla no tiene <div id="root"></div>')
 
@@ -38,7 +38,7 @@ for (const { locale, page } of LOCALES.flatMap((locale) => PAGES.map((page) => (
 
   const extra = [
     `<link rel="canonical" href="${head.canonical}" />`,
-    `<meta name="robots" content="index, follow, max-image-preview:large" />`,
+    `<meta name="robots" content="${head.robots}" />`,
     `<meta property="og:url" content="${head.canonical}" />`,
     `<meta property="og:locale" content="${head.ogLocale}" />`,
     `<meta property="og:image:alt" content="${escapeAttr(head.title)}" />`,
@@ -65,7 +65,7 @@ for (const { locale, page } of LOCALES.flatMap((locale) => PAGES.map((page) => (
 // los servidores estáticos que buscan un 404.html (GitHub Pages, Netlify, Cloudflare Pages, entre otros).
 await writeFile(
   path.join(dist, '404.html'),
-  template.replace('</head>', '    <meta name="robots" content="noindex, follow" />\n  </head>')
+  template.replace('</head>', `    <meta name="robots" content="${ROBOTS.noindex}" />\n  </head>`)
 )
 
 await rm(ssr, { recursive: true, force: true })

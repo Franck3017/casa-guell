@@ -49,6 +49,10 @@ describe.each(['ca', 'es', 'en'] as const)('portada generada /%s', (locale) => {
     expect(read(`${locale}/index.html`)).toBe(html)
   })
 
+  it('pide a los buscadores que la indexen', () => {
+    expect(html).toContain('<meta name="robots" content="index, follow, max-image-preview:large" />')
+  })
+
   // React adopta este HTML al arrancar: la carta tiene que venir entera y en su sitio, no en un bloque
   // aparte que un script coloca después (así salía cuando su código se cargaba por separado).
   it('trae todos los platos de la carta dentro de su sección', () => {
@@ -108,6 +112,10 @@ describe.each(['ca', 'es', 'en'] as const)('información legal generada /%s/lega
   it('está en su idioma y con su título', () => {
     expect(html).toContain(`<html lang="${locale}"`)
     expect(html).toContain(`<title>${DICTS[locale].legal.title} · Casa Güell</title>`)
+  })
+
+  it('pide a los buscadores que la indexen', () => {
+    expect(html).toContain('<meta name="robots" content="index, follow, max-image-preview:large" />')
   })
 
   it('se presenta con su propia dirección, no con la de la portada', () => {

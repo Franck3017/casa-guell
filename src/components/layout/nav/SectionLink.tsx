@@ -1,5 +1,6 @@
 import type { ComponentProps } from 'react'
 import { Link, useLocation } from 'react-router'
+import { pageOf } from '@/components/Seo/pageMeta'
 import { useI18n } from '@/i18n'
 
 /**
@@ -10,7 +11,7 @@ import { useI18n } from '@/i18n'
 export function SectionLink ({ section, ...rest }: { section: string } & Omit<ComponentProps<'a'>, 'href'>) {
   const { locale } = useI18n()
   const { pathname } = useLocation()
-  const atHome = pathname.replace(/\/$/, '') === `/${locale}`
+  const atHome = pageOf(locale, pathname) === ''
 
   if (atHome) return <a href={`#${section}`} {...rest} />
   return <Link to={`/${locale}#${section}`} viewTransition {...rest} />

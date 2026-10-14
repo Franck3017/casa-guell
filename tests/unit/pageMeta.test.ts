@@ -25,7 +25,8 @@ describe('cabecera de cada página', () => {
     expect(pageMeta('es', es, '')).toEqual({
       title: es.meta.title,
       description: es.meta.description,
-      canonical: 'https://casa-guell-drab.vercel.app/es'
+      canonical: 'https://casa-guell-drab.vercel.app/es',
+      robots: 'index, follow, max-image-preview:large'
     })
   })
 
@@ -33,7 +34,19 @@ describe('cabecera de cada página', () => {
     expect(pageMeta('ca', ca, '/legal')).toEqual({
       title: 'Informació legal · Casa Güell',
       description: ca.legal.intro,
-      canonical: 'https://casa-guell-drab.vercel.app/ca/legal'
+      canonical: 'https://casa-guell-drab.vercel.app/ca/legal',
+      robots: 'index, follow, max-image-preview:large'
+    })
+  })
+
+  // Si esto se invirtiera, los buscadores dejarían de indexar la web entera: por eso se decide aquí, con
+  // prueba, y no en el componente que lo escribe en el <head>
+  it('una ruta que no existe se presenta como la portada, pero pide no indexarse', () => {
+    expect(pageMeta('es', es, null)).toEqual({
+      title: es.meta.title,
+      description: es.meta.description,
+      canonical: 'https://casa-guell-drab.vercel.app/es',
+      robots: 'noindex, follow'
     })
   })
 })

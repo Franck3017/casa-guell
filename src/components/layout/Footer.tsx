@@ -1,6 +1,8 @@
-import type { ReactNode } from 'react'
+import { useRef, type ReactNode } from 'react'
 import { ArrowUpRight } from 'lucide-react'
-import { Link } from 'react-router'
+import { Link, useLocation } from 'react-router'
+import { useLegalPageReady } from '@/app/legalPage'
+import { pageOf } from '@/components/Seo/pageMeta'
 import { data } from '@/data'
 import { LEGAL_DOC_IDS } from '@/features/legal/content/types'
 import { useI18n } from '@/i18n'
@@ -11,7 +13,7 @@ import { plainHours } from '@/lib/menuFormat'
 import { PHONE, PHONE_HREF } from '@/lib/place'
 import { SOCIAL_LINKS } from '@/lib/social'
 import { BackToTop } from './BackToTop'
-import { useSectionHref } from './nav/useSectionHref'
+import { SectionLink } from './nav/SectionLink'
 
 type DayKey = 'md' | 'dg' | 'll'
 
@@ -38,7 +40,11 @@ const RECEIPT_LINK = '-my-2 inline-flex min-h-11 items-center underline decorati
 export function Footer () {
   const { ubicacion } = data
   const { t, locale } = useI18n()
-  const sectionHref = useSectionHref()
+  const { pathname } = useLocation()
+  const legalLinks = useRef<HTMLElement>(null)
+  const legalReady = useLegalPageReady(legalLinks)
+  // Entre documentos de la propia página legal se va desplazando; la transición es para cambiar de página
+  const toLegalPage = pageOf(locale, pathname) !== '/legal'
   const year = new Date().getFullYear()
 
   return (
@@ -83,12 +89,12 @@ export function Footer () {
               <ul className='flex flex-wrap gap-x-6 text-sm font-medium'>
                 {NAV_IDS.map((id) => (
                   <li key={id}>
-                    <a
-                      href={sectionHref(id)}
+                    <SectionLink
+                      section={id}
                       className='inline-flex min-h-11 items-center underline decoration-cream/35 underline-offset-8 transition-colors hover:decoration-cream motion-reduce:transition-none'
                     >
                       {t.nav[id]}
-                    </a>
+                    </SectionLink>
                   </li>
                 ))}
               </ul>
@@ -122,22 +128,23 @@ export function Footer () {
               ))}
             </dl>
 
-            <a
-              href={sectionHref('ubicacio')}
+            <SectionLink
+              section='ubicacio'
               className='mt-2 flex min-h-11 items-center justify-center border border-ink/60 text-[11px] uppercase tracking-[0.18em] transition-colors hover:border-brand hover:text-brand motion-reduce:transition-none'
             >
               {t.hero.ctaOnSom}
-            </a>
+            </SectionLink>
           </div>
         </div>
 
         {/* Lo que la ley pide tener a mano desde cualquier página: aviso legal, privacidad, cookies y consumo */}
-        <nav aria-label={t.legal.title} className='mx-auto max-w-6xl border-t border-cream/25 px-6'>
+        <nav ref={legalLinks} aria-label={t.legal.title} className='mx-auto max-w-6xl border-t border-cream/25 px-6'>
           <ul className='flex flex-wrap gap-x-6 text-sm font-medium'>
             {LEGAL_DOC_IDS.map((doc) => (
               <li key={doc}>
                 <Link
                   to={`/${locale}/legal#${doc}`}
+                  viewTransition={legalReady && toLegalPage}
                   className='inline-flex min-h-11 items-center underline decoration-cream/35 underline-offset-8 transition-colors hover:decoration-cream motion-reduce:transition-none'
                 >
                   {t.footer.legal[doc]}

@@ -1,20 +1,30 @@
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import { Navigate, Outlet, useLocation, useParams } from 'react-router'
 import { I18nProvider, LOCALES, DEFAULT_LOCALE, type Locale, useI18n } from '@/i18n'
 import { LocaleSeo } from '@/components/Seo'
+import { pageOf } from '@/components/Seo/pageMeta'
 import { Nav, Footer, ReserveModal } from '@/components/layout'
 import { DataVariantToggle } from '@/dev/DataVariantToggle'
+import { scrollOnArrival, type Place } from './scrollPolicy'
 
 /** Shell interno que SÍ tiene acceso a useI18n (vive dentro del provider). */
 function LocaleShell () {
-  const { t } = useI18n()
+  const { t, locale } = useI18n()
   const location = useLocation()
+  const place = useRef<Place | null>(null)
 
+  // Corre antes de que la transición de cambio de página fotografíe la pantalla nueva: por eso a otra
+  // página se llega de un salto, y lo que se funde son dos pantallas quietas.
   useEffect(() => {
-    if (!location.hash) { window.scrollTo(0, 0); return }
-    const el = document.getElementById(location.hash.slice(1))
-    el?.scrollIntoView()
-  }, [location])
+    const here: Place = { locale, page: pageOf(locale, location.pathname) }
+    const arrival = scrollOnArrival(place.current, here)
+    place.current = here
+    if (arrival === 'keep') return
+
+    const behavior = arrival === 'jump' ? 'instant' : 'auto'
+    if (!location.hash) { window.scrollTo({ top: 0, behavior }); return }
+    document.getElementById(location.hash.slice(1))?.scrollIntoView({ behavior })
+  }, [location, locale])
 
   return (
     <>

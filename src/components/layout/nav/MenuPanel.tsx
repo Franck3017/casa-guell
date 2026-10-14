@@ -3,8 +3,8 @@ import { LanguageSwitcher } from '@/components/ui'
 import { useMenuMotion } from '@/hooks/useMenuMotion'
 import { useI18n } from '@/i18n'
 import { ThemeToggle } from '../ThemeToggle'
+import { SectionLink } from './SectionLink'
 import type { NavLink } from './useNavLinks'
-import { useSectionHref } from './useSectionHref'
 
 interface MenuPanelProps {
   id: string
@@ -21,7 +21,6 @@ interface MenuPanelProps {
  */
 export function MenuPanel ({ id, open, links, onNavigate }: MenuPanelProps) {
   const { t } = useI18n()
-  const sectionHref = useSectionHref()
   const panelRef = useRef<HTMLDivElement>(null)
   useMenuMotion(panelRef, open)
 
@@ -42,8 +41,8 @@ export function MenuPanel ({ id, open, links, onNavigate }: MenuPanelProps) {
           <span aria-hidden='true' data-menu-line className='block h-px bg-ink/10' />
           {links.map(({ id: section, label, current }) => (
             <div key={section}>
-              <a
-                href={sectionHref(section)}
+              <SectionLink
+                section={section}
                 onClick={onNavigate}
                 aria-current={current ? 'location' : undefined}
                 className={`press flex min-h-16 items-center py-3 font-display text-[clamp(2rem,10vw,3rem)] leading-[1.1] tracking-[-0.035em] transition-colors ${
@@ -53,7 +52,7 @@ export function MenuPanel ({ id, open, links, onNavigate }: MenuPanelProps) {
                 <span className='block overflow-y-clip'>
                   <span data-menu-word className='block'>{label}</span>
                 </span>
-              </a>
+              </SectionLink>
               <span aria-hidden='true' data-menu-line className='block h-px bg-ink/10' />
             </div>
           ))}

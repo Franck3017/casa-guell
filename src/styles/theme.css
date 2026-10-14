@@ -78,11 +78,13 @@ html[data-vt] { --cg-dur: 0ms; }
   :root { --cg-dur: 0ms; }
 }
 
-/* View Transitions: old estático debajo, new revelado por el wipe */
-::view-transition-old(root),
-::view-transition-new(root) {
+/* View Transitions del cambio de tema: old estático debajo, new revelado por el wipe. Solo mientras dura
+   ese cambio (data-vt). Las demás (cambio de página y de idioma) usan el fundido del navegador, 250 ms de
+   opacidad sin movimiento, que por eso se mantiene también con prefers-reduced-motion. */
+html[data-vt]::view-transition-old(root),
+html[data-vt]::view-transition-new(root) {
   animation: none;
   mix-blend-mode: normal;
 }
-::view-transition-old(root) { z-index: 1; }
-::view-transition-new(root) { z-index: 2; }
+html[data-vt]::view-transition-old(root) { z-index: 1; }
+html[data-vt]::view-transition-new(root) { z-index: 2; }

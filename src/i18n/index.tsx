@@ -32,9 +32,10 @@ export function I18nProvider ({ locale, children }: { locale: Locale, children: 
     localStorage.setItem(STORAGE_KEY, next)
     // La misma elección en una cookie: el servidor (vercel.json) la lee para redirigir "/" al idioma elegido.
     document.cookie = `${STORAGE_KEY}=${next}; path=/; max-age=31536000; samesite=lax`
-    // Conserva sub-rutas futuras + hash + query al cambiar de idioma
+    // Conserva sub-rutas futuras + hash + query al cambiar de idioma. La página es la misma con otros
+    // textos: se funde una con otra (View Transitions) en vez de cambiar de golpe.
     const rest = location.pathname.replace(new RegExp(`^/${locale}(?=/|$)`), '')
-    navigate({ pathname: `/${next}${rest}`, search: location.search, hash: location.hash })
+    navigate({ pathname: `/${next}${rest}`, search: location.search, hash: location.hash }, { viewTransition: true })
   }, [locale, location.pathname, location.search, location.hash, navigate])
 
   const value = useMemo(() => ({ locale, t: DICTS[locale], setLocale }), [locale, setLocale])

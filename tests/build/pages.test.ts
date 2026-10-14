@@ -139,6 +139,18 @@ describe('archivos de la aplicación', () => {
     expect(css).not.toContain('bg-zinc-900')
   })
 
+  // El cambio de tema apaga la animación de la transición para dibujar encima su onda. Esa regla solo
+  // puede valer mientras dura ese cambio (data-vt): aplicada a todas, los cambios de página y de idioma
+  // se quedarían sin fundido y nada más lo delataría.
+  it('la onda del cambio de tema no apaga las demás transiciones', () => {
+    const selectors = [...css.matchAll(/([^{}]*::view-transition-(?:old|new)\(root\)[^{}]*)\{/g)]
+      .flatMap((rule) => rule[1].split(','))
+      .filter((selector) => selector.includes('::view-transition-'))
+
+    expect(selectors.length).toBeGreaterThan(0)
+    expect(selectors.filter((selector) => !selector.includes('[data-vt]'))).toEqual([])
+  })
+
   it('la réplica con la que boneyard mide el mapa no entra en producción', () => {
     expect(js).not.toContain('h-[67px]')
   })

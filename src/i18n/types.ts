@@ -49,6 +49,8 @@ export interface Messages {
     closedTag: string, otherDate: string, fewer: string, more: string, person: string, persons: string, full: string, pickSlot: string, slotsHint: string, loadingSlots: string, slotsFailed: string, retry: string
     /** Para qué se usan los datos de la reserva: lo primero que pide el RGPD decir donde se recogen. */
     dataUse: string
+    allergyTitle: string, allergyIntro: string, allergyToggle: string, allergyOther: string, allergyNotice: string, allergyConsent: string, errAllergyConsent: string
+    allergyGluten: string, allergyCrustaceans: string, allergyEggs: string, allergyFish: string, allergyPeanuts: string, allergySoy: string, allergyMilk: string, allergyNuts: string, allergyCelery: string, allergyMustard: string, allergySesame: string, allergySulphites: string, allergyLupin: string, allergyMolluscs: string
   }
   closing: { title: string, phoneLabel: string }
   film: {

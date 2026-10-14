@@ -110,7 +110,7 @@ const isTest = (f) => /\.(test|spec)\./.test(f)
 // Este archivo, sus pruebas y las guías instaladas nombran los patrones que se buscan: no se miran a sí mismos.
 const isExempt = (f) => /^scripts\/floor-guard\.mjs$|^tests\/guard\/|^\.claude\/|^\.agents\/|^CONSTRAINTS\.md$|^pnpm-lock\.yaml$/.test(f)
 // Los archivos que hacen las comprobaciones: un cambio en ellos puede hacer que comprueben menos.
-const isChecker = (f) => /^scripts\/(floor-guard|check-runtime|constraints)\.mjs$|^vitest\.config\.ts$|^tests\/setup\.ts$/.test(f)
+const isChecker = (f) => /^scripts\/(floor-guard|check-runtime|check-navigation|constraints)\.mjs$|^vitest\.config\.ts$|^tests\/setup\.ts$/.test(f)
 
 const SUPPRESSIONS = /@ts-ignore|@ts-nocheck|@ts-expect-error|eslint-disable|oxlint-disable|istanbul ignore|v8 ignore/
 // TODO y FIXME solo cuentan dentro de un comentario: «todo» también es una palabra, y la carta va en mayúsculas.

@@ -1,9 +1,11 @@
-// Comprobaciones que necesitan la web en marcha: accesibilidad (axe-core) y rendimiento (Lighthouse).
-// Abre un solo Chromium para las dos y compara con los límites de CONSTRAINTS.md, que se leen de ese archivo.
+// Comprobaciones que necesitan la web en marcha: accesibilidad (axe-core), navegación (check-navigation.mjs)
+// y rendimiento (Lighthouse). Abre un solo Chromium para las tres y compara con los límites de
+// CONSTRAINTS.md, que se leen de ese archivo.
 // Mide uno de dos bancos, cada uno con sus límites de LCP y TBT:
 //   - sin --url, el build de dist/ servido desde este equipo, comprimido como lo hace el alojamiento;
 //   - con --url, una web ya publicada.
-// Uso: node scripts/check-runtime.mjs [--strict] [--url <dirección>]   (sin --url necesita dist/: lo deja `pnpm build`)
+// Uso: node scripts/check-runtime.mjs [--strict] [--url <dirección>] [--only accesibilidad|navegacion|rendimiento]
+// (sin --url necesita dist/: lo deja `pnpm build`; --only lanza una sola parte, para no esperar a las otras)
 import { existsSync, readFileSync, statSync } from 'node:fs'
 import { createServer } from 'node:http'
 import path from 'node:path'
@@ -12,6 +14,7 @@ import { gzipSync } from 'node:zlib'
 import { AxeBuilder } from '@axe-core/playwright'
 import lighthouse from 'lighthouse'
 import { chromium } from 'playwright'
+import { checkNavigation } from './check-navigation.mjs'
 import { maxOf, minOf } from './constraints.mjs'
 
 const urlAt = process.argv.indexOf('--url')
@@ -25,18 +28,29 @@ if (urlAt > -1) {
   }
 }
 
+const PARTS = ['accesibilidad', 'navegacion', 'rendimiento']
+const onlyAt = process.argv.indexOf('--only')
+const only = onlyAt > -1 ? process.argv[onlyAt + 1] : null
+if (only != null && !PARTS.includes(only)) {
+  console.error(`check-runtime: --only admite ${PARTS.join(', ')}`)
+  process.exit(2)
+}
+const wants = (part) => only == null || only === part
+
 // Cada límite, por el nombre de su regla en CONSTRAINTS.md. `max`: no puede pasar de ahí; `min`: no puede bajar.
 // En local, Lighthouse carga al LCP recursos que en la web publicada llegan después del primer pintado:
 // por eso el LCP y el TBT tienen una regla para cada banco.
 const TIMING_RULES = published == null
   ? { lcp: 'LCP de Lighthouse', tbt: 'TBT' }
   : { lcp: 'LCP en producción', tbt: 'TBT en producción' }
+// `part`: la parte que lo mide. Con --only se juzga solo lo de la parte pedida.
 const LIMITS = {
-  seriousA11y: { max: maxOf('Accesibilidad'), label: 'Fallos graves o críticos de accesibilidad' },
-  cls: { max: maxOf('CLS'), label: 'CLS' },
-  tbt: { max: maxOf(TIMING_RULES.tbt), label: 'Bloqueo total, TBT (ms)' },
-  lcp: { max: maxOf(TIMING_RULES.lcp), label: 'LCP (ms)' },
-  score: { min: minOf('Nota de Lighthouse'), label: 'Nota de rendimiento de Lighthouse' }
+  seriousA11y: { part: 'accesibilidad', max: maxOf('Accesibilidad'), label: 'Fallos graves o críticos de accesibilidad' },
+  navigation: { part: 'navegacion', max: maxOf('Navegación'), label: 'Fallos de navegación (transiciones y scroll)' },
+  cls: { part: 'rendimiento', max: maxOf('CLS'), label: 'CLS' },
+  tbt: { part: 'rendimiento', max: maxOf(TIMING_RULES.tbt), label: 'Bloqueo total, TBT (ms)' },
+  lcp: { part: 'rendimiento', max: maxOf(TIMING_RULES.lcp), label: 'LCP (ms)' },
+  score: { part: 'rendimiento', min: minOf('Nota de Lighthouse'), label: 'Nota de rendimiento de Lighthouse' }
 }
 const LIGHTHOUSE_RUNS = 3
 // Por debajo de este índice el equipo está frenado (calor, ahorro de energía) y Lighthouse da tiempos
@@ -94,50 +108,63 @@ const measured = {}
 const notes = []
 try {
   // Accesibilidad: las tres portadas en claro y una en oscuro, con la entrada ya terminada.
-  const context = await browser.newContext()
-  const page = await context.newPage()
-  let serious = 0
-  for (const [route, colorScheme] of [['/ca', 'light'], ['/es', 'light'], ['/en', 'light'], ['/es', 'dark']]) {
-    await page.emulateMedia({ reducedMotion: 'reduce', colorScheme })
-    await page.goto(origin + route, { waitUntil: 'networkidle' })
-    const { violations } = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21aa']).analyze()
-    for (const v of violations.filter((x) => x.impact === 'critical' || x.impact === 'serious')) {
-      serious += v.nodes.length
-      notes.push(`  ${route} (${colorScheme}) · ${v.impact} · ${v.id}: ${v.help} — ${v.nodes.length} elemento(s), p. ej. ${v.nodes[0].target.join(' ')}`)
+  if (wants('accesibilidad')) {
+    const context = await browser.newContext()
+    const page = await context.newPage()
+    let serious = 0
+    for (const [route, colorScheme] of [['/ca', 'light'], ['/es', 'light'], ['/en', 'light'], ['/es', 'dark']]) {
+      await page.emulateMedia({ reducedMotion: 'reduce', colorScheme })
+      await page.goto(origin + route, { waitUntil: 'networkidle' })
+      const { violations } = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21aa']).analyze()
+      for (const v of violations.filter((x) => x.impact === 'critical' || x.impact === 'serious')) {
+        serious += v.nodes.length
+        notes.push(`  ${route} (${colorScheme}) · ${v.impact} · ${v.id}: ${v.help} — ${v.nodes.length} elemento(s), p. ej. ${v.nodes[0].target.join(' ')}`)
+      }
     }
+    await context.close()
+    measured.seriousA11y = serious
   }
-  await context.close()
-  measured.seriousA11y = serious
+
+  // Navegación: los cambios de página y de idioma, con su transición y su scroll.
+  if (wants('navegacion')) {
+    const failures = await checkNavigation(browser, origin)
+    measured.navigation = failures.length
+    notes.push(...failures.map((failure) => `  navegación · ${failure}`))
+  }
 
   // Rendimiento: Lighthouse en móvil sobre /es, varias pasadas y la mediana.
-  const runs = []
-  for (let i = 0; i < LIGHTHOUSE_RUNS; i++) {
-    const { lhr } = await lighthouse(`${origin}/es`, { port: debugPort, onlyCategories: ['performance'], output: 'json', logLevel: 'error' })
-    const value = (audit) => lhr.audits[audit].numericValue
-    runs.push({
-      score: Math.round(lhr.categories.performance.score * 100),
-      lcp: Math.round(value('largest-contentful-paint')),
-      cls: Number(value('cumulative-layout-shift').toFixed(3)),
-      tbt: Math.round(value('total-blocking-time')),
-      bench: Math.round(lhr.environment.benchmarkIndex)
-    })
+  if (wants('rendimiento')) {
+    const runs = []
+    for (let i = 0; i < LIGHTHOUSE_RUNS; i++) {
+      const { lhr } = await lighthouse(`${origin}/es`, { port: debugPort, onlyCategories: ['performance'], output: 'json', logLevel: 'error' })
+      const value = (audit) => lhr.audits[audit].numericValue
+      runs.push({
+        score: Math.round(lhr.categories.performance.score * 100),
+        lcp: Math.round(value('largest-contentful-paint')),
+        cls: Number(value('cumulative-layout-shift').toFixed(3)),
+        tbt: Math.round(value('total-blocking-time')),
+        bench: Math.round(lhr.environment.benchmarkIndex)
+      })
+    }
+    const median = (key) => runs.map((r) => r[key]).sort((a, b) => a - b)[Math.floor(runs.length / 2)]
+    for (const key of ['score', 'lcp', 'cls', 'tbt', 'bench']) measured[key] = median(key)
+    notes.push(`  Lighthouse, ${LIGHTHOUSE_RUNS} pasadas: ${runs.map((r) => `nota ${r.score} · LCP ${r.lcp} · CLS ${r.cls} · TBT ${r.tbt}`).join(' | ')} · índice del equipo ${measured.bench}`)
   }
-  const median = (key) => runs.map((r) => r[key]).sort((a, b) => a - b)[Math.floor(runs.length / 2)]
-  for (const key of ['score', 'lcp', 'cls', 'tbt', 'bench']) measured[key] = median(key)
-  notes.push(`  Lighthouse, ${LIGHTHOUSE_RUNS} pasadas: ${runs.map((r) => `nota ${r.score} · LCP ${r.lcp} · CLS ${r.cls} · TBT ${r.tbt}`).join(' | ')} · índice del equipo ${measured.bench}`)
 } finally {
   await browser.close()
   if (server.listening) server.close()
 }
 
 console.log(`check-runtime: ${published == null ? 'build local (dist/)' : `web publicada, ${published}`}`)
-const throttled = measured.bench < MIN_BENCHMARK_INDEX
+const throttled = measured.bench != null && measured.bench < MIN_BENCHMARK_INDEX
 let failed = 0
-for (const [key, { min, max, label }] of Object.entries(LIMITS)) {
+for (const [key, { part, min, max, label }] of Object.entries(LIMITS)) {
+  // Con --only, lo que no se ha lanzado no se juzga. Lo que sí se ha lanzado y no ha dado valor, falla.
+  if (!wants(part)) continue
   const value = measured[key]
-  const ok = (min == null || value >= min) && (max == null || value <= max)
-  // Con el equipo frenado solo vale la accesibilidad, que no depende de la velocidad.
-  const skipped = throttled && key !== 'seriousA11y'
+  const ok = value != null && (min == null || value >= min) && (max == null || value <= max)
+  // Con el equipo frenado solo valen la accesibilidad y la navegación, que no dependen de la velocidad.
+  const skipped = throttled && key !== 'seriousA11y' && key !== 'navigation'
   if (!ok && !skipped) failed++
   let verdict = ok ? 'bien ' : 'FALLA'
   if (skipped) verdict = 'sin validez'

@@ -46,6 +46,7 @@ const FILES: Record<string, string> = {
   'CONSTRAINTS.md': CONSTRAINTS,
   'package.json': '{\n  "scripts": {\n    "lint": "oxlint src",\n    "check:fast": "pnpm run lint && node scripts/floor-guard.mjs"\n  }\n}\n',
   'scripts/check-runtime.mjs': "const ROUTES = ['/ca', '/es']\nconsole.log(ROUTES)\n",
+  'scripts/check-navigation.mjs': "export const STEPS = ['portada', 'legal']\n",
   'src/a.ts': 'export const a = 1\n',
   'src/hooks/theme.ts': 'export const theme = 1\n',
   'tests/a.test.ts': "import { expect, it } from 'vitest'\n\nit('suma', () => {\n  const total = 1 + 1\n  expect(total).toBe(2)\n})\n"
@@ -194,6 +195,7 @@ describe('lo deja anotado para revisar, sin detener', () => {
   const cases: Array<[name: string, note: string, change: Change]> = [
     ['una aserción reescrita', 'aserción reescrita', (repo) => { repo.edit('tests/a.test.ts', 'const total', 'const sum'); repo.edit('tests/a.test.ts', 'expect(total)', 'expect(sum)') }],
     ['un cambio en un script de comprobación', 'comprobación cambiada', (repo) => repo.edit('scripts/check-runtime.mjs', ", '/es'", '')],
+    ['un cambio en la comprobación de navegación', 'comprobación cambiada', (repo) => repo.edit('scripts/check-navigation.mjs', ", 'legal'", '')],
     ['un paso distinto en un script de package.json', 'comprobación cambiada', (repo) => repo.edit('package.json', 'oxlint src', 'oxlint src tests')],
     ['una supresión en una ruta con excepción aprobada y vigente', 'comprobador silenciado, exento por W1', withApprovedException(NEXT_YEAR, (repo) => repo.append('src/hooks/theme.ts', SUPPRESSION))]
   ]

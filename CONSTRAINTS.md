@@ -36,6 +36,7 @@ el resto de comprobaciones ya se ha lanzado.
 | Peso del CSS | ≤ 15,5 kB con gzip | `pnpm test:build` | fin de tarea | detiene | Lo que pesa hoy (14,4) más un 7 %; es lo único que bloquea el primer pintado |
 | Peso del JavaScript principal | ≤ 166 kB con gzip | `pnpm test:build` | fin de tarea | detiene | Lo que pesa hoy (155,2) más un 7 % |
 | Accesibilidad | 0 fallos críticos o graves de axe-core | `node scripts/check-runtime.mjs` | antes de subir a main | avisa | WCAG 2.1 AA en /ca, /es, /en y /es en oscuro; los leves y moderados suelen ser discutibles |
+| Navegación | 0 fallos | `node scripts/check-runtime.mjs` | antes de subir a main | avisa | Cambios de página y de idioma con su transición, y el scroll al llegar y al volver atrás: solo se ven con un navegador en marcha |
 | CLS | ≤ 0,1 | `node scripts/check-runtime.mjs` | antes de subir a main | avisa | Umbral «bueno» de Core Web Vitals |
 | TBT | ≤ 200 ms | `node scripts/check-runtime.mjs` | antes de subir a main | avisa | Umbral «bueno» de Lighthouse |
 | LCP de Lighthouse | ≤ 4050 ms | `node scripts/check-runtime.mjs` | antes de subir a main | avisa | El de hoy (3685) más un 10 %; es el del build servido en local, ver «Dos bancos de medida» |
@@ -55,7 +56,7 @@ Lighthouse carga al LCP el JavaScript y las tipografías, así que sale más alt
 publicada (2,3 s). El límite local sirve para no empeorar; el de producción es el umbral reconocido.
 Accesibilidad, CLS y nota usan la misma fila en los dos bancos.
 
-**Avisan, no detienen.** Las siete últimas filas informan sin parar el trabajo durante dos semanas. El día
+**Avisan, no detienen.** Las ocho últimas filas informan sin parar el trabajo durante dos semanas. El día
 de la revisión se decide si pasan a detener (`node scripts/check-runtime.mjs --strict`).
 
 - Revisión de los avisos: hasta el 2026-10-27

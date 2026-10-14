@@ -1,5 +1,6 @@
 import { useId, useRef, useState, type FormEvent } from 'react'
 import { FIELD, LABEL, PRIMARY } from '@/components/ui/controls'
+import { PrivacyNote } from '@/components/ui/PrivacyNote'
 import type { Reservation } from '@/hooks/useReservation'
 import { useI18n } from '@/i18n'
 import { isDateInput, todayInput } from '@/lib/dates'
@@ -171,6 +172,8 @@ export function BookingForm ({ booking, partyNoun, summary }: BookingFormProps) 
             <label htmlFor={notesId} className={LABEL}>{t.reserve.notes}</label>
             <textarea id={notesId} name='notes' rows={2} maxLength={300} value={booking.contact.notes} onChange={setField('notes')} className={`${FIELD} w-full py-2.5`} />
           </div>
+          {/* La reserva se gestiona porque la pide quien la hace: no lleva casilla, pero sí se dice para qué son los datos */}
+          <PrivacyNote className='text-sm text-ink/70 sm:col-span-2'>{t.reserve.dataUse}</PrivacyNote>
         </section>
       </div>
 

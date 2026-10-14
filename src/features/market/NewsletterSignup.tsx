@@ -1,4 +1,5 @@
 import { useId, useRef, useState } from 'react'
+import { PrivacyNote } from '@/components/ui'
 import { useI18n } from '@/i18n'
 import { FORMSPREE_ENDPOINT, SUBMIT_TIMEOUT_MS } from '@/lib/forms'
 
@@ -6,8 +7,9 @@ type Status = 'idle' | 'sending' | 'success' | 'error'
 
 /**
  * Alta al aviso diario del producto del día. Va al mismo Formspree que las reservas, con `tipo=newsletter`.
- * Es una tira a dos columnas bajo un filete: a la izquierda qué es, a la derecha el campo. Las columnas
- * coinciden con las de la sección de Mercado (texto y fotos), que es donde vive.
+ * Es una tira a dos columnas bajo un filete: a la izquierda qué es, a la derecha el campo, la casilla del
+ * consentimiento y el botón, en ese orden. Las columnas coinciden con las de la sección de Mercado (texto y
+ * fotos), que es donde vive.
  */
 export function NewsletterSignup () {
   const { t } = useI18n()
@@ -70,20 +72,30 @@ export function NewsletterSignup () {
                 <label htmlFor={emailId} className='font-mono2 text-[11px] uppercase tracking-widest text-ink/60'>
                   {t.newsletter.label}
                 </label>
-                <div className='mt-2 flex flex-col gap-3 sm:flex-row'>
-                  <input
-                    id={emailId}
-                    type='email'
-                    name='email'
-                    required
-                    maxLength={120}
-                    autoComplete='email'
-                    inputMode='email'
-                    placeholder={t.newsletter.placeholder}
-                    aria-invalid={status === 'error' || undefined}
-                    aria-describedby={status === 'error' ? errId : undefined}
-                    className='min-h-12 w-full min-w-0 border border-ink/15 bg-transparent px-3 text-base text-ink outline-none placeholder:text-ink/60 focus:border-brand md:text-sm'
-                  />
+                <input
+                  id={emailId}
+                  type='email'
+                  name='email'
+                  required
+                  maxLength={120}
+                  autoComplete='email'
+                  inputMode='email'
+                  placeholder={t.newsletter.placeholder}
+                  aria-invalid={status === 'error' || undefined}
+                  aria-describedby={status === 'error' ? errId : undefined}
+                  className='mt-2 block min-h-12 w-full border border-ink/15 bg-transparent px-3 text-base text-ink outline-none placeholder:text-ink/60 focus:border-brand md:text-sm'
+                />
+
+                {/*
+                  El alta se hace con consentimiento: lo da quien marca la casilla, que por eso llega sin marcar
+                  y va antes del botón. Su valor es el texto aceptado, y viaja con el alta para que el
+                  restaurante pueda acreditarlo.
+                */}
+                <div className='mt-3 flex flex-col gap-3 md:flex-row md:items-center md:justify-between'>
+                  <label className='flex min-h-11 cursor-pointer items-center gap-3 text-sm text-ink'>
+                    <input type='checkbox' name='consentimiento' value={t.newsletter.consent} required className='size-5 shrink-0 accent-brand' />
+                    <span>{t.newsletter.consent}</span>
+                  </label>
                   <button
                     type='submit'
                     disabled={status === 'sending'}
@@ -96,7 +108,7 @@ export function NewsletterSignup () {
                 {status === 'error' && (
                   <p id={errId} role='alert' className='mt-3 text-sm text-ink'>{t.newsletter.error}</p>
                 )}
-                <p className='mt-3 text-sm text-ink/70'>{t.newsletter.privacy}</p>
+                <PrivacyNote className='mt-3 text-sm text-ink/70'>{t.newsletter.privacy} {t.newsletter.dataUse}</PrivacyNote>
               </form>
               )}
         </div>

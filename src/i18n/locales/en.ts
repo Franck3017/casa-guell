@@ -42,7 +42,7 @@ export const en: Messages = {
     overlay: { metro: 'Metro L4 Poblenou (5 min)', parking: 'Public parking (200 m)', tram: 'Tram T4 (3 min)', comArribar: 'How to get there' }
   },
   footer: { rights: 'All rights reserved', legal: { 'aviso-legal': 'Legal notice', privacidad: 'Privacy', cookies: 'Cookies', consumidor: 'Allergens and consumer rights' } },
-  legal: { title: 'Legal information', intro: 'Who runs this website, what we do with your data and what you should know as a customer.' },
+  legal: { title: 'Legal information', intro: 'Who runs this website, what we do with your data and what you should know as a customer.', privacyLink: 'Privacy policy', newTab: '(opens in a new tab)' },
   theme: { label: 'Colour theme', light: 'Light', auto: 'Auto', dark: 'Dark', shortcut: 'Shortcut: key T' },
   lang: { label: 'Language' },
   search: { label: 'Search', placeholder: 'Search a dish or drink…', noResults: 'No results. Try another term.', hint: 'Press / or Ctrl+K to search', clear: 'Clear search' },
@@ -71,7 +71,8 @@ export const en: Messages = {
   slotsHint: 'Pick a day to see the free times.',
   loadingSlots: 'Finding free times…',
   slotsFailed: 'We could not check the free times.',
-  retry: 'Try again'
+  retry: 'Try again',
+  dataUse: 'Casa Güell uses these details only to manage your booking and, if you mention an allergy, to look after you on that visit. You can ask us to see, correct or delete them.'
    },
   closing: { title: 'Book your table', phoneLabel: 'Or call us on' },
   film: {
@@ -89,6 +90,8 @@ export const en: Messages = {
     success: 'Subscription received',
     successDesc: 'You will receive the dish of the day by email.',
     error: 'Something went wrong. Check your email and try again.',
-    privacy: 'Zero spam. Unsubscribe anytime with one click.'
+    privacy: 'Zero spam. Unsubscribe anytime with one click.',
+    consent: 'I want to receive the dish of the day by email.',
+    dataUse: 'Casa Güell uses your email only to send you this update, and you can ask us to see, correct or delete it.'
   }
 }

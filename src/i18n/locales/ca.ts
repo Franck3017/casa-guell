@@ -42,7 +42,7 @@ export const ca: Messages = {
     overlay: { metro: 'Metro L4 Poblenou (5 min)', parking: 'Pàrquing públic (200 m)', tram: 'Tramvia T4 (3 min)', comArribar: 'Com arribar-hi' }
   },
   footer: { rights: 'Tots els drets reservats', legal: { 'aviso-legal': 'Avís legal', privacidad: 'Privacitat', cookies: 'Galetes', consumidor: 'Al·lèrgens i consum' } },
-  legal: { title: 'Informació legal', intro: 'Qui hi ha darrere d\'aquest web, què fem amb les teves dades i què has de saber com a client.' },
+  legal: { title: 'Informació legal', intro: 'Qui hi ha darrere d\'aquest web, què fem amb les teves dades i què has de saber com a client.', privacyLink: 'Política de privacitat', newTab: '(s\'obre en una altra pestanya)' },
   theme: { label: 'Tema de color', light: 'Clar', auto: 'Auto', dark: 'Fosc', shortcut: 'Drecera: tecla T' },
   lang: { label: 'Idioma' },
   search: { label: 'Cerca', placeholder: 'Cerca un plat o beguda…', noResults: 'Cap resultat. Prova amb un altre terme.', hint: 'Prem / o Ctrl+K per cercar', clear: 'Esborra la cerca' },
@@ -70,7 +70,8 @@ export const ca: Messages = {
   slotsHint: 'Tria un dia i veuràs les hores lliures.',
   loadingSlots: 'Cercant hores lliures…',
   slotsFailed: 'No hem pogut consultar les hores lliures.',
-  retry: 'Torna-ho a provar'
+  retry: 'Torna-ho a provar',
+  dataUse: 'Casa Güell fa servir aquestes dades només per gestionar la teva reserva i, si indiques una al·lèrgia, per atendre\'t en aquella visita. Ens pots demanar veure-les, corregir-les o esborrar-les.'
   },
   closing: { title: 'Reserva la teva taula', phoneLabel: 'O truca’ns al' },
   film: {
@@ -88,6 +89,8 @@ export const ca: Messages = {
     success: 'Subscripció rebuda',
     successDesc: 'Rebràs el producte del dia al teu correu.',
     error: 'Hi ha hagut un error. Comprova el mail i torna-ho a provar.',
-    privacy: 'Zero spam. Baixa quan vulguis amb un clic.'
+    privacy: 'Zero spam. Baixa quan vulguis amb un clic.',
+    consent: 'Vull rebre per correu el producte del dia.',
+    dataUse: 'Casa Güell fa servir el teu correu només per enviar-te aquest avís, i ens pots demanar veure\'l, corregir-lo o esborrar-lo.'
   }
 }

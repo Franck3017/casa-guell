@@ -42,7 +42,7 @@ export const es: Messages = {
     overlay: { metro: 'Metro L4 Poblenou (5 min)', parking: 'Aparcamiento público (200 m)', tram: 'Tranvía T4 (3 min)', comArribar: 'Cómo llegar' }
   },
   footer: { rights: 'Todos los derechos reservados', legal: { 'aviso-legal': 'Aviso legal', privacidad: 'Privacidad', cookies: 'Cookies', consumidor: 'Alérgenos y consumo' } },
-  legal: { title: 'Información legal', intro: 'Quién está detrás de esta web, qué hacemos con tus datos y qué debes saber como cliente.' },
+  legal: { title: 'Información legal', intro: 'Quién está detrás de esta web, qué hacemos con tus datos y qué debes saber como cliente.', privacyLink: 'Política de privacidad', newTab: '(se abre en otra pestaña)' },
   theme: { label: 'Tema de color', light: 'Claro', auto: 'Auto', dark: 'Oscuro', shortcut: 'Atajo: tecla T' },
   lang: { label: 'Idioma' },
   search: { label: 'Buscar', placeholder: 'Busca un plato o bebida…', noResults: 'Sin resultados. Prueba con otro término.', hint: 'Pulsa / o Ctrl+K para buscar', clear: 'Borrar búsqueda' },
@@ -71,7 +71,8 @@ export const es: Messages = {
   slotsHint: 'Elige un día y verás las horas libres.',
   loadingSlots: 'Buscando horas libres…',
   slotsFailed: 'No hemos podido consultar las horas libres.',
-  retry: 'Reintentar'
+  retry: 'Reintentar',
+  dataUse: 'Casa Güell usa estos datos solo para gestionar tu reserva y, si indicas una alergia, para atenderte en esa visita. Puedes pedirnos verlos, corregirlos o borrarlos.'
    },
   closing: { title: 'Reserva tu mesa', phoneLabel: 'O llámanos al' },
   film: {
@@ -89,6 +90,8 @@ export const es: Messages = {
     success: 'Suscripción recibida',
     successDesc: 'Recibirás el producto del día en tu correo.',
     error: 'Ha habido un error. Comprueba el mail y vuelve a intentarlo.',
-    privacy: 'Cero spam. Date de baja cuando quieras con un clic.'
+    privacy: 'Cero spam. Date de baja cuando quieras con un clic.',
+    consent: 'Quiero recibir por correo el producto del día.',
+    dataUse: 'Casa Güell usa tu correo solo para enviarte este aviso, y puedes pedirnos verlo, corregirlo o borrarlo.'
   }
 }

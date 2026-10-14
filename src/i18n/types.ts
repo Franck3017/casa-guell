@@ -34,8 +34,11 @@ export interface Messages {
     overlay: { metro: string; parking: string; tram: string; comArribar: string }
   }
   footer: { rights: string, legal: { 'aviso-legal': string, privacidad: string, cookies: string, consumidor: string } }
-  /** Página de información legal: su título y la frase que la presenta (también en buscadores). Los documentos van aparte. */
-  legal: { title: string, intro: string }
+  /**
+   * Página de información legal: su título y la frase que la presenta (también en buscadores). Los documentos
+   * van aparte. `privacyLink` y `newTab` son el enlace a la política de privacidad que llevan los formularios.
+   */
+  legal: { title: string, intro: string, privacyLink: string, newTab: string }
   theme: { label: string, light: string, auto: string, dark: string, shortcut: string }
   lang: { label: string }
   search: { label: string, placeholder: string, noResults: string, hint: string, clear: string }
@@ -43,7 +46,9 @@ export interface Messages {
   skip: { content: string }
   reserve: { title: string, short: string, date: string, time: string, people: string, name: string, phone: string, phoneHint: string, lunch: string, dinner: string, submit: string, sending: string, success: string, successDesc: string, close: string, closedDay: string, errorCall: string, selectSlot: string; noSlots: string; codeLabel: string; email: string; notes: string; errNoAvailability: string; errClosedDay: string; errDateRange: string; errTooMany: string; errDuplicate: string; errGeneric: string
     /** Diálogo de reserva: tira de días, comensales, horas libres. */
-    closedTag: string, otherDate: string, fewer: string, more: string, person: string, persons: string, full: string, pickSlot: string, slotsHint: string, loadingSlots: string, slotsFailed: string, retry: string 
+    closedTag: string, otherDate: string, fewer: string, more: string, person: string, persons: string, full: string, pickSlot: string, slotsHint: string, loadingSlots: string, slotsFailed: string, retry: string
+    /** Para qué se usan los datos de la reserva: lo primero que pide el RGPD decir donde se recogen. */
+    dataUse: string
   }
   closing: { title: string, phoneLabel: string }
   film: {
@@ -56,5 +61,7 @@ export interface Messages {
     label: string; title: string; desc: string; placeholder: string
     submit: string; sending: string; success: string; successDesc: string
     error: string; privacy: string
+    /** Lo que se acepta al marcar la casilla, y para qué se usa el correo. */
+    consent: string; dataUse: string
   }
 }

@@ -7,6 +7,7 @@ import { DesktopLinks } from './nav/DesktopLinks'
 import { MenuButton } from './nav/MenuButton'
 import { MenuPanel } from './nav/MenuPanel'
 import { useNavLinks } from './nav/useNavLinks'
+import { useSectionHref } from './nav/useSectionHref'
 import { SearchDishes } from './SearchDishes'
 import { ThemeToggle } from './ThemeToggle'
 
@@ -20,6 +21,7 @@ import { ThemeToggle } from './ThemeToggle'
 export function Nav () {
   const { t } = useI18n()
   const links = useNavLinks()
+  const sectionHref = useSectionHref()
   const [open, setOpen] = useState(false)
   const panelId = useId()
   const close = useCallback(() => setOpen(false), [])
@@ -30,7 +32,7 @@ export function Nav () {
     <header className='fixed inset-x-0 top-0 z-40 border-b border-ink/10 bg-cream/95 pt-[env(safe-area-inset-top)] shadow-[0_1px_0_rgb(17_18_21/0.03)] transition-colors duration-300'>
       <div className='mx-auto grid max-w-7xl grid-cols-[auto_1fr] items-center px-4 sm:px-6 lg:h-[4.35rem] lg:grid-cols-[auto_1fr_auto] lg:gap-x-5 lg:px-8'>
         <a
-          href='#top'
+          href={sectionHref('top')}
           onClick={close}
           aria-label={`Casa Güell · ${t.hero.kicker}`}
           className='group flex min-h-14 shrink-0 items-center whitespace-nowrap'

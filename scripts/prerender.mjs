@@ -1,6 +1,6 @@
-// Último paso del build: escribe dist/<idioma>/index.html con el contenido ya pintado y el <head> de ese
-// idioma. Así buscadores, asistentes y redes sociales leen la página sin ejecutar JavaScript, y un servidor
-// estático responde a /ca, /es y /en con un archivo real.
+// Último paso del build: escribe cada página de cada idioma (la portada y la información legal) con el
+// contenido ya pintado y su <head>. Así buscadores, asistentes y redes sociales la leen sin ejecutar
+// JavaScript, y un servidor estático responde a /ca, /es/legal… con un archivo real.
 // Requiere dist/ (vite build) y dist-ssr/ (vite build --ssr src/entry-prerender.tsx).
 import { mkdir, readFile, rm, writeFile } from 'node:fs/promises'
 import { fileURLToPath, pathToFileURL } from 'node:url'
@@ -20,15 +20,17 @@ function setMeta (html, attr, key, content) {
   return html.replace(re, `$1${escapeAttr(content)}$2`)
 }
 
-const { renderPage, headFor, LOCALES } = await import(pathToFileURL(path.join(ssr, 'entry-prerender.js')).href)
+const { renderPage, headFor, LOCALES, PAGES } = await import(pathToFileURL(path.join(ssr, 'entry-prerender.js')).href)
 const template = await readFile(path.join(dist, 'index.html'), 'utf8')
 if (!template.includes('<div id="root"></div>')) throw new Error('La plantilla no tiene <div id="root"></div>')
 
-for (const locale of LOCALES) {
-  const head = headFor(locale)
-  const body = await renderPage(locale)
+for (const { locale, page } of LOCALES.flatMap((locale) => PAGES.map((page) => ({ locale, page })))) {
+  const head = headFor(locale, page)
+  const body = await renderPage(locale, page)
 
   let html = template.replace(/<html lang="[^"]*"/, `<html lang="${locale}"`)
+  // Las versiones en otros idiomas que anuncia la plantilla son las de la portada: aquí, las de esta página
+  html = html.replace(/(<link rel="alternate" hreflang="[^"]+" href="[^"]+)(" \/>)/g, `$1${page}$2`)
   html = html.replace(/<title>[^<]*<\/title>/, `<title>${escapeText(head.title)}</title>`)
   html = setMeta(html, 'name', 'description', head.description)
   html = setMeta(html, 'property', 'og:title', head.title)
@@ -50,12 +52,13 @@ for (const locale of LOCALES) {
   html = html.replace('</head>', `${extra}\n  </head>`)
   html = html.replace('<div id="root"></div>', `<div id="root">${body}</div>`)
 
-  // Dos copias: <idioma>/index.html (servidores que resuelven carpetas) y <idioma>.html (los que resuelven
-  // "URL limpias"). Cada alojamiento usa una u otra para responder a /<idioma>.
-  await mkdir(path.join(dist, locale), { recursive: true })
-  await writeFile(path.join(dist, locale, 'index.html'), html)
-  await writeFile(path.join(dist, `${locale}.html`), html)
-  console.log(`  prerender /${locale}  ${(html.length / 1024).toFixed(0)} kB`)
+  // Dos copias: <ruta>/index.html (servidores que resuelven carpetas) y <ruta>.html (los que resuelven
+  // "URL limpias"). Cada alojamiento usa una u otra para responder a /<idioma> y a /<idioma>/legal.
+  const file = path.join(dist, `${locale}${page}`)
+  await mkdir(file, { recursive: true })
+  await writeFile(path.join(file, 'index.html'), html)
+  await writeFile(`${file}.html`, html)
+  console.log(`  prerender /${locale}${page}  ${(html.length / 1024).toFixed(0)} kB`)
 }
 
 // Página para rutas que no existen: la aplicación vacía, marcada noindex. La usan como respuesta 404

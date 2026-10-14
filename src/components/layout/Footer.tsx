@@ -1,6 +1,8 @@
 import type { ReactNode } from 'react'
 import { ArrowUpRight } from 'lucide-react'
+import { Link } from 'react-router'
 import { data } from '@/data'
+import { LEGAL_DOC_IDS } from '@/features/legal/content/types'
 import { useI18n } from '@/i18n'
 import { Logo, TornEdge, Words } from '@/components/ui'
 import { NAV_IDS } from '@/lib/constants'
@@ -9,6 +11,7 @@ import { plainHours } from '@/lib/menuFormat'
 import { PHONE, PHONE_HREF } from '@/lib/place'
 import { SOCIAL_LINKS } from '@/lib/social'
 import { BackToTop } from './BackToTop'
+import { useSectionHref } from './nav/useSectionHref'
 
 type DayKey = 'md' | 'dg' | 'll'
 
@@ -34,7 +37,8 @@ const RECEIPT_LINK = '-my-2 inline-flex min-h-11 items-center underline decorati
  */
 export function Footer () {
   const { ubicacion } = data
-  const { t } = useI18n()
+  const { t, locale } = useI18n()
+  const sectionHref = useSectionHref()
   const year = new Date().getFullYear()
 
   return (
@@ -80,7 +84,7 @@ export function Footer () {
                 {NAV_IDS.map((id) => (
                   <li key={id}>
                     <a
-                      href={`#${id}`}
+                      href={sectionHref(id)}
                       className='inline-flex min-h-11 items-center underline decoration-cream/35 underline-offset-8 transition-colors hover:decoration-cream motion-reduce:transition-none'
                     >
                       {t.nav[id]}
@@ -119,13 +123,29 @@ export function Footer () {
             </dl>
 
             <a
-              href='#ubicacio'
+              href={sectionHref('ubicacio')}
               className='mt-2 flex min-h-11 items-center justify-center border border-ink/60 text-[11px] uppercase tracking-[0.18em] transition-colors hover:border-brand hover:text-brand motion-reduce:transition-none'
             >
               {t.hero.ctaOnSom}
             </a>
           </div>
         </div>
+
+        {/* Lo que la ley pide tener a mano desde cualquier página: aviso legal, privacidad, cookies y consumo */}
+        <nav aria-label={t.legal.title} className='mx-auto max-w-6xl border-t border-cream/25 px-6'>
+          <ul className='flex flex-wrap gap-x-6 text-sm font-medium'>
+            {LEGAL_DOC_IDS.map((doc) => (
+              <li key={doc}>
+                <Link
+                  to={`/${locale}/legal#${doc}`}
+                  className='inline-flex min-h-11 items-center underline decoration-cream/35 underline-offset-8 transition-colors hover:decoration-cream motion-reduce:transition-none'
+                >
+                  {t.footer.legal[doc]}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
 
         <div className='mx-auto flex max-w-6xl flex-col-reverse items-center gap-2 border-t border-cream/25 px-6 py-3 md:flex-row md:justify-between'>
           {/* El año del HTML es el del build: si ya ha cambiado, React conserva ese texto sin darlo por error */}

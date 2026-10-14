@@ -23,7 +23,13 @@ export const en: Messages = {
     section: 'Section',
     refs: 'references', refsOne: 'item', empty: 'This section has no items right now.', shot: 'Shot', glass: 'Glass',
     allergenLegend: 'Allergen key',
-    allergenAsk: 'Other allergens: ask our staff'
+    allergenAsk: 'Other allergens: ask our staff',
+    notices: {
+      allergy: 'If you have a food allergy or intolerance, tell us before you order. Allergen information for every dish is available: ask our staff.',
+      vat: 'Prices in euros, VAT included.',
+      rawFish: 'Fish served raw or lightly cooked has been frozen beforehand, as required by Spanish Royal Decree 1021/2022 to prevent anisakis.',
+      leftovers: 'If you cannot finish your meal, ask us to pack it for you to take away.'
+    }
   },
   mercat: { title: 'The market leads', desc: 'Every morning we go down to the fish market and choose the best fish and seafood of the day. There is no fixed market menu: ask for the product of the day, because it changes daily according to what the sea offers.', accion: 'Ask for the product of the day', caption: 'Barcelona fish market · daily purchase', imgAlt2: 'Chef Jordi looking in surprise at a blue crate full of fresh langoustines in the kitchen', imgAlt3: 'A fresh langoustine held in the hand above a plate of more langoustines' },
   ubicacio: {
@@ -35,7 +41,8 @@ export const en: Messages = {
     days: { md: 'Wednesday to Saturday', dg: 'Sunday', ll: 'Monday and Tuesday' },
     overlay: { metro: 'Metro L4 Poblenou (5 min)', parking: 'Public parking (200 m)', tram: 'Tram T4 (3 min)', comArribar: 'How to get there' }
   },
-  footer: { rights: 'All rights reserved' },
+  footer: { rights: 'All rights reserved', legal: { 'aviso-legal': 'Legal notice', privacidad: 'Privacy', cookies: 'Cookies', consumidor: 'Allergens and consumer rights' } },
+  legal: { title: 'Legal information', intro: 'Who runs this website, what we do with your data and what you should know as a customer.' },
   theme: { label: 'Colour theme', light: 'Light', auto: 'Auto', dark: 'Dark', shortcut: 'Shortcut: key T' },
   lang: { label: 'Language' },
   search: { label: 'Search', placeholder: 'Search a dish or drink…', noResults: 'No results. Try another term.', hint: 'Press / or Ctrl+K to search', clear: 'Clear search' },
@@ -51,6 +58,7 @@ export const en: Messages = {
   errClosedDay: 'We are closed that day.',
   errDateRange: 'Bookings are from 1 to 90 days ahead.',
   errTooMany: 'You have reached the limit of bookings that can be made online.',
+  errDuplicate: 'You already have a booking for that day.',
   errGeneric: 'Something went wrong. Please try again.',
   closedTag: 'closed',
   otherDate: 'Another day',
@@ -58,7 +66,6 @@ export const en: Messages = {
   more: 'One more guest',
   person: 'guest',
   persons: 'guests',
-  errDuplicate: 'You already have a booking for that day.',
   full: 'full',
   pickSlot: 'Pick a time to continue.',
   slotsHint: 'Pick a day to see the free times.',

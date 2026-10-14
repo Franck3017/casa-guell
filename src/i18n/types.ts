@@ -23,6 +23,8 @@ export interface Messages {
     section: string; refs: string; refsOne: string; empty: string; shot: string; glass: string
     allergenLegend: string
     allergenAsk: string
+    /** Avisos al pie de la carta que piden las normas: alergias, IVA, pescado crudo y sobras. */
+    notices: { allergy: string, vat: string, rawFish: string, leftovers: string }
   }
   mercat: { title: string, desc: string, accion: string, caption: string, imgAlt2: string, imgAlt3: string }
   ubicacio: {
@@ -31,7 +33,9 @@ export interface Messages {
     days: { md: string, dg: string, ll: string }
     overlay: { metro: string; parking: string; tram: string; comArribar: string }
   }
-  footer: { rights: string }
+  footer: { rights: string, legal: { 'aviso-legal': string, privacidad: string, cookies: string, consumidor: string } }
+  /** Página de información legal: su título y la frase que la presenta (también en buscadores). Los documentos van aparte. */
+  legal: { title: string, intro: string }
   theme: { label: string, light: string, auto: string, dark: string, shortcut: string }
   lang: { label: string }
   search: { label: string, placeholder: string, noResults: string, hint: string, clear: string }

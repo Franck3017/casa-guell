@@ -4,6 +4,7 @@ import { useMenuMotion } from '@/hooks/useMenuMotion'
 import { useI18n } from '@/i18n'
 import { ThemeToggle } from '../ThemeToggle'
 import type { NavLink } from './useNavLinks'
+import { useSectionHref } from './useSectionHref'
 
 interface MenuPanelProps {
   id: string
@@ -20,6 +21,7 @@ interface MenuPanelProps {
  */
 export function MenuPanel ({ id, open, links, onNavigate }: MenuPanelProps) {
   const { t } = useI18n()
+  const sectionHref = useSectionHref()
   const panelRef = useRef<HTMLDivElement>(null)
   useMenuMotion(panelRef, open)
 
@@ -41,7 +43,7 @@ export function MenuPanel ({ id, open, links, onNavigate }: MenuPanelProps) {
           {links.map(({ id: section, label, current }) => (
             <div key={section}>
               <a
-                href={`#${section}`}
+                href={sectionHref(section)}
                 onClick={onNavigate}
                 aria-current={current ? 'location' : undefined}
                 className={`press flex min-h-16 items-center py-3 font-display text-[clamp(2rem,10vw,3rem)] leading-[1.1] tracking-[-0.035em] transition-colors ${

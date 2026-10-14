@@ -3,7 +3,7 @@
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://casa-guell-drab.vercel.app/ca</loc>
-    <lastmod>2026-10-08</lastmod>
+    <lastmod>2026-10-14</lastmod>
     <xhtml:link rel="alternate" hreflang="ca" href="https://casa-guell-drab.vercel.app/ca"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://casa-guell-drab.vercel.app/es"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://casa-guell-drab.vercel.app/en"/>
@@ -11,7 +11,7 @@
   </url>
   <url>
     <loc>https://casa-guell-drab.vercel.app/es</loc>
-    <lastmod>2026-10-08</lastmod>
+    <lastmod>2026-10-14</lastmod>
     <xhtml:link rel="alternate" hreflang="ca" href="https://casa-guell-drab.vercel.app/ca"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://casa-guell-drab.vercel.app/es"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://casa-guell-drab.vercel.app/en"/>
@@ -19,10 +19,34 @@
   </url>
   <url>
     <loc>https://casa-guell-drab.vercel.app/en</loc>
-    <lastmod>2026-10-08</lastmod>
+    <lastmod>2026-10-14</lastmod>
     <xhtml:link rel="alternate" hreflang="ca" href="https://casa-guell-drab.vercel.app/ca"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://casa-guell-drab.vercel.app/es"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://casa-guell-drab.vercel.app/en"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://casa-guell-drab.vercel.app/ca"/>
+  </url>
+  <url>
+    <loc>https://casa-guell-drab.vercel.app/ca/legal</loc>
+    <lastmod>2026-10-14</lastmod>
+    <xhtml:link rel="alternate" hreflang="ca" href="https://casa-guell-drab.vercel.app/ca/legal"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://casa-guell-drab.vercel.app/es/legal"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://casa-guell-drab.vercel.app/en/legal"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://casa-guell-drab.vercel.app/ca/legal"/>
+  </url>
+  <url>
+    <loc>https://casa-guell-drab.vercel.app/es/legal</loc>
+    <lastmod>2026-10-14</lastmod>
+    <xhtml:link rel="alternate" hreflang="ca" href="https://casa-guell-drab.vercel.app/ca/legal"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://casa-guell-drab.vercel.app/es/legal"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://casa-guell-drab.vercel.app/en/legal"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://casa-guell-drab.vercel.app/ca/legal"/>
+  </url>
+  <url>
+    <loc>https://casa-guell-drab.vercel.app/en/legal</loc>
+    <lastmod>2026-10-14</lastmod>
+    <xhtml:link rel="alternate" hreflang="ca" href="https://casa-guell-drab.vercel.app/ca/legal"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://casa-guell-drab.vercel.app/es/legal"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://casa-guell-drab.vercel.app/en/legal"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://casa-guell-drab.vercel.app/ca/legal"/>
   </url>
 </urlset>

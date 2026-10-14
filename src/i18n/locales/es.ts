@@ -23,7 +23,13 @@ export const es: Messages = {
     section: 'Sección',
     refs: 'referencias', refsOne: 'referencia', empty: 'Esta sección no tiene referencias por ahora.', shot: 'Chupito', glass: 'Copa',
     allergenLegend: 'Leyenda de alérgenos',
-    allergenAsk: 'Otros alérgenos: consulta al personal'
+    allergenAsk: 'Otros alérgenos: consulta al personal',
+    notices: {
+      allergy: 'Si tienes alguna alergia o intolerancia, dínoslo antes de pedir. La información sobre los alérgenos de cada plato está a tu disposición: consulta a nuestro personal.',
+      vat: 'Precios en euros, IVA incluido.',
+      rawFish: 'El pescado que servimos crudo o poco hecho se ha congelado previamente, como exige el Real Decreto 1021/2022 para prevenir el anisakis.',
+      leftovers: 'Si no te lo terminas, pídenos que te lo preparemos para llevar.'
+    }
   },
   mercat: { title: 'El mercado manda', desc: 'Cada mañana bajamos a la lonja y elegimos el mejor pescado y marisco del día. No hay carta fija de mercado: pregunta por el producto del día, porque cambia cada jornada según lo que ofrece el mar.', accion: 'Pregunta por el producto del día', caption: 'Lonja de Barcelona · compra diaria', imgAlt2: 'Jordi, el chef, mirando con sorpresa una caja azul llena de cigalas frescas en la cocina', imgAlt3: 'Una cigala fresca sostenida en la mano sobre un plato con más cigalas' },
   ubicacio: {
@@ -35,7 +41,8 @@ export const es: Messages = {
     days: { md: 'Miércoles a Sábado', dg: 'Domingo', ll: 'Lunes y Martes' },
     overlay: { metro: 'Metro L4 Poblenou (5 min)', parking: 'Aparcamiento público (200 m)', tram: 'Tranvía T4 (3 min)', comArribar: 'Cómo llegar' }
   },
-  footer: { rights: 'Todos los derechos reservados' },
+  footer: { rights: 'Todos los derechos reservados', legal: { 'aviso-legal': 'Aviso legal', privacidad: 'Privacidad', cookies: 'Cookies', consumidor: 'Alérgenos y consumo' } },
+  legal: { title: 'Información legal', intro: 'Quién está detrás de esta web, qué hacemos con tus datos y qué debes saber como cliente.' },
   theme: { label: 'Tema de color', light: 'Claro', auto: 'Auto', dark: 'Oscuro', shortcut: 'Atajo: tecla T' },
   lang: { label: 'Idioma' },
   search: { label: 'Buscar', placeholder: 'Busca un plato o bebida…', noResults: 'Sin resultados. Prueba con otro término.', hint: 'Pulsa / o Ctrl+K para buscar', clear: 'Borrar búsqueda' },
@@ -51,6 +58,7 @@ export const es: Messages = {
   errClosedDay: 'Ese día estamos cerrados.',
   errDateRange: 'Las reservas son de 1 a 90 días vista.',
   errTooMany: 'Has llegado al máximo de reservas que se pueden hacer por la web.',
+  errDuplicate: 'Ya tienes una reserva para ese día.',
   errGeneric: 'Ha habido un error. Vuelve a intentarlo.',
   closedTag: 'cerrado',
   otherDate: 'Otro día',
@@ -58,7 +66,6 @@ export const es: Messages = {
   more: 'Una persona más',
   person: 'persona',
   persons: 'personas',
-  errDuplicate: 'Ya tienes una reserva para ese día.',
   full: 'completo',
   pickSlot: 'Elige una hora para continuar.',
   slotsHint: 'Elige un día y verás las horas libres.',

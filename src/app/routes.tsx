@@ -1,3 +1,4 @@
+import { Suspense } from 'react'
 import { Navigate, useLocation, type RouteObject } from 'react-router'
 import { RootLayout } from './RootLayout'
 import { LocaleLayout } from './LocaleLayout'
@@ -5,6 +6,7 @@ import { HomePage } from './HomePage'
 import { NotFoundPage } from './NotFoundPage'
 import { RouteError } from './RouteError'
 import { detectLocale } from '@/i18n'
+import { LegalPage } from './legalPage'
 import { AdminLoadError, AdminShell } from './AdminShell'
 import { AdminLayout, BlocksPage, DashboardPage, LoginPage } from './adminPages'
 
@@ -30,6 +32,7 @@ export const routes: RouteObject[] = [
         element: <LocaleLayout />,
         children: [
           { index: true, element: <HomePage /> },
+          { path: 'legal', element: <Suspense fallback={null}><LegalPage /></Suspense> },
           { path: '*', element: <NotFoundPage /> }
         ]
       }

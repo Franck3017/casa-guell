@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { useLocation } from 'react-router'
 import { LOCALES, DEFAULT_LOCALE, useI18n, type Locale } from '@/i18n'
+import { pageMeta, pageOf } from './Seo/pageMeta'
 import { restaurantSchema, websiteSchema } from './Seo/structuredData'
 
 export const BASE_URL = 'https://casa-guell-drab.vercel.app'
@@ -48,12 +49,11 @@ export function LocaleSeo () {
   const location = useLocation()
 
   useEffect(() => {
-    // La web tiene una sola página por idioma: cualquier otra ruta es la de "no encontrado". El servidor
-    // la entrega con 200 (es una SPA), así que se marca noindex y su canónica apunta a la portada.
-    const notFound = location.pathname.replace(/\/$/, '') !== `/${locale}`
-    const canonical = `${BASE_URL}/${locale}`
-    const title = t.meta.title
-    const desc = t.meta.description
+    // Cada idioma tiene su portada y su información legal: cualquier otra ruta es la de "no encontrado".
+    // Esa se marca noindex y se presenta como la portada, que es adonde lleva su canónica.
+    const page = pageOf(locale, location.pathname)
+    const notFound = page == null
+    const { title, description: desc, canonical } = pageMeta(locale, t, page ?? '')
     const ogImage = OG_IMAGE
 
     // --- Básicos ---
@@ -95,11 +95,11 @@ export function LocaleSeo () {
 
     // --- Canonical + hreflang ---
     upsertLink('canonical', canonical)
-    for (const l of LOCALES) upsertLink('alternate', `${BASE_URL}/${l}`, l)
-    upsertLink('alternate', `${BASE_URL}/${DEFAULT_LOCALE}`, 'x-default')
+    for (const l of LOCALES) upsertLink('alternate', `${BASE_URL}/${l}${page ?? ''}`, l)
+    upsertLink('alternate', `${BASE_URL}/${DEFAULT_LOCALE}${page ?? ''}`, 'x-default')
 
     // --- Structured Data ---
-    setJsonLd('ld-restaurant', restaurantSchema(locale, desc))
+    setJsonLd('ld-restaurant', restaurantSchema(locale, t.meta.description))
     setJsonLd('ld-website', websiteSchema(locale))
   }, [locale, t, location.pathname])
 

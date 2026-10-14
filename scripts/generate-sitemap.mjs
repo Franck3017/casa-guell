@@ -13,9 +13,14 @@ function alternates(pathFn) {
   )
 }
 
-const urls = LOCALES.map(
-  (l) =>
-    `  <url>\n    <loc>${BASE}/${l}</loc>\n    <lastmod>${today}</lastmod>\n${alternates(() => '')}\n  </url>`,
+// Las páginas de cada idioma: la portada y la información legal. Las mismas que escribe scripts/prerender.mjs.
+const PAGES = ['', '/legal']
+
+const urls = PAGES.flatMap((page) =>
+  LOCALES.map(
+    (l) =>
+      `  <url>\n    <loc>${BASE}/${l}${page}</loc>\n    <lastmod>${today}</lastmod>\n${alternates(() => page)}\n  </url>`,
+  ),
 )
 
 const xml = `<?xml version="1.0" encoding="UTF-8"?>

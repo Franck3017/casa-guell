@@ -32,9 +32,11 @@
         es: "Casa Güell · Restaurante de cocina catalana en Barcelona",
         en: "Casa Güell · Catalan restaurant in Barcelona"
       };
-      var lang = location.pathname.split("/")[1];
+      var path = location.pathname.split("/");
+      var lang = path[1];
       if (titles[lang]) {
-        document.title = titles[lang];
+        // La información legal ya trae escrito su propio título
+        if (path[2] !== "legal") document.title = titles[lang];
         document.documentElement.lang = lang;
       }
     } catch (_) {}

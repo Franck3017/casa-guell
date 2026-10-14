@@ -1,6 +1,7 @@
 import { existsSync, readdirSync, readFileSync } from 'node:fs'
 import { gzipSync } from 'node:zlib'
 import { describe, expect, it } from 'vitest'
+import { LEGAL_DOC_IDS } from '@/features/legal/content/types'
 import { GROUPS } from '@/features/menu/menu-groups'
 import { ca } from '@/i18n/locales/ca'
 import { en } from '@/i18n/locales/en'
@@ -59,6 +60,16 @@ describe.each(['ca', 'es', 'en'] as const)('portada generada /%s', (locale) => {
     expect(missing).toEqual([])
   })
 
+  // La información legal (aviso, privacidad, cookies, alérgenos y consumo) tiene que estar a un clic desde
+  // cualquier página: sus cuatro enlaces van en el pie.
+  it('enlaza desde el pie los cuatro documentos legales', () => {
+    const footer = html.slice(html.indexOf('<footer'))
+
+    for (const doc of LEGAL_DOC_IDS) {
+      expect(footer).toContain(`href="/${locale}/legal#${doc}"`)
+    }
+  })
+
   it('no deja contenido pendiente de colocar por script', () => {
     expect(html).not.toContain('<template id="B:')
     expect(html).not.toContain('$RC(')
@@ -70,6 +81,39 @@ describe.each(['ca', 'es', 'en'] as const)('portada generada /%s', (locale) => {
 
   it('lleva el esqueleto de carga del mapa', () => {
     expect(html).toContain('data-boneyard="restaurant-map"')
+  })
+})
+
+// La información legal es una página propia en cada idioma. Va escrita en un archivo, como la portada: así
+// el servidor la entrega con 200 a quien llega por el enlace, y se lee sin ejecutar JavaScript.
+describe.each(['ca', 'es', 'en'] as const)('información legal generada /%s/legal', (locale) => {
+  const html = read(`${locale}/legal.html`)
+  const address = `https://casa-guell-drab.vercel.app/${locale}/legal`
+
+  it('está en su idioma y con su título', () => {
+    expect(html).toContain(`<html lang="${locale}"`)
+    expect(html).toContain(`<title>${DICTS[locale].legal.title} · Casa Güell</title>`)
+  })
+
+  it('se presenta con su propia dirección, no con la de la portada', () => {
+    expect(html).toContain(`<link rel="canonical" href="${address}" />`)
+    expect(html).toContain(`<meta property="og:url" content="${address}" />`)
+    expect(html).toContain(`<link rel="alternate" hreflang="${locale}" href="${address}" />`)
+  })
+
+  it('se escribe igual en las dos rutas que usan los alojamientos', () => {
+    expect(read(`${locale}/legal/index.html`)).toBe(html)
+  })
+
+  it('trae los cuatro documentos ya pintados, cada uno con su ancla', () => {
+    for (const doc of LEGAL_DOC_IDS) {
+      expect(html).toContain(`<section id="${doc}"`)
+    }
+  })
+
+  it('no deja contenido pendiente de colocar por script', () => {
+    expect(html).not.toContain('<template id="B:')
+    expect(html).not.toContain('$RC(')
   })
 })
 

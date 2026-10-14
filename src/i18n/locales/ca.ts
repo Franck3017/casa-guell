@@ -23,7 +23,13 @@ export const ca: Messages = {
     section: 'Secció',
     refs: 'referències', refsOne: 'referència', empty: 'Aquesta secció no té referències ara mateix.', shot: 'Xupito', glass: 'Copa',
     allergenLegend: 'Llegenda d\'al·lèrgens',
-    allergenAsk: 'Altres al·lèrgens: consulta el personal'
+    allergenAsk: 'Altres al·lèrgens: consulta el personal',
+    notices: {
+      allergy: 'Si tens alguna al·lèrgia o intolerància, digues-nos-ho abans de demanar. La informació sobre els al·lèrgens de cada plat és a la teva disposició: consulta el nostre personal.',
+      vat: 'Preus en euros, IVA inclòs.',
+      rawFish: 'El peix que servim cru o poc fet s\'ha congelat prèviament, tal com exigeix el Reial decret 1021/2022 per prevenir l\'anisakis.',
+      leftovers: 'Si no t\'ho acabes, demana\'ns que t\'ho preparem per emportar.'
+    }
   },
   mercat: { title: 'El mercat mana', desc: 'Cada matí baixem a la llotja i triem el millor peix i marisc del dia. No hi ha carta fixa de mercat: pregunta pel producte del dia, perquè canvia cada jornada segons el que ofereix el mar.', accion: 'Pregunta pel producte del dia', caption: 'Llotja de Barcelona · compra diària', imgAlt2: 'Jordi, el xef, mirant amb sorpresa una caixa blava plena de escamarlans frescos a la cuina', imgAlt3: 'Un escamarlà fresc sostingut a la mà sobre un plat amb més escamarlans' },
   ubicacio: {
@@ -35,7 +41,8 @@ export const ca: Messages = {
     days: { md: 'Dimecres a Dissabte', dg: 'Diumenge', ll: 'Dilluns i Dimarts' },
     overlay: { metro: 'Metro L4 Poblenou (5 min)', parking: 'Pàrquing públic (200 m)', tram: 'Tramvia T4 (3 min)', comArribar: 'Com arribar-hi' }
   },
-  footer: { rights: 'Tots els drets reservats' },
+  footer: { rights: 'Tots els drets reservats', legal: { 'aviso-legal': 'Avís legal', privacidad: 'Privacitat', cookies: 'Galetes', consumidor: 'Al·lèrgens i consum' } },
+  legal: { title: 'Informació legal', intro: 'Qui hi ha darrere d\'aquest web, què fem amb les teves dades i què has de saber com a client.' },
   theme: { label: 'Tema de color', light: 'Clar', auto: 'Auto', dark: 'Fosc', shortcut: 'Drecera: tecla T' },
   lang: { label: 'Idioma' },
   search: { label: 'Cerca', placeholder: 'Cerca un plat o beguda…', noResults: 'Cap resultat. Prova amb un altre terme.', hint: 'Prem / o Ctrl+K per cercar', clear: 'Esborra la cerca' },
@@ -50,6 +57,7 @@ export const ca: Messages = {
   errClosedDay: 'Aquell dia estem tancats.',
   errDateRange: 'Les reserves són d\'1 a 90 dies vista.',
   errTooMany: 'Has arribat al màxim de reserves que es poden fer pel web.',
+  errDuplicate: 'Ja tens una reserva per a aquest dia.',
   errGeneric: 'Hi ha hagut un error. Torna-ho a provar.',
   closedTag: 'tancat',
   otherDate: 'Un altre dia',
@@ -57,7 +65,6 @@ export const ca: Messages = {
   more: 'Una persona més',
   person: 'persona',
   persons: 'persones',
-  errDuplicate: 'Ja tens una reserva per a aquest dia.',
   full: 'complet',
   pickSlot: 'Tria una hora per continuar.',
   slotsHint: 'Tria un dia i veuràs les hores lliures.',

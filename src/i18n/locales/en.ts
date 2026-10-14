@@ -53,7 +53,7 @@ export const en: Messages = {
   noSlots: 'No availability left for this date.',
   codeLabel: 'Booking code',
   email: 'Email (for confirmation)',
-  notes: 'Notes (allergies, celebrations…)',
+  notes: 'General notes (celebrations, seating preferences…)',
   errNoAvailability: 'This slot just filled up. Please pick another.',
   errClosedDay: 'We are closed that day.',
   errDateRange: 'Bookings are from 1 to 90 days ahead.',

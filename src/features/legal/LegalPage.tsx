@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { LABEL } from '@/components/ui/controls'
 import { useI18n } from '@/i18n'
+import { pageReady } from '@/lib/events'
 import { INTL_LOCALE } from '@/lib/menuFormat'
 import { contentFor, legalLang, type LegalDoc } from './content'
 import { fill, type Filled } from './entity'
@@ -28,12 +29,9 @@ export function LegalPage () {
   const updated = new Intl.DateTimeFormat(INTL_LOCALE[locale], { dateStyle: 'long' }).format(new Date(`${UPDATED}T12:00:00`))
   const { allergy, vat, rawFish, leftovers } = t.carta.notices
 
-  // Esta página llega en un trozo aparte, después de que la ruta haya buscado el ancla: se va a ella al llegar,
-  // de un salto. Los cambios de ancla posteriores los mueve la ruta, con su recorrido.
-  useEffect(() => {
-    const { hash } = window.location
-    if (hash !== '') document.getElementById(hash.slice(1))?.scrollIntoView({ behavior: 'instant' })
-  }, [])
+  // Esta página llega en un trozo aparte, a veces después de que la ruta haya colocado el scroll: avisa
+  // al montarse para que se coloque otra vez, ya con el ancla (o el punto que se dejó) en su sitio.
+  useEffect(pageReady, [])
 
   return (
     <article className='mx-auto max-w-6xl px-6 pb-16 pt-24 md:pt-28'>

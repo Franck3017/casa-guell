@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react'
+import { legalHref } from '@/components/Seo/pageMeta'
 import { useI18n } from '@/i18n'
 
 /**
@@ -11,7 +12,7 @@ export function PrivacyNote ({ children, className }: { children: ReactNode, cla
   return (
     <p className={className}>
       {children}{' '}
-      <a href={`/${locale}/legal#privacidad`} target='_blank' rel='noopener' className='font-medium text-ink underline underline-offset-4 hover:text-brand'>
+      <a href={legalHref(locale, 'privacidad')} target='_blank' rel='noopener' className='font-medium text-ink underline underline-offset-4 hover:text-brand'>
         {t.legal.privacyLink}<span className='sr-only'> {t.legal.newTab}</span>
       </a>
     </p>

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { pageMeta, pageOf } from '@/components/Seo/pageMeta'
+import { legalHref, pageMeta, pageOf } from '@/components/Seo/pageMeta'
 import { ca } from '@/i18n/locales/ca'
 import { es } from '@/i18n/locales/es'
 
@@ -17,6 +17,13 @@ describe('qué página es una ruta', () => {
   it('cualquier otra ruta no es ninguna página', () => {
     expect(pageOf('es', '/es/no-existe')).toBeNull()
     expect(pageOf('es', '/es/legal/otra')).toBeNull()
+  })
+})
+
+describe('dirección de un documento legal', () => {
+  it('lleva a su ancla dentro de la página legal del idioma', () => {
+    expect(legalHref('ca', 'cookies')).toBe('/ca/legal#cookies')
+    expect(pageOf('ca', legalHref('ca', 'cookies').split('#')[0])).toBe('/legal')
   })
 })
 

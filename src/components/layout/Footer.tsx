@@ -2,7 +2,7 @@ import { useRef, type ReactNode } from 'react'
 import { ArrowUpRight } from 'lucide-react'
 import { Link, useLocation } from 'react-router'
 import { useLegalPageReady } from '@/app/legalPage'
-import { pageOf } from '@/components/Seo/pageMeta'
+import { legalHref, pageOf } from '@/components/Seo/pageMeta'
 import { data } from '@/data'
 import { LEGAL_DOC_IDS } from '@/features/legal/content/types'
 import { useI18n } from '@/i18n'
@@ -143,7 +143,7 @@ export function Footer () {
             {LEGAL_DOC_IDS.map((doc) => (
               <li key={doc}>
                 <Link
-                  to={`/${locale}/legal#${doc}`}
+                  to={legalHref(locale, doc)}
                   viewTransition={legalReady && toLegalPage}
                   className='inline-flex min-h-11 items-center underline decoration-cream/35 underline-offset-8 transition-colors hover:decoration-cream motion-reduce:transition-none'
                 >

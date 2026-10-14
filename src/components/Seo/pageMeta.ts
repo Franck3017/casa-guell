@@ -1,10 +1,14 @@
 import { BASE_URL } from '@/components/Seo'
+import type { LegalDocId } from '@/features/legal/content/types'
 import type { Locale } from '@/i18n'
 import type { Messages } from '@/i18n/types'
 
 /** Las páginas que hay dentro de cada idioma, por lo que va detrás de /<idioma>: la portada y la información legal. */
 export const PAGES = ['', '/legal'] as const
 export type PagePath = (typeof PAGES)[number]
+
+/** Dónde está un documento legal (aviso, privacidad…): su ancla dentro de la página legal del idioma. */
+export const legalHref = (locale: Locale, doc: LegalDocId): string => `/${locale}/legal#${doc}`
 
 /** Lo que se pide a los buscadores: indexar las páginas que existen y no hacerlo con las rutas que no. */
 export const ROBOTS = { index: 'index, follow, max-image-preview:large', noindex: 'noindex, follow' } as const

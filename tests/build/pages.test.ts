@@ -1,8 +1,11 @@
 import { existsSync, readdirSync, readFileSync } from 'node:fs'
+import { runInNewContext } from 'node:vm'
 import { gzipSync } from 'node:zlib'
 import { describe, expect, it } from 'vitest'
+import { PAGES, pageMeta } from '@/components/Seo/pageMeta'
 import { LEGAL_DOC_IDS } from '@/features/legal/content/types'
 import { GROUPS } from '@/features/menu/menu-groups'
+import { LOCALES } from '@/i18n'
 import { ca } from '@/i18n/locales/ca'
 import { en } from '@/i18n/locales/en'
 import { es } from '@/i18n/locales/es'
@@ -137,6 +140,47 @@ describe.each(['ca', 'es', 'en'] as const)('información legal generada /%s/lega
   it('no deja contenido pendiente de colocar por script', () => {
     expect(html).not.toContain('<template id="B:')
     expect(html).not.toContain('$RC(')
+  })
+})
+
+// Las páginas que existen se declaran en un sitio (PAGES). Lo que depende de esa lista fuera del código
+// de la aplicación, el sitemap y el script del <head>, se comprueba aquí contra ella.
+describe('lo que depende de la lista de páginas', () => {
+  /** Título e idioma que deja el script del <head> al abrir un archivo generado en una dirección. */
+  const afterHeadScript = (file: string, pathname: string): { title: string, lang: string } => {
+    const html = read(file)
+    const script = html.match(/<script>([\s\S]*?)<\/script>/)?.[1]
+    if (script == null) throw new Error(`${file} no lleva el script del <head>`)
+    const document = {
+      title: html.match(/<title>([^<]*)<\/title>/)?.[1] ?? '',
+      documentElement: { lang: '', classList: { toggle () {}, add () {}, remove () {} } },
+      querySelector: () => ({ setAttribute () {} })
+    }
+    runInNewContext(script, { document, location: { pathname }, localStorage: { getItem: () => null }, matchMedia: () => ({ matches: false }), setTimeout () {} })
+    return { title: document.title, lang: document.documentElement.lang }
+  }
+
+  // Se genera con `node scripts/generate-sitemap.mjs`, que lleva su propia copia de la lista
+  it('el sitemap las lista todas, en todos los idiomas, y ninguna más', () => {
+    const listed = [...read('sitemap.xml').matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]).sort()
+    const pages = LOCALES.flatMap((locale) => PAGES.map((page) => `https://casa-guell-drab.vercel.app/${locale}${page}`)).sort()
+
+    expect(listed).toEqual(pages)
+  })
+
+  it('el script del <head> no pisa el título de ninguna', () => {
+    for (const locale of LOCALES) {
+      for (const page of PAGES) {
+        expect(afterHeadScript(`${locale}${page}.html`, `/${locale}${page}`), `/${locale}${page}`)
+          .toEqual({ title: pageMeta(locale, DICTS[locale], page).title, lang: locale })
+      }
+    }
+  })
+
+  // La página de las rutas que no existen es la plantilla, en catalán: el script la pone en su idioma
+  it('y a una ruta que no existe le pone el título y el idioma que le tocan', () => {
+    expect(afterHeadScript('404.html', '/es/no-existe')).toEqual({ title: es.meta.title, lang: 'es' })
+    expect(afterHeadScript('404.html', '/en/nope/again')).toEqual({ title: en.meta.title, lang: 'en' })
   })
 })
 

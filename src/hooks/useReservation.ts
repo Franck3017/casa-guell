@@ -28,6 +28,9 @@ export function useReservation (locale: Locale) {
   const [people, setPeopleOnly] = useState(2)
   const [slot, setSlot] = useState<string | null>(null)
   const [contact, setContact] = useState<ReserveContact>(NO_CONTACT)
+  const [allergyIds, setAllergyIds] = useState<number[]>([])
+  const [allergyText, setAllergyText] = useState('')
+  const [allergyConsent, setAllergyConsent] = useState(false)
   const [loaded, setLoaded] = useState<LoadedSlots | null>(null)
   const [reloads, setReloads] = useState(0)
   const [sending, setSending] = useState(false)
@@ -70,7 +73,13 @@ export function useReservation (locale: Locale) {
     if (slot == null) return 'errGeneric'
     setSending(true)
     setErrorKey(null)
-    const { data, error } = await supabase.rpc('create_reservation', {
+    const hasAllergy = allergyIds.length > 0 || allergyText.trim().length > 0
+    if (hasAllergy && !allergyConsent) {
+      setSending(false)
+      setErrorKey('errAllergyConsent')
+      return 'errAllergyConsent'
+    }
+    const { data, error } = await supabase.rpc(hasAllergy ? 'create_reservation_with_allergies' : 'create_reservation', {
       p_name: contact.name,
       p_phone: contact.phone,
       p_email: contact.email,
@@ -78,7 +87,12 @@ export function useReservation (locale: Locale) {
       p_time: slot,
       p_people: people,
       p_notes: contact.notes,
-      p_locale: locale
+      p_locale: locale,
+      ...(hasAllergy ? {
+        p_allergen_ids: allergyIds,
+        p_allergy_text: allergyText.trim() || null,
+        p_allergy_consent: allergyConsent
+      } : {})
     })
     setSending(false)
     if (error != null) {
@@ -101,6 +115,9 @@ export function useReservation (locale: Locale) {
     setPeopleOnly(2)
     setSlot(null)
     setContact(NO_CONTACT)
+    setAllergyIds([])
+    setAllergyText('')
+    setAllergyConsent(false)
     setLoaded(null)
     setErrorKey(null)
     setCode(null)
@@ -111,6 +128,9 @@ export function useReservation (locale: Locale) {
     people,
     slot,
     contact,
+    allergyIds,
+    allergyText,
+    allergyConsent,
     /** Las horas del día elegido: `undefined` mientras llegan, `null` si no se han podido consultar. */
     slots: day == null ? undefined : day.slots,
     sending,
@@ -121,6 +141,9 @@ export function useReservation (locale: Locale) {
     setPeople,
     setSlot,
     setContact,
+    setAllergyIds,
+    setAllergyText,
+    setAllergyConsent,
     reloadSlots,
     submit,
     reset

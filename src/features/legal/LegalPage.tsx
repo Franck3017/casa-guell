@@ -15,6 +15,9 @@ const LINK = 'font-medium text-ink underline underline-offset-4 hover:text-brand
 const filledBlocks = (doc: LegalDoc, lang: 'ca' | 'es') =>
   doc.blocks.map((block) => ({ ...block, filled: block.paragraphs.map((text) => fill(text, lang)).filter((parts): parts is Filled => parts != null) }))
 
+/** Si a un párrafo le falta algún dato del titular. */
+const hasPending = (parts: Filled): boolean => parts.some((part) => typeof part !== 'string')
+
 /**
  * Información legal de la casa en una sola página: aviso legal, privacidad, cookies y lo que debe saber
  * quien viene a comer (alérgenos, precios, reclamaciones). Cada documento tiene su ancla, que es adonde
@@ -51,7 +54,7 @@ export function LegalPage () {
 
       {content.docs.map((doc) => {
         const blocks = filledBlocks(doc, lang)
-        const incomplete = blocks.some((block) => block.filled.some((parts) => parts.some((part) => typeof part !== 'string')))
+        const incomplete = blocks.some((block) => block.filled.some(hasPending))
         return (
           <section key={doc.id} id={doc.id} lang={docLang} aria-labelledby={`${doc.id}-title`} className='mt-10 border-t border-ink/10 pt-6'>
             <h2 id={`${doc.id}-title`} className='font-display text-2xl text-ink'>{doc.title}</h2>

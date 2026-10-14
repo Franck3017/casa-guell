@@ -64,6 +64,19 @@ describe('página de información legal', () => {
     expect(external.length).toBeGreaterThan(0)
     expect(external.filter((link) => !link.includes(escapeHtml(DICTS[locale].legal.newTab)))).toEqual([])
   })
+
+  // El aviso de que faltan datos del titular es lo que impide dar por buena una página incompleta: tiene
+  // que salir en cada documento al que le falte algo, y solo en esos
+  it.each(['ca', 'es', 'en'] as const)('en /%s, avisa de que faltan datos justo en los documentos a los que les faltan', (locale) => {
+    const { pendingNotice, pendingLabel } = contentFor(locale)
+    const sections = pageIn(locale).match(/<section id="[^"]+"[\s\S]*?<\/section>/g) ?? []
+    const warns = (section: string): boolean => section.includes(escapeHtml(pendingNotice))
+    const hasGap = (section: string): boolean => section.includes(escapeHtml(`[${pendingLabel}]`))
+
+    expect(sections).toHaveLength(LEGAL_DOC_IDS.length)
+    expect(sections.filter((section) => warns(section) !== hasGap(section))).toEqual([])
+    expect(sections.some(warns)).toBe(pendingFields().length > 0)
+  })
 })
 
 describe('datos del titular', () => {

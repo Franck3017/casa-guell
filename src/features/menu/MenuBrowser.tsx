@@ -169,7 +169,9 @@ export function MenuBrowser () {
               const refsLabel = plural.select(items.length) === 'one' ? t.carta.refsOne : t.carta.refs
 
               return (
-                <div key={setKey} role='tabpanel' id={setPanelId(setKey)} aria-labelledby={setTabId(setKey)} hidden={activeIdx !== i}>
+                // state-in: al dejar de estar oculta, la lista entra con un fundido corto en vez de aparecer de golpe.
+                // Es solo de entrada y no bloquea nada: se puede pasar de una pestaña a otra tan rápido como se quiera.
+                <div key={setKey} role='tabpanel' id={setPanelId(setKey)} aria-labelledby={setTabId(setKey)} hidden={activeIdx !== i} className='state-in'>
                   {items.length === 0
                     ? <p role='status' className='mt-8 max-w-prose text-base text-ink/70'>{t.carta.empty}</p>
                     : (

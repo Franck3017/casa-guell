@@ -60,6 +60,21 @@ describe.each(['ca', 'es', 'en'] as const)('portada generada /%s', (locale) => {
     expect(missing).toEqual([])
   })
 
+  // Al cambiar de pestaña la lista entra con el fundido corto de la casa (state-in) en vez de aparecer de
+  // golpe. Va en el panel de cada sección, que es lo que se estrena tanto al elegir sección como al
+  // cambiar de familia; en el de la familia sumaría un segundo fundido encima.
+  it('las listas de la carta entran con el fundido de la casa, una sola vez', () => {
+    const panels = menuSectionOf(html).match(/<div[^>]*role="tabpanel"[^>]*>/g) ?? []
+    const fades = (panel: string): boolean => /class="[^"]*\bstate-in\b/.test(panel)
+    const sections = panels.filter((panel) => panel.includes('-set-panel-'))
+    const families = panels.filter((panel) => panel.includes('-family-panel-'))
+
+    expect(sections).toHaveLength(Object.values(GROUPS).flatMap((group) => group.sets).length)
+    expect(sections.filter((panel) => !fades(panel))).toEqual([])
+    expect(families).toHaveLength(Object.keys(GROUPS).length)
+    expect(families.filter(fades)).toEqual([])
+  })
+
   // La información legal (aviso, privacidad, cookies, alérgenos y consumo) tiene que estar a un clic desde
   // cualquier página: sus cuatro enlaces van en el pie.
   it('enlaza desde el pie los cuatro documentos legales', () => {

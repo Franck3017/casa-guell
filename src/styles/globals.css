@@ -165,7 +165,8 @@ main img { filter: var(--cg-img); transition: filter 0.4s ease; }
 .modal-overlay { transition: opacity 200ms var(--ease-out); }
 .modal-panel { transition: opacity 200ms var(--ease-out), transform 200ms var(--ease-out); }
 
-/* Estado de éxito de los formularios: el mensaje sustituye al formulario sin saltar. */
+/* Lo que aparece en el sitio de otra cosa entra sin saltar: el mensaje de éxito que sustituye a un
+   formulario y la lista de la carta al cambiar de pestaña. */
 .state-in { transition: opacity 200ms var(--ease-out), transform 200ms var(--ease-out); }
 
 @starting-style {

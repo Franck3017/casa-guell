@@ -7,7 +7,7 @@ import { contentFor, legalLang, type LegalDoc } from './content'
 import { fill, type Filled } from './entity'
 
 /** Cuándo se revisaron por última vez los textos. Se cambia a mano al tocarlos. */
-const UPDATED = '2026-10-13'
+const UPDATED = '2026-10-14'
 
 const LINK = 'font-medium text-ink underline underline-offset-4 hover:text-brand'
 
@@ -80,7 +80,13 @@ export function LegalPage () {
                 {block.links != null && (
                   <ul className='text-sm'>
                     {block.links.map(({ label, href }) => (
-                      <li key={href}><a href={href} target='_blank' rel='noreferrer' className={`inline-flex min-h-11 items-center ${LINK}`}>{label}</a></li>
+                      <li key={href}>
+                        <a href={href} target='_blank' rel='noreferrer' className={`inline-flex min-h-11 items-center ${LINK}`}>
+                          {label}
+                          {/* El aviso va en el idioma de la página, también cuando el documento se lee en otro */}
+                          <span lang={docLang != null ? locale : undefined} className='sr-only'> {t.legal.newTab}</span>
+                        </a>
+                      </li>
                     ))}
                   </ul>
                 )}

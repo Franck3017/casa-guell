@@ -1,6 +1,18 @@
+import { createElement } from 'react'
+import { renderToStaticMarkup } from 'react-dom/server'
+import { MemoryRouter } from 'react-router'
 import { describe, expect, it } from 'vitest'
+import { LegalPage } from '@/features/legal'
 import { contentFor, LEGAL_DOC_IDS } from '@/features/legal/content'
 import { ENTITY, fill, pendingFields, TOKENS } from '@/features/legal/entity'
+import { I18nProvider, type Locale } from '@/i18n'
+import { ca } from '@/i18n/locales/ca'
+import { en } from '@/i18n/locales/en'
+import { es } from '@/i18n/locales/es'
+
+const DICTS = { ca, es, en }
+/** Como escribe React un texto en el HTML. */
+const escapeHtml = (text: string): string => text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#x27;')
 
 const paragraphsOf = (locale: 'ca' | 'es' | 'en'): string[] =>
   contentFor(locale).docs.flatMap((doc) => doc.blocks.flatMap((block) => block.paragraphs))
@@ -37,6 +49,20 @@ describe('documentos legales', () => {
     for (const provider of ['Supabase', 'Resend', 'Formspree', 'Vercel', 'CARTO']) {
       expect(text, provider).toContain(provider)
     }
+  })
+})
+
+describe('página de información legal', () => {
+  const pageIn = (locale: Locale): string => renderToStaticMarkup(
+    createElement(MemoryRouter, { initialEntries: [`/${locale}/legal`] }, createElement(I18nProvider, { locale, children: createElement(LegalPage) }))
+  )
+
+  // Quien usa lector de pantalla no ve que se abre otra pestaña: hay que decírselo, como en los formularios
+  it.each(['ca', 'es', 'en'] as const)('en /%s, los enlaces a otros sitios avisan de que se abren en otra pestaña', (locale) => {
+    const external = pageIn(locale).match(/<a [^>]*target="_blank"[^>]*>.*?<\/a>/g) ?? []
+
+    expect(external.length).toBeGreaterThan(0)
+    expect(external.filter((link) => !link.includes(escapeHtml(DICTS[locale].legal.newTab)))).toEqual([])
   })
 })
 

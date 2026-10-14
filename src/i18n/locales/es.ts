@@ -53,7 +53,7 @@ export const es: Messages = {
   noSlots: 'No queda disponibilidad para esta fecha.',
   codeLabel: 'Código de reserva',
   email: 'Email (para la confirmación)',
-  notes: 'Notas (alergias, celebraciones…)',
+  notes: 'Observaciones generales (celebraciones, preferencias de mesa…)',
   errNoAvailability: 'Este turno se ha llenado mientras tanto. Elige otro.',
   errClosedDay: 'Ese día estamos cerrados.',
   errDateRange: 'Las reservas son de 1 a 90 días vista.',

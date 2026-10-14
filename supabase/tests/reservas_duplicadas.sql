@@ -1,4 +1,5 @@
--- Pruebas de la regla de reservas duplicadas (create_reservation, migración 20261013211314).
+-- Pruebas de la regla de reservas duplicadas (create_reservation, migraciones 20261013211314 y la del
+-- correo, «correo_puntos_solo_gmail»).
 --
 -- Qué comprueba: que una persona no puede reservar dos veces el mismo día aunque cambie algún dato, y que
 -- no se rechaza a quien no es la misma persona. Cada caso dice qué se espera y qué ha salido.
@@ -14,7 +15,7 @@
 -- Qué deja: nada. Las reservas de prueba se crean y se deshacen dentro del propio guion (no llegan a
 -- enviarse correos, que salen al confirmar la transacción), en dos días libres, abiertos y sin reservas,
 -- de aquí a entre uno y tres meses. La tabla de resultados es temporal y desaparece con la sesión. Lo
--- único que no se deshace es el contador de códigos: gasta cinco números, y el hueco en la numeración
+-- único que no se deshace es el contador de códigos: gasta siete números, y el hueco en la numeración
 -- no afecta a nada.
 
 drop table if exists pg_temp.prueba_duplicadas;
@@ -50,6 +51,12 @@ declare
      "nombre": "Laura Vidal Roca", "telefono": "622 333 444", "correo": null, "ip": "203.0.113.1", "dia": 1, "esperado": "aceptada"},
     {"caso": "la misma persona otro día",
      "nombre": "Jordi Puig Casals", "telefono": "600 000 101", "correo": "prueba.duplicadas@gmail.com", "ip": "203.0.113.1", "dia": 2, "esperado": "aceptada"},
+    {"caso": "un correo de empresa nuevo",
+     "nombre": "Núria Camps Soler", "telefono": "633 444 555", "correo": "n.camps@empresa.example", "ip": "203.0.113.6", "dia": 1, "esperado": "aceptada"},
+    {"caso": "ese correo de empresa sin el punto: fuera de Gmail es otro buzón, y otra persona",
+     "nombre": "Pau Ribas Font", "telefono": "644 555 666", "correo": "ncamps@empresa.example", "ip": "203.0.113.7", "dia": 1, "esperado": "aceptada"},
+    {"caso": "ese correo de empresa con alias y mayúsculas: es el mismo buzón",
+     "nombre": "Clara Bosch Mir", "telefono": "655 666 777", "correo": "N.Camps+reserva@Empresa.Example", "ip": "203.0.113.8", "dia": 1, "esperado": "DUPLICATE_RESERVATION"},
     {"caso": "la misma persona el mismo día, con la primera reserva ya cancelada",
      "nombre": "Jordi Puig Casals", "telefono": "600 000 101", "correo": null, "ip": "203.0.113.5", "dia": 1, "esperado": "aceptada", "antes": "cancelar la de partida"}
   ]$json$;
@@ -116,6 +123,23 @@ begin
   from jsonb_array_elements(v_results) with ordinality as t (r, n);
 end
 $test$;
+
+-- El correo como buzón (private.email_key): qué se toma por el mismo y qué no. No crea nada.
+insert into prueba_duplicadas (n, caso, esperado, obtenido)
+select 100 + row_number() over (), 'correo · ' || t.caso, t.esperado,
+       case when private.email_key(t.a) = private.email_key(t.b) then 'el mismo buzón' else 'buzones distintos' end
+from (values
+  ('en Gmail los puntos no cuentan', 'ana.ferrer@gmail.com', 'anaferrer@gmail.com', 'el mismo buzón'),
+  ('Googlemail es Gmail', 'anaferrer@googlemail.com', 'ana.ferrer@gmail.com', 'el mismo buzón'),
+  ('en Googlemail los puntos tampoco cuentan', 'ana.ferrer@googlemail.com', 'anaferrer@gmail.com', 'el mismo buzón'),
+  ('fuera de Gmail los puntos sí cuentan', 'a.ferrer@empresa.example', 'aferrer@empresa.example', 'buzones distintos'),
+  ('un dominio que acaba como Gmail no es Gmail', 'ana.ferrer@notgmail.com', 'anaferrer@notgmail.com', 'buzones distintos'),
+  ('un dominio que empieza como Gmail no es Gmail', 'ana.ferrer@gmail.com.example', 'anaferrer@gmail.com.example', 'buzones distintos'),
+  ('el alias con «+» no cuenta en ningún dominio', 'Ana.Ferrer+mesa@Empresa.Example', 'ana.ferrer@empresa.example', 'el mismo buzón'),
+  ('las mayúsculas y los espacios alrededor no cuentan', '  Ana.Ferrer@Empresa.Example ', 'ana.ferrer@empresa.example', 'el mismo buzón'),
+  ('otro dominio es otro buzón', 'ana.ferrer@empresa.example', 'ana.ferrer@otra.example', 'buzones distintos'),
+  ('lo que no lleva arroba no es ningún buzón', 'no-es-un-correo', 'no-es-un-correo', 'buzones distintos')
+) as t (caso, a, b, esperado);
 
 do $check$
 declare

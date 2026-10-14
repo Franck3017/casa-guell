@@ -52,7 +52,7 @@ export const ca: Messages = {
   noSlots: 'No queda disponibilitat per a aquesta data.',
   codeLabel: 'Codi de reserva',
   email: 'Email (per a la confirmació)',
-  notes: 'Notes (al·lèrgies, celebracions…)',
+  notes: 'Observacions generals (celebracions, preferències de taula…)',
   errNoAvailability: 'Aquest torn s\'ha omplert mentrestant. Tria\'n un altre.',
   errClosedDay: 'Aquell dia estem tancats.',
   errDateRange: 'Les reserves són d\'1 a 90 dies vista.',

@@ -37,6 +37,9 @@ export function BookingForm ({ booking, partyNoun, summary }: BookingFormProps) 
   const phoneHint = useId()
   const emailId = useId()
   const notesId = useId()
+  const allergyInfoId = useId()
+  const allergyOtherId = useId()
+  const [showAllergies,setShowAllergies] = useState(false)
   const choicesRef = useRef<HTMLDivElement>(null)
   const slotsRef = useRef<HTMLElement>(null)
   const [askedForSlot, setAskedForSlot] = useState(false)
@@ -172,6 +175,58 @@ export function BookingForm ({ booking, partyNoun, summary }: BookingFormProps) 
             <label htmlFor={notesId} className={LABEL}>{t.reserve.notes}</label>
             <textarea id={notesId} name='notes' rows={2} maxLength={300} value={booking.contact.notes} onChange={setField('notes')} className={`${FIELD} w-full py-2.5`} />
           </div>
+          <fieldset className='space-y-3 border-t border-ink/15 pt-5 sm:col-span-2'>
+            <legend className={LABEL}>{t.reserve.allergyTitle}</legend>
+            <p className='text-sm text-ink/70'>{t.reserve.allergyIntro}</p>
+            <label className='flex items-start gap-2 text-sm'>
+              <input type='checkbox' checked={showAllergies} onChange={e => {
+                setShowAllergies(e.target.checked)
+                if (!e.target.checked) {
+                  booking.setAllergyIds([])
+                  booking.setAllergyText('')
+                  booking.setAllergyConsent(false)
+                }
+              }} />
+              <span>{t.reserve.allergyToggle}</span>
+            </label>
+            {showAllergies && (
+              <div className='space-y-4 border-l-2 border-ink/20 pl-4'>
+                <div className='grid gap-2 sm:grid-cols-2'>
+                  {[
+                    [1, t.reserve.allergyGluten], [2,t.reserve.allergyCrustaceans],
+                    [3,t.reserve.allergyEggs], [4,t.reserve.allergyFish],
+                    [5,t.reserve.allergyPeanuts], [6,t.reserve.allergySoy],
+                    [7,t.reserve.allergyMilk], [8,t.reserve.allergyNuts],
+                    [9,t.reserve.allergyCelery], [10,t.reserve.allergyMustard],
+                    [11,t.reserve.allergySesame], [12,t.reserve.allergySulphites],
+                    [13,t.reserve.allergyLupin], [14,t.reserve.allergyMolluscs]
+                  ].map(([id,label]) => (
+                    <label key={id} className='flex items-center gap-2 text-sm'>
+                      <input type='checkbox' checked={booking.allergyIds.includes(id as number)}
+                        onChange={e => booking.setAllergyIds(
+                          e.target.checked
+                            ? [...booking.allergyIds, id as number]
+                            : booking.allergyIds.filter(value => value !== id)
+                        )} />
+                      {label}
+                    </label>
+                  ))}
+                </div>
+                <label htmlFor={allergyOtherId} className={LABEL}>{t.reserve.allergyOther}</label>
+                <textarea id={allergyOtherId} rows={2} maxLength={700}
+                  value={booking.allergyText} onChange={e => booking.setAllergyText(e.target.value)}
+                  className={`${FIELD} w-full py-2.5`} />
+                <p id={allergyInfoId} className='text-sm text-ink/70'>{t.reserve.allergyNotice}</p>
+                <label className='flex items-start gap-2 text-sm'>
+                  <input type='checkbox' checked={booking.allergyConsent}
+                    onChange={e => booking.setAllergyConsent(e.target.checked)}
+                    required={booking.allergyIds.length > 0 || booking.allergyText.trim().length > 0}
+                    aria-describedby={allergyInfoId} />
+                  <span>{t.reserve.allergyConsent}</span>
+                </label>
+              </div>
+            )}
+          </fieldset>
           {/* La reserva se gestiona porque la pide quien la hace: no lleva casilla, pero sí se dice para qué son los datos */}
           <PrivacyNote className='text-sm text-ink/70 sm:col-span-2'>{t.reserve.dataUse}</PrivacyNote>
         </section>

@@ -49,7 +49,7 @@ export function splitSlots (slots: Slot[]): { lunch: Slot[], dinner: Slot[] } {
 
 export const hasRoom = (slot: Slot, people: number): boolean => slot.remaining >= people
 
-export type ReserveErrorKey = 'errNoAvailability' | 'errClosedDay' | 'errDateRange' | 'errTooMany' | 'errGeneric'
+export type ReserveErrorKey = 'errNoAvailability' | 'errClosedDay' | 'errDateRange' | 'errTooMany' | 'errDuplicate' | 'errGeneric'
 
 /** El texto con el que explicar por qué no se ha podido reservar, según el motivo que da la base de datos. */
 export function reserveErrorKey (message: string | null | undefined): ReserveErrorKey {
@@ -59,6 +59,8 @@ export function reserveErrorKey (message: string | null | undefined): ReserveErr
   if (message?.includes('DATE_OUT_OF_RANGE')) return 'errDateRange'
   // El tope contra reservas falsas: demasiadas con el mismo teléfono o desde la misma conexión
   if (message?.includes('TOO_MANY_RESERVATIONS')) return 'errTooMany'
+  // La misma persona ya tiene mesa ese día, aunque haya cambiado algún dato al repetir
+  if (message?.includes('DUPLICATE_RESERVATION')) return 'errDuplicate'
   return 'errGeneric'
 }
 

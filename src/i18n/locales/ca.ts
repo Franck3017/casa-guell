@@ -57,6 +57,7 @@ export const ca: Messages = {
   more: 'Una persona més',
   person: 'persona',
   persons: 'persones',
+  errDuplicate: 'Ja tens una reserva per a aquest dia.',
   full: 'complet',
   pickSlot: 'Tria una hora per continuar.',
   slotsHint: 'Tria un dia i veuràs les hores lliures.',

@@ -83,6 +83,10 @@ describe('reserveErrorKey', () => {
     expect(reserveErrorKey('TOO_MANY_RESERVATIONS')).toBe('errTooMany')
   })
 
+  it('quien ya tiene mesa ese día recibe su propio aviso, no el general', () => {
+    expect(reserveErrorKey('DUPLICATE_RESERVATION')).toBe('errDuplicate')
+  })
+
   it('un día cerrado a mano desde el panel se explica igual que uno de cierre semanal', () => {
     expect(reserveErrorKey('BLOCKED_DAY')).toBe('errClosedDay')
   })

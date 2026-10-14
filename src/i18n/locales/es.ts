@@ -58,6 +58,7 @@ export const es: Messages = {
   more: 'Una persona más',
   person: 'persona',
   persons: 'personas',
+  errDuplicate: 'Ya tienes una reserva para ese día.',
   full: 'completo',
   pickSlot: 'Elige una hora para continuar.',
   slotsHint: 'Elige un día y verás las horas libres.',

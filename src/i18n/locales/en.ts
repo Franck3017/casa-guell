@@ -58,6 +58,7 @@ export const en: Messages = {
   more: 'One more guest',
   person: 'guest',
   persons: 'guests',
+  errDuplicate: 'You already have a booking for that day.',
   full: 'full',
   pickSlot: 'Pick a time to continue.',
   slotsHint: 'Pick a day to see the free times.',
